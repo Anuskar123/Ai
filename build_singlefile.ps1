@@ -1,5 +1,5 @@
 # Read with explicit UTF8 encoding
-$html = Get-Content -Path "index.html" -Encoding UTF8 -Raw
+$html = Get-Content -Path "csy3081_external.html" -Encoding UTF8 -Raw
 $css = Get-Content -Path "style.css" -Encoding UTF8 -Raw
 $js = Get-Content -Path "app.js" -Encoding UTF8 -Raw
 

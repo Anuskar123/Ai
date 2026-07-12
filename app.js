@@ -25,7 +25,7 @@ const QUESTION_BANK = [
         category: 'fill-blank',
         points: 1,
         title: 'Question 1: Decision Tree Splitting Concept',
-        text: 'The process of dividing an internal node into two or more child nodes in a Decision Tree (`[1:35:36]`) is called ____________.',
+        text: 'The process of dividing an internal node into two or more child nodes in a Decision Tree is called ____________.',
         correctAnswer: 'splitting',
         acceptableAnswers: ['splitting', 'split', 'node splitting'],
         explanation: 'From **Handson on Decision Tree.pdf**: "Splitting: The process of dividing a node into two or more sub-nodes." Root node starts with all data, and splitting recursively partitions samples based on feature thresholds.'
@@ -36,7 +36,7 @@ const QUESTION_BANK = [
         category: 'fill-blank',
         points: 1,
         title: 'Question 2: Apriori Market Basket Lift Metric',
-        text: 'In Market Basket Analysis (`[2:54:30]`), if the **Lift** metric between two items is equal to ____________, it indicates that the two items are completely independent of each other.',
+        text: 'In Market Basket Analysis, if the **Lift** metric between two items is equal to ____________, it indicates that the two items are completely independent of each other.',
         correctAnswer: '1',
         acceptableAnswers: ['1', '1.0', 'one'],
         explanation: 'From **tutorial unsupervised learning (1).docx**: "If a lift value is close to 1 then both the rules were completely independent. Lift computes the ratio of observed support to expected support under independence." Lift > 1 indicates positive co-occurrence.'
@@ -47,7 +47,7 @@ const QUESTION_BANK = [
         category: 'fill-blank',
         points: 1,
         title: 'Question 3: Scikit-Learn KMeans Centroids Attribute',
-        text: 'When using Scikit-Learn\'s `KMeans` class (`[2:42:45]`), the 2D numpy array containing the coordinates of the final cluster centroids can be accessed via the attribute `kmeans.____________`.',
+        text: 'When using Scikit-Learn\'s `KMeans` class, the 2D numpy array containing the coordinates of the final cluster centroids can be accessed via the attribute `kmeans.____________`.',
         correctAnswer: 'cluster_centers_',
         acceptableAnswers: ['cluster_centers_', 'cluster_centers'],
         explanation: 'From **tutorial unsupervised learning (1).docx (Example 2)**: After calling `kmeans.fit(X)`, you access `kmeans.cluster_centers_` to retrieve the $(K \times \text{n\_features})$ coordinates of the cluster centers.'
@@ -58,7 +58,7 @@ const QUESTION_BANK = [
         category: 'fill-blank',
         points: 1,
         title: 'Question 4: Preventing Cross-Validation Data Leakage',
-        text: 'To prevent **Data Leakage** during cross-validation (`[37:26]`), preprocessing transformers (such as `SimpleImputer` and `StandardScaler`) should be combined with the estimator using a Scikit-Learn ____________.',
+        text: 'To prevent **Data Leakage** during cross-validation, preprocessing transformers (such as `SimpleImputer` and `StandardScaler`) should be combined with the estimator using a Scikit-Learn ____________.',
         correctAnswer: 'Pipeline',
         acceptableAnswers: ['pipeline', 'Pipeline', 'sklearn.pipeline.Pipeline'],
         explanation: 'From **Handson on Decision Tree.pdf**: Putting imputers and classifiers inside a `Pipeline` guarantees that statistics (like median or mean) are calculated *only* on the training folds during cross-validation.'
@@ -71,7 +71,7 @@ const QUESTION_BANK = [
         category: 'true-false',
         points: 1,
         title: 'Question 5: Feature Scaling in Decision Trees',
-        text: 'Decision Tree classifiers (`[1:35:36]`) require input features to be standardized (e.g., using `StandardScaler`) before training because distance metrics between features determine the node splitting rules.',
+        text: 'Decision Tree classifiers require input features to be standardized (e.g., using `StandardScaler`) before training because distance metrics between features determine the node splitting rules.',
         options: [
             { letter: 'A', text: 'True' },
             { letter: 'B', text: 'False' }
@@ -85,7 +85,7 @@ const QUESTION_BANK = [
         category: 'true-false',
         points: 1,
         title: 'Question 6: Softmax Probability Sum Guarantee',
-        text: 'Unlike One-vs-Rest (OvR) logistic regression (`[1:26:36]`), Softmax regression guarantees that the predicted class probabilities across all mutually exclusive classes sum to exactly 1.0.',
+        text: 'Unlike One-vs-Rest (OvR) logistic regression, Softmax regression guarantees that the predicted class probabilities across all mutually exclusive classes sum to exactly 1.0.',
         options: [
             { letter: 'A', text: 'True' },
             { letter: 'B', text: 'False' }
@@ -99,7 +99,7 @@ const QUESTION_BANK = [
         category: 'true-false',
         points: 1,
         title: 'Question 7: Adjusted Rand Index (ARI) Interpretation',
-        text: 'In `KMeans` clustering (`[2:53:00]`), if the `Adjusted Rand Index (ARI)` score between the unsupervised clusters and true ground-truth labels is `-0.005`, it indicates a near-perfect clustering performance.',
+        text: 'In `KMeans` clustering, if the `Adjusted Rand Index (ARI)` score between the unsupervised clusters and true ground-truth labels is `-0.005`, it indicates a near-perfect clustering performance.',
         options: [
             { letter: 'A', text: 'True' },
             { letter: 'B', text: 'False' }
@@ -127,13 +127,13 @@ const QUESTION_BANK = [
         category: 'true-false',
         points: 1,
         title: 'Question 9: Naive Bayes Conditional Independence',
-        text: 'The Naive Bayes classifier (`[2:07:31]`) makes the "naive" assumption that all features are strongly correlated and dependent on each other when calculating conditional probabilities.',
+        text: 'The Naive Bayes classifier makes the "naive" assumption that all features are strongly correlated and dependent on each other when calculating conditional probabilities.',
         options: [
             { letter: 'A', text: 'True' },
             { letter: 'B', text: 'False' }
         ],
         correctOption: 'B',
-        explanation: 'From the **Naive Bayes Curriculum (`[2:07:31]`)**: The Naive Bayes algorithm assumes that all input features $x_i$ are **conditionally independent** of each other given the class label $y$.'
+        explanation: 'From the **Naive Bayes Curriculum**: The Naive Bayes algorithm assumes that all input features $x_i$ are **conditionally independent** of each other given the class label $y$.'
     },
 
     // --- MULTIPLE CHOICE (10) ---
@@ -175,7 +175,7 @@ const QUESTION_BANK = [
         category: 'mcq',
         points: 2,
         title: 'Question 12: Classifier vs Regressor Tree Splitting',
-        text: 'What is the primary difference in splitting criteria between a `DecisionTreeClassifier` and a `DecisionTreeRegressor` (`[1:35:36]`)?',
+        text: 'What is the primary difference in splitting criteria between a `DecisionTreeClassifier` and a `DecisionTreeRegressor`?',
         options: [
             { letter: 'A', text: 'Classifiers use Mean Squared Error (MSE), whereas Regressors use Gini Impurity.' },
             { letter: 'B', text: 'Classifiers use Gini Impurity or Entropy, whereas Regressors use Mean Squared Error (MSE) or Variance Reduction.' },
@@ -223,7 +223,7 @@ const QUESTION_BANK = [
         category: 'mcq',
         points: 2,
         title: 'Question 15: Random Forest Bagging Mechanism',
-        text: 'How does a `RandomForestClassifier` (`[1:55:18]`) reduce the variance and overfitting typically associated with single Decision Trees?',
+        text: 'How does a `RandomForestClassifier` reduce the variance and overfitting typically associated with single Decision Trees?',
         options: [
             { letter: 'A', text: 'By forcing every tree in the ensemble to split on the exact same feature at every node.' },
             { letter: 'B', text: 'By training multiple uncorrelated decision trees on random bootstrap sample subsets (Bagging) and random feature subsets, then averaging their votes.' },
@@ -231,7 +231,7 @@ const QUESTION_BANK = [
             { letter: 'D', text: 'By automatically eliminating all categorical variables in the dataset.' }
         ],
         correctOption: 'B',
-        explanation: 'From the **Random Forest module (`[1:55:18]`)**: Random Forest uses Bootstrap Aggregation (Bagging) combined with random feature selection ($\sqrt{n\_features}$) at each split to create diverse trees whose errors cancel out when averaged.'
+        explanation: 'From the **Random Forest module**: Random Forest uses Bootstrap Aggregation (Bagging) combined with random feature selection ($\sqrt{n\_features}$) at each split to create diverse trees whose errors cancel out when averaged.'
     },
     {
         id: 'q16',
@@ -239,7 +239,7 @@ const QUESTION_BANK = [
         category: 'mcq',
         points: 2,
         title: 'Question 16: KNN Distance Sensitivity & Scaling',
-        text: 'Why is feature scaling (`StandardScaler` or `MinMaxScaler`) considered strictly mandatory before applying K-Nearest Neighbours (`KNN`) (`[2:14:37]`)?',
+        text: 'Why is feature scaling (`StandardScaler` or `MinMaxScaler`) considered strictly mandatory before applying K-Nearest Neighbours (`KNN`)?',
         options: [
             { letter: 'A', text: 'Because KNN calculates Euclidean or Manhattan distance between feature vectors; without scaling, features with large numerical ranges (e.g., Annual Income $100,000 vs Age 30) completely dominate the distance metric.' },
             { letter: 'B', text: 'Because Scikit-Learn will throw a fatal syntax error if unscaled data is passed to `KNeighborsClassifier`.' },
@@ -247,7 +247,7 @@ const QUESTION_BANK = [
             { letter: 'D', text: 'Feature scaling is NOT required for KNN.' }
         ],
         correctOption: 'A',
-        explanation: 'From the **KNN module (`[2:14:37]`)**: Since KNN assigns classes based strictly on geometric distances ($\sqrt{\sum \Delta x^2}$), unscaled features with large magnitudes overshadow smaller numerical features.'
+        explanation: 'From the **KNN module**: Since KNN assigns classes based strictly on geometric distances ($\sqrt{\sum \Delta x^2}$), unscaled features with large magnitudes overshadow smaller numerical features.'
     },
     {
         id: 'q17',
@@ -255,7 +255,7 @@ const QUESTION_BANK = [
         category: 'mcq',
         points: 2,
         title: 'Question 17: Support Vector Machine (SVM) Kernel Trick',
-        text: 'In Support Vector Machines (`[2:20:31]`), what is the primary purpose of the **Kernel Trick** (`kernel="rbf"` or `kernel="poly"`) when dealing with non-linearly separable classification data?',
+        text: 'In Support Vector Machines, what is the primary purpose of the **Kernel Trick** (`kernel="rbf"` or `kernel="poly"`) when dealing with non-linearly separable classification data?',
         options: [
             { letter: 'A', text: 'To delete all data points that fall inside the decision margin.' },
             { letter: 'B', text: 'To implicitly map 2D/3D non-linearly separable features into a higher-dimensional feature space where a linear separating hyperplane can easily divide the classes.' },
@@ -263,7 +263,7 @@ const QUESTION_BANK = [
             { letter: 'D', text: 'To speed up training by dropping 50% of the training dataset.' }
         ],
         correctOption: 'B',
-        explanation: 'From the **SVM module (`[2:20:31]`)**: The Kernel trick computes dot products in high-dimensional space without explicitly projecting the data, allowing linear hyperplanes to separate non-linear boundaries cleanly.'
+        explanation: 'From the **SVM module**: The Kernel trick computes dot products in high-dimensional space without explicitly projecting the data, allowing linear hyperplanes to separate non-linear boundaries cleanly.'
     },
     {
         id: 'q18',
@@ -271,7 +271,7 @@ const QUESTION_BANK = [
         category: 'mcq',
         points: 2,
         title: 'Question 18: Reinforcement Learning Exploration vs Exploitation',
-        text: 'In Reinforcement Learning (`[2:56:40]`), an agent must balance **Exploitation** vs. **Exploration**. What does **Exploration** mean in this context?',
+        text: 'In Reinforcement Learning, an agent must balance **Exploitation** vs. **Exploration**. What does **Exploration** mean in this context?',
         options: [
             { letter: 'A', text: 'Executing the known action that currently yields the highest immediate reward.' },
             { letter: 'B', text: 'Trying new or lesser-tried actions to discover states that might yield much higher long-term cumulative rewards.' },
@@ -279,7 +279,7 @@ const QUESTION_BANK = [
             { letter: 'D', text: 'Splitting the environment into supervised training and testing folds.' }
         ],
         correctOption: 'B',
-        explanation: 'From the **Reinforcement Learning module (`[3:10:00]`)**: Exploration means testing new actions to discover optimal paths, while Exploitation means leveraging currently known rewards.'
+        explanation: 'From the **Reinforcement Learning module**: Exploration means testing new actions to discover optimal paths, while Exploitation means leveraging currently known rewards.'
     },
     {
         id: 'q19',
@@ -287,7 +287,7 @@ const QUESTION_BANK = [
         category: 'mcq',
         points: 2,
         title: 'Question 19: Core Limitations of Machine Learning',
-        text: 'Which of the following is highlighted as one of the **5 Core Limitations of Machine Learning** (`[3:33:08]`)?',
+        text: 'Which of the following is highlighted as one of the **5 Core Limitations of Machine Learning**?',
         options: [
             { letter: 'A', text: 'Machine learning algorithms cannot process numerical floating-point numbers.' },
             { letter: 'B', text: 'Absolute dependency on data quality ("Garbage In, Garbage Out"), algorithmic bias, and the lack of interpretability inside black-box models.' },
@@ -295,7 +295,7 @@ const QUESTION_BANK = [
             { letter: 'D', text: 'Scikit-Learn models cannot be deployed on cloud servers.' }
         ],
         correctOption: 'B',
-        explanation: 'From the **Limitations of ML module (`[3:33:08]`)**: The course explicitly emphasizes data dependency, bias/fairness, black-box unexplainability, overfitting risks, and high computing cost as core industry limitations.'
+        explanation: 'From the **Limitations of ML module**: The course explicitly emphasizes data dependency, bias/fairness, black-box unexplainability, overfitting risks, and high computing cost as core industry limitations.'
     },
 
     // --- PYTHON & SCIKIT-LEARN CODE SYNTAX (6) ---
@@ -345,7 +345,7 @@ y_pred = model.predict(?)`,
         category: 'code',
         points: 2,
         title: 'Question 22: Scikit-Learn KMeans Initialization Syntax',
-        text: 'Which of the following Scikit-Learn code snippets correctly initializes an **unsupervised clustering** model (`[2:42:45]`) to group the diabetes dataset features into **4 distinct clusters**?',
+        text: 'Which of the following Scikit-Learn code snippets correctly initializes an **unsupervised clustering** model to group the diabetes dataset features into **4 distinct clusters**?',
         options: [
             { letter: 'A', text: 'model = KMeans(n_clusters=4, random_state=0).fit(X)' },
             { letter: 'B', text: 'model = DecisionTreeClassifier(max_depth=4).fit(X, y)' },
@@ -381,7 +381,7 @@ y_pred = model.predict(?)`,
         category: 'code',
         points: 2,
         title: 'Question 24: Random Forest n_estimators Syntax',
-        text: 'Which of the following Scikit-Learn statements correctly initializes a **Random Forest Classifier** (`[1:55:18]`) composed of exactly **150 bootstrap decision trees** with a fixed random seed of `42`?',
+        text: 'Which of the following Scikit-Learn statements correctly initializes a **Random Forest Classifier** composed of exactly **150 bootstrap decision trees** with a fixed random seed of `42`?',
         options: [
             { letter: 'A', text: 'rf = RandomForestClassifier(n_estimators=150, random_state=42)' },
             { letter: 'B', text: 'rf = DecisionTreeClassifier(max_depth=150, random_state=42)' },
@@ -397,7 +397,7 @@ y_pred = model.predict(?)`,
         category: 'code',
         points: 2,
         title: 'Question 25: KNN Distance Metric Specification',
-        text: 'In Scikit-Learn\'s `KNeighborsClassifier` (`[2:14:37]`), which parameter value tuple correctly specifies using **Euclidean distance ($L_2$)** with $K=5$ neighbors?',
+        text: 'In Scikit-Learn\'s `KNeighborsClassifier`, which parameter value tuple correctly specifies using **Euclidean distance ($L_2$)** with $K=5$ neighbors?',
         options: [
             { letter: 'A', text: 'KNeighborsClassifier(n_neighbors=5, metric="minkowski", p=2)' },
             { letter: 'B', text: 'KNeighborsClassifier(n_neighbors=5, metric="manhattan", p=1)' },
@@ -417,17 +417,17 @@ y_pred = model.predict(?)`,
         title: 'Question 26: Comprehensive Applied ML Paradigms Matching',
         text: 'Match each machine learning concept on the left with its exact real-world description or definition from your CSY3081 course on the right:',
         matchingPairs: [
-            { id: 'm1', left: '1. Unsupervised Learning', correctRight: 'B. Grouping customers by purchasing habits without target labels (`[52:00]`).' },
-            { id: 'm2', left: '2. Softmax Regression', correctRight: 'C. Multiclass model outputting normalized probabilities summing to 1.0 (`[1:26:36]`).' },
-            { id: 'm3', left: '3. Reinforcement Learning', correctRight: 'A. Robot learning to play games via interactions with environment (`[2:56:40]`).' },
-            { id: 'm4', left: '4. Regression Task', correctRight: 'D. Predicting continuous numerical values like median house value (`[1:05:17]`).' },
+            { id: 'm1', left: '1. Unsupervised Learning', correctRight: 'B. Grouping customers by purchasing habits without target labels.' },
+            { id: 'm2', left: '2. Softmax Regression', correctRight: 'C. Multiclass model outputting normalized probabilities summing to 1.0.' },
+            { id: 'm3', left: '3. Reinforcement Learning', correctRight: 'A. Robot learning to play games via interactions with environment.' },
+            { id: 'm4', left: '4. Regression Task', correctRight: 'D. Predicting continuous numerical values like median house value.' },
             { id: 'm5', left: '5. Semi-Supervised Learning', correctRight: 'E. Training data includes a small portion of labeled data and lots of unlabeled data.' }
         ],
         rightOptions: [
-            'A. Robot learning to play games via interactions with environment (`[2:56:40]`).',
-            'B. Grouping customers by purchasing habits without target labels (`[52:00]`).',
-            'C. Multiclass model outputting normalized probabilities summing to 1.0 (`[1:26:36]`).',
-            'D. Predicting continuous numerical values like median house value (`[1:05:17]`).',
+            'A. Robot learning to play games via interactions with environment.',
+            'B. Grouping customers by purchasing habits without target labels.',
+            'C. Multiclass model outputting normalized probabilities summing to 1.0.',
+            'D. Predicting continuous numerical values like median house value.',
             'E. Training data includes a small portion of labeled data and lots of unlabeled data.'
         ],
         explanation: 'These exact definitions form the core paradigm distinctions covered in **Section 1 & 2** of your CSY3081 curriculum!'
@@ -437,7 +437,7 @@ y_pred = model.predict(?)`,
         type: 'matching',
         category: 'matching',
         points: 3,
-        title: 'Question 27: Supervised Algorithms & Math Matching (`[1:04:49 - 2:42:36]`)',
+        title: 'Question 27: Supervised Algorithms & Math Matching',
         text: 'Match each supervised classification or regression algorithm with its core mathematical principle or splitting criterion:',
         matchingPairs: [
             { id: 'am1', left: '1. Decision Tree', correctRight: 'B. Splits internal nodes to maximize purity via Gini Impurity ($1 - \\sum p_i^2$).' },
@@ -451,7 +451,7 @@ y_pred = model.predict(?)`,
             'C. Lazy learning that assigns class based on majority vote of $K$ closest geometric neighbors.',
             'D. Finds the maximum margin hyperplane separating classes, using Kernel trick when non-linear.'
         ],
-        explanation: 'These core mathematical mechanisms define the 4 main supervised classification families (`[1:35:36]`, `[2:07:31]`, `[2:14:37]`, and `[2:20:31]`).'
+        explanation: 'These core mathematical mechanisms define the 4 main supervised classification families (, , , and ).'
     },
 
     // --- DEBUGGING SCENARIOS (3) ---
@@ -501,7 +501,7 @@ print(f"Accuracy: \${accuracy_score(X_test, y_pred)}")`,
         category: 'scenario',
         points: 4,
         title: 'Question 29 (4 Points): K-Means & Unsupervised Evaluation Debugging',
-        text: 'You are working with a retail company\'s transactions (`Online_Retail.xlsx`). Your manager asks you to run **K-Means clustering** (`[2:42:45]`) to group customers by `Age` and `Annual Income`, and you write this code snippet:\n\nIdentify the **two primary reasons** why evaluating (`accuracy_score` against `Age`) is conceptually and mathematically wrong:',
+        text: 'You are working with a retail company\'s transactions (`Online_Retail.xlsx`). Your manager asks you to run **K-Means clustering** to group customers by `Age` and `Annual Income`, and you write this code snippet:\n\nIdentify the **two primary reasons** why evaluating (`accuracy_score` against `Age`) is conceptually and mathematically wrong:',
         codeSnippet: `from sklearn.cluster import KMeans
 from sklearn.metrics import accuracy_score
 
@@ -528,7 +528,7 @@ acc = accuracy_score(customer_data['Age'], clusters)`,
         type: 'scenario',
         category: 'scenario',
         points: 4,
-        title: 'Question 30 (4 Points): KNN Distance Scaling Debugging Scenario (`[2:14:37]`)',
+        title: 'Question 30 (4 Points): KNN Distance Scaling Debugging Scenario',
         text: 'You build a `KNeighborsClassifier(n_neighbors=5)` to classify medical diagnosis records based on `White Blood Cell Count` (range: 4,000 to 11,000) and `Body Temperature` (range: 36.5 to 39.5). When evaluated, your model achieves poor accuracy because `White Blood Cell Count` dominates all Euclidean distance calculations.\n\nIdentify the exact Scikit-Learn solution required to fix this geometric dominance problem:',
         codeSnippet: `from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
@@ -549,13 +549,587 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
         ],
         correctOption: 'A',
         explanation: 'Option A correctly fits `StandardScaler` only on `X_train` (`fit_transform`) and transforms `X_test` (`transform`), eliminating distance dominance without leaking validation fold statistics into training.'
+    },
+    {
+        id: 'q31',
+        type: 'true-false',
+        category: 'true-false',
+        points: 2,
+        title: 'Question 31 (2 Points): Linear Regression Target Variable Type',
+        text: `Linear regression can be used to predict continuous numerical values.`,
+        options: [
+            { letter: 'A', text: 'True' },
+            { letter: 'B', text: 'False' }
+        ],
+        correctOption: 'A',
+        explanation: `Linear regression models the linear relationship between one or more independent features ($X$) and a continuous target variable ($Y$). Examples include predicting house prices, stock values, or temperature.<br><br><strong>💡 Exam & Interview Tip:</strong> Remember the rule of thumb: <strong>Regression $\\rightarrow$ Continuous output</strong> (numbers), <strong>Classification $\\rightarrow$ Categorical output</strong> (classes/labels).`
+    },
+    {
+        id: 'q32',
+        type: 'true-false',
+        category: 'true-false',
+        points: 2,
+        title: 'Question 32 (2 Points): Logistic Regression Sigmoid Range',
+        text: `In logistic regression, the sigmoid function outputs values between 0 and 1.`,
+        options: [
+            { letter: 'A', text: 'True' },
+            { letter: 'B', text: 'False' }
+        ],
+        correctOption: 'A',
+        explanation: `The sigmoid (logistic) function is defined mathematically as $\\sigma(z) = \\frac{1}{1 + e^{-z}}$. No matter how large or small the input $z$ is ($-\\infty < z < +\\infty$), the output is squashed precisely into the open interval $(0, 1)$, allowing it to be interpreted directly as a probability in binary classification.<br><br><strong>💡 Exam & Interview Tip:</strong> If $z \\to +\\infty$, $\\sigma(z) \\to 1$. If $z \\to -\\infty$, $\\sigma(z) \\to 0$. If $z = 0$, $\\sigma(z) = 0.5$.`
+    },
+    {
+        id: 'q33',
+        type: 'true-false',
+        category: 'true-false',
+        points: 2,
+        title: 'Question 33 (2 Points): Decision Trees Problem Scope',
+        text: `Decision Trees can only be used for classification problems.`,
+        options: [
+            { letter: 'A', text: 'True' },
+            { letter: 'B', text: 'False' }
+        ],
+        correctOption: 'B',
+        explanation: `Decision Trees can be used for both **Classification** (predicting categorical labels) and **Regression** (predicting continuous numerical averages). Together, they are known formally as **CART** (*Classification And Regression Trees*).<br><br><strong>💡 Exam & Interview Tip:</strong> When asked how splits are evaluated: Classification trees use **Entropy/Information Gain or Gini Impurity**, while Regression trees use **Variance Reduction / Mean Squared Error (MSE)**.`
+    },
+    {
+        id: 'q34',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 34 (2 Points): K-Means Unsupervised Grouping Terminology',
+        text: `In K-means clustering, the algorithm groups data into ______`,
+        options: [
+            { letter: 'A', text: 'Clusters' },
+            { letter: 'B', text: 'Groups' },
+            { letter: 'C', text: 'Class' },
+            { letter: 'D', text: 'all of above' }
+        ],
+        correctOption: 'A',
+        explanation: `K-means is an **unsupervised learning** algorithm whose primary purpose is to partition unlabeled data points into $K$ distinct **clusters** based on spatial feature similarity. ("Classes" are pre-labeled categories in supervised learning).<br><br><strong>💡 Exam & Interview Tip:</strong> Always distinguish terminology rigorously: **Clusters** = Unsupervised (discovered structure), **Classes** = Supervised (pre-defined labels).`
+    },
+    {
+        id: 'q35',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 35 (2 Points): Linear Equation Regression Type',
+        text: `The equation $y = wx + b$ represents ______ regression.`,
+        options: [
+            { letter: 'A', text: 'logistic' },
+            { letter: 'B', text: 'polynomial' },
+            { letter: 'C', text: 'softmax' },
+            { letter: 'D', text: 'linear' }
+        ],
+        correctOption: 'D',
+        explanation: `$y = wx + b$ is the algebraic equation of a straight line, representing **Simple Linear Regression** where $w$ is the Weight (Slope / Gradient coefficient) and $b$ is the Bias (Y-intercept).<br><br><strong>💡 Exam & Interview Tip:</strong> If you see higher powers/exponents on $x$ (e.g., $y = w_1x + w_2x^2 + b$), it becomes **Polynomial Regression**.`
+    },
+    {
+        id: 'q36',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 36 (2 Points): Sigmoid Output at Zero Input',
+        text: `What does the sigmoid function output for an input value of 0?`,
+        options: [
+            { letter: 'A', text: '0' },
+            { letter: 'B', text: '0.5' },
+            { letter: 'C', text: '1' },
+            { letter: 'D', text: '-1' }
+        ],
+        correctOption: 'B',
+        explanation: `Substituting $z = 0$ directly into the sigmoid formula: $\\sigma(0) = \\frac{1}{1 + e^{-0}} = \\frac{1}{1 + 1} = \\frac{1}{2} = 0.5$.<br><br><strong>💡 Exam & Interview Tip:</strong> $0.5$ is the standard **decision threshold** in binary logistic regression ($P \\ge 0.5 \\implies \\text{Class 1}$).`
+    },
+    {
+        id: 'q37',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 37 (2 Points): Robotic Arm Reward & Penalty Paradigm',
+        text: `A robotic arm learns to grasp objects by receiving a reward when it successfully picks up an item and a penalty when it drops it. This is an example of:`,
+        options: [
+            { letter: 'A', text: 'Supervised learning' },
+            { letter: 'B', text: 'Unsupervised Learning' },
+            { letter: 'C', text: 'Reinforcement learning' },
+            { letter: 'D', text: 'Semi supervised learning' }
+        ],
+        correctOption: 'C',
+        explanation: `**Reinforcement Learning (RL)** involves an **agent** taking dynamic actions inside an **environment** to maximize cumulative **rewards** through trial-and-error feedback signals.<br><br><strong>💡 Exam & Interview Tip:</strong> Look for classic keywords: *Agent, Environment, State, Action, Reward, Penalty, Policy, Trial-and-error*. If these appear together, the answer is almost always Reinforcement Learning.`
+    },
+    {
+        id: 'q38',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 38 (2 Points): Multi-class Probability Vector Decision',
+        text: `In a multi-class classification problem with 5 classes, if a model outputs the following probabilities for a sample: [0.45, 0.10, 0.30, 0.10, 0.05], what is the predicted class?`,
+        options: [
+            { letter: 'A', text: '0' },
+            { letter: 'B', text: '1' },
+            { letter: 'C', text: '2' },
+            { letter: 'D', text: '3' }
+        ],
+        correctOption: 'A',
+        explanation: `Classification models select the class corresponding to the highest probability slot ($\\arg\\max$). Comparing the values across each index: Index 0 has **0.45 (Highest)**, Index 1 is 0.10, Index 2 is 0.30, Index 3 is 0.10, and Index 4 is 0.05.<br><br><strong>💡 Exam & Interview Tip:</strong> Remember that Python arrays and Scikit-Learn class output probabilities are strictly **0-indexed**. The first item (index 0) corresponds to Class 0!`
+    },
+    {
+        id: 'q39',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 39 (2 Points): Evaluation Metric for Imbalanced Classification',
+        text: `Which of the following evaluation metrics is MOST appropriate for a classification problem with highly imbalanced classes?`,
+        options: [
+            { letter: 'A', text: 'Accuracy' },
+            { letter: 'B', text: 'F1-Score' },
+            { letter: 'C', text: 'Mean Squared Error' },
+            { letter: 'D', text: 'R-squared' }
+        ],
+        correctOption: 'B',
+        explanation: `In imbalanced datasets (e.g., 99% benign, 1% fraud), **Accuracy** is deeply deceptive because a naive model predicting only the majority class achieves 99% accuracy while missing every single fraud case. **F1-Score** is the harmonic mean of Precision and Recall, ensuring both false positives and false negatives on the critical minority class are accounted for.<br><br><strong>💡 Exam & Interview Tip:</strong> **Never use Accuracy for imbalanced datasets.** Always choose **F1-Score**, **PR-AUC (Precision-Recall AUC)**, or **ROC-AUC**.`
+    },
+    {
+        id: 'q40',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 40 (2 Points): Binary Classification Precision Calculation',
+        text: `In a binary classification problem, a model has True Positives = 80, False Positives = 20, True Negatives = 180, and False Negatives = 20. What is the Precision of the model?`,
+        options: [
+            { letter: 'A', text: '0.8' },
+            { letter: 'B', text: '0.9' },
+            { letter: 'C', text: '0.85' },
+            { letter: 'D', text: '0.75' }
+        ],
+        correctOption: 'A',
+        explanation: `$\\text{Precision} = \\frac{TP}{TP + FP} = \\frac{80}{80 + 20} = \\frac{80}{100} = 0.8$.<br><br><strong>💡 Exam & Interview Tip:</strong> **Precision** ($TP / (TP+FP)$) answers: Out of all *predicted* positives, how many were actually positive? **Recall** ($TP / (TP+FN)$) answers: Out of all *actual* positives, how many did our model catch?`
+    },
+    {
+        id: 'q41',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 41 (2 Points): Centroid Initialization Sensitivity',
+        text: `Which of the following algorithms is MOST sensitive to the initial placement of cluster centers?`,
+        options: [
+            { letter: 'A', text: 'Hierarchical Clustering' },
+            { letter: 'B', text: 'DBSCAN' },
+            { letter: 'C', text: 'K-means' },
+            { letter: 'D', text: 'Gaussian Mixture Models' }
+        ],
+        correctOption: 'C',
+        explanation: `Standard K-means initializes $K$ centroids uniformly at random. Poor random placement can cause the algorithm to get stuck in poor **local minima**, yielding suboptimal clustering results depending purely on initial seed placement.<br><br><strong>💡 Exam & Interview Tip:</strong> This exact weakness is why **K-means++** was developed! K-means++ spreads out the initial centroids using a probabilistic distance-weighted heuristic to guarantee fast convergence and optimal clustering.`
+    },
+    {
+        id: 'q42',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 42 (2 Points): Within-Cluster Sum of Squares (WCSS) Minimization',
+        text: `In K-means clustering, the Within-Cluster Sum of Squares (WCSS) is minimized when:`,
+        options: [
+            { letter: 'A', text: 'Clusters are as large as possible' },
+            { letter: 'B', text: 'Clusters are as small and compact as possible' },
+            { letter: 'C', text: 'All data points are in a single cluster' },
+            { letter: 'D', text: 'Centroids are placed at infinity' }
+        ],
+        correctOption: 'B',
+        explanation: `WCSS (also known as **Inertia**) measures the total sum of squared Euclidean distances between data points and their assigned cluster centroid: $\\text{WCSS} = \\sum_{k=1}^{K} \\sum_{x \\in C_k} \\|x - \\mu_k\\|^2$. Minimizing this variance ensures every cluster is tightly and compactly packed together around its center.<br><br><strong>💡 Exam & Interview Tip:</strong> WCSS strictly decreases as $K$ increases. At the extreme where $K = n$, WCSS reaches exactly $0$.`
+    },
+    {
+        id: 'q43',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 43 (2 Points): Incompatible Distance Metrics for K-Means',
+        text: `Which of the following distance metrics is NOT appropriate for K-means clustering?`,
+        options: [
+            { letter: 'A', text: 'Euclidean Distance' },
+            { letter: 'B', text: 'Manhattan Distance' },
+            { letter: 'C', text: 'Cosine Similarity' },
+            { letter: 'D', text: 'Hamming Distance for categorical data' }
+        ],
+        correctOption: 'D',
+        explanation: `The "means" in K-means requires computing the **continuous arithmetic average** of coordinate vectors at every iteration. Categorical data does not have a mathematical average (e.g., what is the "mean" of Red and Blue?). Therefore, Euclidean/continuous metrics work with K-means, while categorical data requires **K-modes** with Hamming distance.<br><br><strong>💡 Exam & Interview Tip:</strong> For datasets containing mixed features (both numerical and categorical columns), the standard algorithm to use is **K-prototypes**.`
+    },
+    {
+        id: 'q44',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 44 (2 Points): R-Squared (R²) Metric Interpretation',
+        text: `In linear regression, if a model has an R² value of 0.85, what does this indicate?`,
+        options: [
+            { letter: 'A', text: '85% of the variance in the target variable is explained by the model' },
+            { letter: 'B', text: '15% of the variance in the target variable is explained by the model' },
+            { letter: 'C', text: 'The model has 85% accuracy' },
+            { letter: 'D', text: 'The model has 85% error rate' }
+        ],
+        correctOption: 'A',
+        explanation: `The Coefficient of Determination ($R^2$) represents the exact proportion of total variance in the dependent variable ($Y$) that can be predicted from the independent feature(s) ($X$).<br><br><strong>💡 Exam & Interview Tip:</strong> $R^2$ ranges from $-\\infty$ (for arbitrarily bad regression models) to $1.0$ (perfect prediction). A dummy baseline model that simply predicts the average $\\bar{y}$ every time gets exactly $R^2 = 0$.`
+    },
+    {
+        id: 'q45',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 45 (2 Points): High Polynomial Degree on Small Datasets',
+        text: `In polynomial regression, if the degree is increased from 2 to 10 on a small dataset, what is MOST likely to happen?`,
+        options: [
+            { letter: 'A', text: 'Both training and test error decrease' },
+            { letter: 'B', text: 'Training error decreases, test error increases' },
+            { letter: 'C', text: 'Training error increases, test error decreases' },
+            { letter: 'D', text: 'Both training and test error increase' }
+        ],
+        correctOption: 'B',
+        explanation: `Increasing the polynomial degree to 10 gives the model extreme flexibility, causing it to **overfit** (memorizing random sample noise and exact outliers). This causes training error to drop toward zero while generalization error on unseen validation/test data spikes dramatically.<br><br><strong>💡 Exam & Interview Tip:</strong> High polynomial degree $\\rightarrow$ High model complexity $\\rightarrow$ **High Variance / Low Bias** (Overfitting).`
+    },
+    {
+        id: 'q46',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 46 (2 Points): Value-Based RL Q-Value Q(s, a) Definition',
+        text: `In value-based reinforcement learning, the Q-value Q(s, a) represents:`,
+        options: [
+            { letter: 'A', text: 'The immediate reward for taking action a in state s' },
+            { letter: 'B', text: 'The expected cumulative reward for taking action a in state s and following the optimal policy thereafter' },
+            { letter: 'C', text: 'The probability of taking action a in state s' },
+            { letter: 'D', text: 'The number of times action a was taken in state s' }
+        ],
+        correctOption: 'B',
+        explanation: `The **Action-Value function** $Q(s, a)$ evaluates the quality of executing action $a$ right now from state $s$, plus the total discounted future return ($\\gamma R$) expected if the agent acts optimally from the next state onward.<br><br><strong>💡 Exam & Interview Tip:</strong> $V(s)$ evaluates a **State** ("How good is being in this state?"), whereas $Q(s, a)$ evaluates a **State-Action pair** ("How good is taking this specific action from this state?").`
+    },
+    {
+        id: 'q47',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 47 (2 Points): Policy-Based RL Representation',
+        text: `In policy-based reinforcement learning, the policy is typically represented as:`,
+        options: [
+            { letter: 'A', text: 'A value function estimating expected rewards' },
+            { letter: 'B', text: 'A probability distribution over actions given a state' },
+            { letter: 'C', text: 'A Q-table of state-action pairs' },
+            { letter: 'D', text: 'A reward function' }
+        ],
+        correctOption: 'B',
+        explanation: `A stochastic policy $\\pi(a|s) = P(A_t = a | S_t = s)$ assigns a likelihood probability to every possible action when observing state $s$.<br><br><strong>💡 Exam & Interview Tip:</strong> Unlike Q-learning which deterministically picks $\\arg\\max Q$, policy-based methods directly parameterize and optimize $\\pi_\\theta(a|s)$ using policy gradient ascent.`
+    },
+    {
+        id: 'q48',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 48 (2 Points): Advantage of Policy-Based over Value-Based Methods',
+        text: `What is the main advantage of policy-based methods over value-based methods?`,
+        options: [
+            { letter: 'A', text: 'They are always more sample efficient' },
+            { letter: 'B', text: 'They can handle continuous action spaces more naturally' },
+            { letter: 'C', text: 'They require less computation' },
+            { letter: 'D', text: 'They always converge to the global optimum' }
+        ],
+        correctOption: 'B',
+        explanation: `Value-based methods (like Q-learning) require computing the maximum over all available actions ($\\max_a Q(s, a)$). If actions are continuous (such as steering wheel torque or torque on a robot joint), searching infinite continuous actions is computationally intractable. Policy-based methods directly output the mean and variance of a continuous distribution (e.g., Gaussian), solving continuous control naturally.<br><br><strong>💡 Exam & Interview Tip:</strong> Another major advantage of policy-based methods is their ability to learn **stochastic policies** (vital for non-deterministic environments or games like Rock-Paper-Scissors where fixed strategies fail).`
+    },
+    {
+        id: 'q49',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 49 (2 Points): Q-Learning ε-Greedy Policy Strategy',
+        text: `In Q-learning, the agent uses an ε-greedy policy for action selection. With ε = 0.1, the agent will:`,
+        options: [
+            { letter: 'A', text: 'Choose a random action 10% of the time and the best action 90% of the time' },
+            { letter: 'B', text: 'Choose a random action 90% of the time and the best action 10% of the time' },
+            { letter: 'C', text: 'Always choose the best action' },
+            { letter: 'D', text: 'Always choose a random action' }
+        ],
+        correctOption: 'A',
+        explanation: `$\\epsilon$-greedy balances the critical **Exploration vs. Exploitation Trade-off**: **Exploration ($\\epsilon = 10\%$):** Execute a completely random action to discover novel states and rewards. **Exploitation ($1 - \\epsilon = 90\%$):** Choose the action with the highest currently known Q-value to maximize reward.<br><br><strong>💡 Exam & Interview Tip:</strong> In production RL systems, we use **$\\epsilon$-decay** (starting with high $\\epsilon \\approx 1.0$ for pure exploration early on, and gradually decaying it toward $0.01$ as the agent masters the environment).`
+    },
+    {
+        id: 'q50',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 50 (2 Points): Q-Learning High Learning Rate α Effects',
+        text: `In Q-learning, if the learning rate α is set too high, what is MOST likely to occur?`,
+        options: [
+            { letter: 'A', text: 'The agent learns very slowly' },
+            { letter: 'B', text: 'The agent may fail to converge or oscillate due to large updates' },
+            { letter: 'C', text: 'The agent will always choose random actions' },
+            { letter: 'D', text: 'The agent will ignore future rewards' }
+        ],
+        correctOption: 'B',
+        explanation: `The Bellman update equation adjusts Q-values by step size $\\alpha$: $Q(s, a) \\leftarrow Q(s, a) + \\alpha [R + \\gamma \\max Q(s', a') - Q(s, a)]$. If $\\alpha$ is set too high (close to or exceeding 1), each new observation causes drastic jumps in the Q-table, causing the values to oscillate wildly without settling into convergence.<br><br><strong>💡 Exam & Interview Tip:</strong> $\\alpha$ controls **speed vs. stability**. Too small = extremely sluggish learning; Too large = divergence and instability.`
+    },
+    {
+        id: 'q51',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 51 (2 Points): Decision Tree Information Gain Calculation',
+        text: `In a Decision Tree, what would be the information gain if a split reduces the entropy from 0.9 to an average entropy of 0.6 across the child nodes?`,
+        options: [
+            { letter: 'A', text: '0.9' },
+            { letter: 'B', text: '0.3' },
+            { letter: 'C', text: '0.6' },
+            { letter: 'D', text: '1.5' }
+        ],
+        correctOption: 'B',
+        explanation: `$\\text{Information Gain} = \\text{Entropy}(\\text{Parent}) - \\text{Weighted Average Entropy}(\\text{Children}) = 0.9 - 0.6 = 0.3$.<br><br><strong>💡 Exam & Interview Tip:</strong> Higher Information Gain signifies a superior split that successfully separates mixed classes into clean, homogenous child nodes.`
+    },
+    {
+        id: 'q52',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 52 (2 Points): True Property of Decision Trees',
+        text: `Which of the following statements about Decision Trees is TRUE?`,
+        options: [
+            { letter: 'A', text: 'Decision Trees are "black-box" models that cannot be interpreted' },
+            { letter: 'B', text: 'Decision Trees automatically perform feature selection during the splitting process' },
+            { letter: 'C', text: 'Decision Trees require feature scaling before training' },
+            { letter: 'D', text: 'Decision Trees are guaranteed to find the globally optimal tree' }
+        ],
+        correctOption: 'B',
+        explanation: `At every candidate node, a decision tree evaluates all available features and chooses the exact feature and threshold that yields the highest Information Gain. Irrelevant features that don't reduce impurity are ignored entirely, providing automatic built-in feature selection.<br><br><strong>💡 Exam & Interview Tip:</strong> Why are the other options false? Trees are **White-box** models (highly interpretable), trees **do NOT require feature scaling**, and trees use **Greedy heuristics** so they are *not* guaranteed globally optimal.`
+    },
+    {
+        id: 'q53',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 53 (2 Points): K-Means First Iteration Centroid Update',
+        text: `A dataset has points A(1,1), B(1,2), C(2,1), D(5,5), E(5,6), F(6,5). Initial centroids are randomly chosen as (1,1) and (5,5). After the first iteration of K-means (assignment and update), what will be the new centroid for the first cluster?`,
+        options: [
+            { letter: 'A', text: '(1.33, 1.33)' },
+            { letter: 'B', text: '(1, 1)' },
+            { letter: 'C', text: '(2, 2)' },
+            { letter: 'D', text: '(1.5, 1.5)' }
+        ],
+        correctOption: 'A',
+        explanation: `1. **Assignment step** (Euclidean distance to $C_1(1,1)$ vs $C_2(5,5)$): A(1,1), B(1,2), and C(2,1) are closer to $C_1(1,1)$ $\\rightarrow$ **Cluster 1**. D(5,5), E(5,6), F(6,5) are closer to $C_2(5,5)$ $\\rightarrow$ **Cluster 2**.<br>2. **Update step** (average coordinates of Cluster 1 points A, B, C): $\\text{New } X = \\frac{1 + 1 + 2}{3} = \\frac{4}{3} \\approx 1.333$, $\\text{New } Y = \\frac{1 + 2 + 1}{3} = \\frac{4}{3} \\approx 1.333$.<br><br><strong>💡 Exam & Interview Tip:</strong> Always list out the exact points assigned to each cluster clearly before taking the arithmetic average so you don't make calculation errors under exam pressure!`
+    },
+    {
+        id: 'q54',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 54 (2 Points): K-Means Extreme K=n Case',
+        text: `In K-means clustering, if K is chosen to be equal to the number of samples (K = n), what will be the value of Within-Cluster Sum of Squares (WCSS)?`,
+        options: [
+            { letter: 'A', text: 'Maximum possible value' },
+            { letter: 'B', text: 'Minimum possible value (zero)' },
+            { letter: 'C', text: 'The average of all pairwise distances' },
+            { letter: 'D', text: 'Cannot be determined' }
+        ],
+        correctOption: 'B',
+        explanation: `When $K = n$, every individual data point becomes its own independent cluster centroid. Because every point sits exactly at its centroid coordinates, the Euclidean distance $\\|x_i - \\mu_i\\|$ is $0$ for all points. Therefore, $\\sum 0^2 = 0$.<br><br><strong>💡 Exam & Interview Tip:</strong> This illustrates exactly why you cannot simply pick the $K$ that minimizes WCSS-otherwise, you would always pick $K = n$, which provides zero insight into data grouping!`
+    },
+    {
+        id: 'q55',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 55 (2 Points): Optimal K Selection via Silhouette Score',
+        text: `A data scientist runs K-means with K=3, K=4, and K=5 on a dataset and obtains Silhouette Scores of 0.45, 0.52, and 0.41 respectively. Which value of K should be selected?`,
+        options: [
+            { letter: 'A', text: '3' },
+            { letter: 'B', text: '4' },
+            { letter: 'C', text: '5' },
+            { letter: 'D', text: 'all are equally good' }
+        ],
+        correctOption: 'B',
+        explanation: `The **Silhouette Score** ranges from $-1$ to $+1$: $+1$ indicates dense, perfectly separated clusters; $0$ indicates overlapping cluster boundaries; $-1$ indicates misclassified clustering. Therefore, the optimal $K$ corresponds to the **highest Silhouette Score**, which is $0.52$ at $K = 4$.<br><br><strong>💡 Exam & Interview Tip:</strong> Unlike WCSS (which monotonically decreases as $K$ increases), the Silhouette Score reaches a clear peak exactly at the optimal number of clusters.`
+    },
+    {
+        id: 'q56',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 56 (2 Points): Narrow AI vs General AI Distinction',
+        text: `Which of the following best describes the "Narrow AI" vs "General AI" distinction?`,
+        options: [
+            { letter: 'A', text: 'Narrow AI can perform any intellectual task that a human can, while General AI is limited to specific tasks' },
+            { letter: 'B', text: 'Narrow AI is designed for specific tasks, while General AI would theoretically perform any intellectual task a human can' },
+            { letter: 'C', text: 'Narrow AI uses neural networks, while General AI uses rule-based systems' },
+            { letter: 'D', text: 'Narrow AI requires labelled data, while General AI does not' }
+        ],
+        correctOption: 'B',
+        explanation: `**Narrow AI (Weak AI):** Systems engineered and trained for a single, well-defined task (e.g., Siri, AlphaGo, ChatGPT, facial recognition). **Artificial General Intelligence (AGI / Strong AI):** A theoretical system capable of general reasoning, learning across arbitrary unfamiliar domains, and adapting to any intellectual task at human or superhuman capacity.<br><br><strong>💡 Exam & Interview Tip:</strong> All existing real-world AI systems today-including GPT-4 and Claude 3.5-classify strictly as **Narrow/Domain-Specific AI**.`
+    },
+    {
+        id: 'q57',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 57 (2 Points): Healthcare Multimodal AI (CV + NLP)',
+        text: `Which of the following is an example of AI being used in healthcare that involves both computer vision and natural language processing?`,
+        options: [
+            { letter: 'A', text: 'Predicting patient readmission rates using tabular data' },
+            { letter: 'B', text: 'Analyzing chest X-rays for pneumonia detection while also extracting relevant information from medical reports' },
+            { letter: 'C', text: 'Clustering patients based on their medical history' },
+            { letter: 'D', text: 'Using reinforcement learning to recommend treatment plans' }
+        ],
+        correctOption: 'B',
+        explanation: `Analyzing chest X-rays (medical imaging) requires **Computer Vision (CV)**, while processing unstructured clinical medical reports requires **Natural Language Processing (NLP)**.<br><br><strong>💡 Exam & Interview Tip:</strong> Systems integrating multiple input streams such as text, vision, and audio are known as **Multimodal AI architectures**.`
+    },
+    {
+        id: 'q58',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 58 (2 Points): Autonomous Vehicles Primary Challenge',
+        text: `In the context of AI applications, what is the primary challenge in deploying autonomous vehicles?`,
+        options: [
+            { letter: 'A', text: 'Lack of sufficient training data' },
+            { letter: 'B', text: 'The need to handle edge cases and make real-time decisions in unpredictable environments' },
+            { letter: 'C', text: 'Inability to process visual information' },
+            { letter: 'D', text: 'Lack of sensors in modern vehicles' }
+        ],
+        correctOption: 'B',
+        explanation: `While closed highways are structured, open-world city driving presents an infinite "long tail" of unexpected events (e.g., fallen tree branches, construction workers using hand gestures, severe weather, jaywalkers). Making zero-latency, safety-critical decisions during rare **edge cases** is the ultimate bottleneck in autonomous driving.<br><br><strong>💡 Exam & Interview Tip:</strong> This is known as the **Long-Tail Problem** of generalization in Robotics and AI.`
+    },
+    {
+        id: 'q59',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 59 (2 Points): Predictive Maintenance Data Characteristics',
+        text: `Which of the following is a key challenge in using AI for predictive maintenance in manufacturing?`,
+        options: [
+            { letter: 'A', text: 'The data is always perfectly labelled' },
+            { letter: 'B', text: 'Sensor data is often noisy, high-dimensional, and imbalanced (few failure events)' },
+            { letter: 'C', text: 'Machines never fail unexpectedly' },
+            { letter: 'D', text: 'Maintenance schedules are always optimal' }
+        ],
+        correctOption: 'B',
+        explanation: `Industrial machines operate normally $>99.9\\%$ of their lifecycle. Because breakdowns are rare, datasets exhibit extreme **class imbalance** (millions of normal operational rows vs. dozens of failure events). Furthermore, sensor telemetry (vibration, acoustics, temperature) generates high-dimensional and electrically noisy time-series streams.<br><br><strong>💡 Exam & Interview Tip:</strong> When building predictive maintenance models, **Anomaly Detection** models (like Autoencoders, Isolation Forests, or One-Class SVMs) are often preferred over standard supervised classifiers.`
+    },
+    {
+        id: 'q60',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 60 (2 Points): Turing Test Passing Criterion',
+        text: `In the Turing Test, a machine passes if:`,
+        options: [
+            { letter: 'A', text: 'It can perfectly answer all questions correctly' },
+            { letter: 'B', text: 'A human evaluator cannot distinguish between the machine and a human based on text-based conversation' },
+            { letter: 'C', text: 'It achieves 100% accuracy on a benchmark dataset' },
+            { letter: 'D', text: 'It can physically perform tasks like a human' }
+        ],
+        correctOption: 'B',
+        explanation: `Proposed by Alan Turing in 1950 (the "Imitation Game"), a human judge engages in natural language text chat with both a hidden human and a hidden machine. If the judge cannot reliably tell which participant is the computer, the machine successfully passes the test.<br><br><strong>💡 Exam & Interview Tip:</strong> Notice that the original Turing Test requires only **text-based** interaction. The *Total Turing Test* extends this by requiring physical robotic abilities (computer vision and object manipulation).`
+    },
+    {
+        id: 'q61',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 61 (2 Points): Turing Test Philosophical & Behavioral Limitation',
+        text: `Which of the following is a limitation of the Turing Test as a measure of intelligence?`,
+        options: [
+            { letter: 'A', text: 'It requires physical interaction with the machine' },
+            { letter: 'B', text: 'It measures human-like deception rather than true understanding or intelligence' },
+            { letter: 'C', text: 'It is too difficult to implement' },
+            { letter: 'D', text: 'It requires the machine to have visual capabilities' }
+        ],
+        correctOption: 'B',
+        explanation: `To pass the Turing Test, a machine often must resort to **deception** (e.g., simulating typos, pretending not to know complex math, or feigning human emotions). Furthermore, **John Searle\'s Chinese Room Argument** demonstrates that a machine can pass a conversational test merely through syntactic pattern matching without any subjective understanding or consciousness.<br><br><strong>💡 Exam & Interview Tip:</strong> The Turing Test evaluates **behavioral mimicry**, not internal cognitive reasoning or problem-solving capability.`
+    },
+    {
+        id: 'q62',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 62 (2 Points): Reactive Machines vs Limited Memory AI',
+        text: `In the context of AI types, what is the key distinction between Reactive Machines and Limited Memory AI?`,
+        options: [
+            { letter: 'A', text: 'Reactive Machines have memory of past experiences; Limited Memory AI does not' },
+            { letter: 'B', text: 'Reactive Machines cannot use past experiences to inform current decisions; Limited Memory AI can use past data for a short period' },
+            { letter: 'C', text: 'Reactive Machines are more advanced than Limited Memory AI' },
+            { letter: 'D', text: 'There is no distinction between them' }
+        ],
+        correctOption: 'B',
+        explanation: `Based on Arend Hintze\'s 4 tiers of AI: **Reactive Machines:** Zero memory storage. They strictly observe the immediate input state and react (e.g., IBM\'s Deep Blue analyzing current chessboard positions). **Limited Memory AI:** Stores recent historical observations to improve current decisions (e.g., self-driving cars tracking the velocity and trajectory of surrounding vehicles over the past few seconds).<br><br><strong>💡 Exam & Interview Tip:</strong> The 4 tiers of AI from basic to advanced are: **1. Reactive Machines $\\rightarrow$ 2. Limited Memory $\\rightarrow$ 3. Theory of Mind $\\rightarrow$ 4. Self-Awareness**.`
+    },
+    {
+        id: 'q63',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 63 (2 Points): Zero Metric on Imbalanced Dummy Prediction',
+        text: `In an imbalanced binary classification problem where Class 0 represents 95% of the data and Class 1 represents 5%, a model predicts all samples as Class 0. Which metric will be 0?`,
+        options: [
+            { letter: 'A', text: 'Accuracy' },
+            { letter: 'B', text: 'Recall for Class 1' },
+            { letter: 'C', text: 'Precision for Class 0' },
+            { letter: 'D', text: 'F1-Score for Class 0' }
+        ],
+        correctOption: 'B',
+        explanation: `Let\'s analyze Class 1 (Positive class): $TP_1 = 0$ (Model predicted 0 instances of Class 1) and $FN_1 = 5\\%$ (All Class 1 instances were missed and predicted as Class 0). Therefore, $\\text{Recall}_1 = \\frac{TP_1}{TP_1 + FN_1} = \\frac{0}{0 + 5\\%} = 0$.<br><br><strong>💡 Exam & Interview Tip:</strong> What about the other metrics for this dummy model? Accuracy = $95\\%$, Precision for Class 0 = $95\\%$, Recall for Class 0 = $100\\%$.`
+    },
+    {
+        id: 'q64',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 64 (2 Points): Harmonic Mean F1-Score Computation',
+        text: `In binary classification, if a model has Precision = 0.9 and Recall = 0.8, what is the F1-Score? (Round to 3 decimal places)`,
+        options: [
+            { letter: 'A', text: '0.847' },
+            { letter: 'B', text: '0.850' },
+            { letter: 'C', text: '0.833' },
+            { letter: 'D', text: '0.900' }
+        ],
+        correctOption: 'A',
+        explanation: `The harmonic mean formula for F1-Score is: $\\text{F1} = 2 \\times \\frac{\\text{Precision} \\times \\text{Recall}}{\\text{Precision} + \\text{Recall}} = 2 \\times \\frac{0.9 \\times 0.8}{0.9 + 0.8} = 2 \\times \\frac{0.72}{1.7} = \\frac{1.44}{1.7} \\approx 0.847058... \\implies 0.847$.<br><br><strong>💡 Exam & Interview Tip:</strong> The harmonic mean ($0.847$) is always closer to the **smaller** value between Precision ($0.8$) and Recall ($0.9$) compared to the standard arithmetic average ($0.850$). This penalizes models where one metric drops significantly!`
+    },
+    {
+        id: 'q65',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 65 (2 Points): Ambiguous Elbow Plot K Selection',
+        text: `You run K-means clustering on a dataset and obtain an elbow plot that is smooth with no clear knee point. What should you do to select K?`,
+        options: [
+            { letter: 'A', text: 'Choose K = 2 arbitrarily' },
+            { letter: 'B', text: 'Use the Silhouette Score to select K' },
+            { letter: 'C', text: 'Choose K = number of features' },
+            { letter: 'D', text: 'Choose K = number of samples' }
+        ],
+        correctOption: 'B',
+        explanation: `When the Elbow Method (WCSS plot) yields a smooth, gradual curve without a distinct sharp bend (knee/elbow point), visual interpretation becomes subjective and unreliable. In these scenarios, you must switch to quantitative mathematical validation metrics such as the **Silhouette Score**, **Gap Statistic**, or **Davies-Bouldin Index**.<br><br><strong>💡 Exam & Interview Tip:</strong> Never pick $K$ arbitrarily or equal to the number of features! If both Elbow and Silhouette are ambiguous, let **domain expertise / business objectives** dictate $K$ (e.g., clothing sizing requiring exactly $K=3$ for Small, Medium, Large).`
+    },
+    {
+        id: 'q66',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 66 (2 Points): Decision Tree Maximum Entropy for 4 Equal Classes',
+        text: `In a Decision Tree for classification, what is the exact entropy value when a node has a distribution of [25, 25, 25, 25] for 4 classes? (Round to 3 decimal places)`,
+        options: [
+            { letter: 'A', text: '1.000' },
+            { letter: 'B', text: '2.000' },
+            { letter: 'C', text: '0.500' },
+            { letter: 'D', text: '4.000' }
+        ],
+        correctOption: 'B',
+        explanation: `Total samples = $25 + 25 + 25 + 25 = 100$. Each class $i$ has equal probability $p_i = \\frac{25}{100} = \\frac{1}{4}$. Using the Shannon Entropy formula (base 2): $H(X) = -\\sum_{i=1}^{4} \\frac{1}{4} \\log_2\\left(\\frac{1}{4}\\right)$. Since $\\log_2(1/4) = \\log_2(2^{-2}) = -2$: $H(X) = -4 \\times \\left[\\frac{1}{4} \\times (-2)\\right] = -(-2) = 2.000$.<br><br><strong>💡 Exam & Interview Tip:</strong> For $C$ classes, maximum entropy occurs when classes are perfectly equal: $H_{\\max} = \\log_2(C)$. For 2 classes ($C=2$), maximum entropy = $\\log_2(2) = 1.0$. For 4 classes ($C=4$), maximum entropy = $\\log_2(4) = 2.0$. For 8 classes ($C=8$), maximum entropy = $\\log_2(8) = 3.0$.`
     }
 ];
 
 // --- CORE NAVIGATION ENGINE (GLOBAL FUNCTION FOR DOUBLE SAFETY) ---
-function switchTabSection(tabId, anchorId = null) {
+function switchTabSection(tabId, anchorId = null) { setTimeout(() => { if (window.renderAllMath) window.renderAllMath(); }, 50);
     try {
-        document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+        if (!document.getElementById(`section-${tabId}`)) {
+            console.warn(`Target section section-${tabId} not found.`);
+            return;
+        }
+        document.querySelectorAll(".content-section").forEach(sec => sec.classList.remove("active"));
         document.querySelectorAll('.nav-tab').forEach(btn => btn.classList.remove('active'));
 
         const targetSection = document.getElementById(`section-${tabId}`);
@@ -566,6 +1140,9 @@ function switchTabSection(tabId, anchorId = null) {
 
         if (tabId === 'test-1' && typeof renderTest1Questions === 'function') {
             renderTest1Questions(window.test1CurrentFilter || 'all');
+        }
+        if (tabId === 'test-2' && typeof renderTest2Questions === 'function') {
+            renderTest2Questions(window.test2CurrentFilter || 'all');
         }
 
         activeTab = tabId;
@@ -585,12 +1162,25 @@ window.switchTabSection = switchTabSection;
 
 function resetProgress() {
     try {
-        if (confirm("Are you sure you want to reset all solved CSY3081 exam answers and readiness progress?")) {
+        if (confirm("Are you sure you want to reset ALL solved CSY3081 exam answers across Dashboard, Test 1, and Test 2?")) {
             solvedState = {};
             localStorage.removeItem('csy3081_solved_v1');
-            updateProgressUI();
-            renderQuizList();
-            showToast("✓ CSY3081 study progress has been reset to 0%");
+            if (window.test1SolvedState) {
+                window.test1SolvedState = {};
+                localStorage.removeItem('csy3081_test1_solved_v1');
+            }
+            if (window.test2SolvedState) {
+                window.test2SolvedState = {};
+                localStorage.removeItem('csy3081_test2_solved_v1');
+            }
+            if (typeof updateProgressUI === 'function') updateProgressUI();
+            if (typeof renderQuizList === 'function') renderQuizList();
+            if (typeof updateTest1ProgressUI === 'function') updateTest1ProgressUI();
+            if (typeof renderTest1Questions === 'function' && document.getElementById('test1-questions-container')) renderTest1Questions(window.test1CurrentFilter || 'all');
+            if (typeof updateTest2ProgressUI === 'function') updateTest2ProgressUI();
+            if (typeof renderTest2Questions === 'function' && document.getElementById('test2-questions-container')) renderTest2Questions(window.test2CurrentFilter || 'all');
+            showToast("\uD83D\uDD04 All CSY3081 study progress (Dashboard, Test 1, and Test 2) reset to 0%");
+            setTimeout(() => { if (window.renderAllMath) window.renderAllMath(); }, 30);
         }
     } catch (err) {
         console.error("Reset error:", err);
@@ -598,19 +1188,54 @@ function resetProgress() {
 }
 window.resetProgress = resetProgress;
 
+// --- SINGLE QUESTION RESET & RE-ATTEMPT ENGINE ---
+window.resetSingleQuestion = function(qid, section) {
+    setTimeout(() => { if (window.renderAllMath) window.renderAllMath(); }, 30);
+    try {
+        if (section === 'dashboard' || section === 'bank') {
+            if (solvedState && solvedState[qid]) {
+                delete solvedState[qid];
+                localStorage.setItem('csy3081_solved_v1', JSON.stringify(solvedState));
+            }
+            if (typeof renderQuizList === 'function') renderQuizList();
+            if (typeof updateProgressUI === 'function') updateProgressUI();
+            if (typeof showToast === 'function') showToast("\uD83D\uDD04 Question " + qid + " cleared. Type or select your new answer!");
+        } else if (section === 'test1') {
+            if (window.test1SolvedState && window.test1SolvedState[qid]) {
+                delete window.test1SolvedState[qid];
+                localStorage.setItem('csy3081_test1_solved_v1', JSON.stringify(window.test1SolvedState));
+            }
+            if (typeof renderTest1Questions === 'function') renderTest1Questions(window.test1CurrentFilter || 'all');
+            if (typeof updateTest1ProgressUI === 'function') updateTest1ProgressUI();
+            if (typeof showToast === 'function') showToast("\uD83D\uDD04 Test 1 Question " + qid + " cleared. Try again!");
+        } else if (section === 'test2') {
+            if (window.test2SolvedState && window.test2SolvedState[qid]) {
+                delete window.test2SolvedState[qid];
+                localStorage.setItem('csy3081_test2_solved_v1', JSON.stringify(window.test2SolvedState));
+            }
+            if (typeof renderTest2Questions === 'function') renderTest2Questions(window.test2CurrentFilter || 'all');
+            if (typeof updateTest2ProgressUI === 'function') updateTest2ProgressUI();
+            if (typeof showToast === 'function') showToast("\uD83D\uDD04 Test 2 Question " + qid + " cleared. Try again!");
+        }
+    } catch (e) {
+        console.error("resetSingleQuestion error:", e);
+    }
+};
+
 function updateProgressUI() {
     try {
+        const totalQuestionsCount = typeof QUESTION_BANK !== 'undefined' && QUESTION_BANK.length ? QUESTION_BANK.length : 66;
         const totalCount = Object.keys(solvedState).length;
         const correctCount = Object.values(solvedState).filter(s => s.status === 'correct').length;
 
         const answeredEl = document.getElementById('stat-answered');
-        if (answeredEl) answeredEl.innerText = `${totalCount} / 30`;
+        if (answeredEl) answeredEl.innerText = `${totalCount} / ${totalQuestionsCount}`;
 
         const accuracy = totalCount > 0 ? Math.round((correctCount / totalCount) * 100) : 0;
         const accEl = document.getElementById('stat-accuracy');
         if (accEl) accEl.innerText = `${accuracy}%`;
 
-        let readiness = Math.round((totalCount / 30) * accuracy);
+        let readiness = Math.round((totalCount / totalQuestionsCount) * accuracy);
         if (totalCount === 0) readiness = 0;
 
         const navVal = document.getElementById('nav-readiness-val');
@@ -624,7 +1249,7 @@ function updateProgressUI() {
             if (totalCount === 0) {
                 statusBadge.className = 'status-badge status-pending';
                 statusBadge.innerText = 'Not Started';
-            } else if (totalCount < 30) {
+            } else if (totalCount < totalQuestionsCount) {
                 statusBadge.className = 'status-badge status-active';
                 statusBadge.innerText = 'In Progress';
             } else {
@@ -668,6 +1293,8 @@ document.addEventListener('DOMContentLoaded', () => {
     try { initCopyCodeHandlers(); } catch (e) { console.error("initCopyCodeHandlers error:", e); }
     
     try { updateProgressUI(); } catch (e) { console.error("updateProgressUI error:", e); }
+    try { updateTest1ProgressUI(); } catch (e) { console.error("updateTest1ProgressUI error:", e); }
+    try { updateTest2ProgressUI(); } catch (e) { console.error("updateTest2ProgressUI error:", e); }
     try { renderQuizList(); } catch (e) { console.error("renderQuizList error:", e); }
     try { runTreeSimulation(); } catch (e) { console.error("runTreeSimulation error:", e); }
     try { runKMeansSimulation(); } catch (e) { console.error("runKMeansSimulation error:", e); }
@@ -677,8 +1304,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- 1. NAVIGATION TABS ---
 function initNavigation() {
-    const navBar = document.getElementById('main-nav');
-    if (!navBar) return;
+    const navBar = document.getElementById("main-nav");
+    if (!navBar || navBar._hasInit) return;
+    navBar._hasInit = true;
 
     navBar.addEventListener('click', (e) => {
         const tabBtn = e.target.closest('.nav-tab');
@@ -690,7 +1318,9 @@ function initNavigation() {
 
 // --- 2. DASHBOARD HANDLERS ---
 function initDashboardHandlers() {
-    const startBtn = document.getElementById('btn-start-exam');
+    if (window._hasInitDashboard) return;
+    window._hasInitDashboard = true;
+    const startBtn = document.getElementById("btn-start-exam");
     if (startBtn) startBtn.addEventListener('click', () => switchTabSection('exam-simulator'));
 
     const exploreBtn = document.getElementById('btn-explore-labs');
@@ -841,7 +1471,7 @@ function renderQuizList() {
             let html = `
                 <div class="question-card${cardStatusClass}" id="card-${q.id}">
                     <div class="question-head">
-                        <span class="question-meta">${q.type.toUpperCase()} • ${q.title}</span>
+                        <span class="question-meta">${q.type.toUpperCase()} | ${q.title}</span>
                         <span class="question-pts">${q.points} ${q.points === 1 ? 'Point' : 'Points'}</span>
                     </div>
                     <div class="question-body">${q.text}</div>
@@ -871,12 +1501,14 @@ function renderQuizList() {
             }
 
             if (q.type === 'fill-blank') {
-                const userText = (isSolved && isSolved.selected) ? isSolved.selected : '';
-                const isDisabled = (examMode === 'practice' && isSolved) ? 'disabled' : '';
+                const userText = (isSolved && isSolved.selected && isSolved.selected !== 'exam_submitted') ? isSolved.selected : '';
+                const statusBadgeText = isSolved ? (isSolved.status === 'correct' ? '<span style="color:#10b981;font-weight:700;margin-left:8px;">âœ“ Correct (+1 Pt)</span>' : '<span style="color:#ef4444;font-weight:700;margin-left:8px;">Ã— Incorrect</span>') : '';
                 html += `
-                    <div class="input-row">
-                        <input type="text" id="input-${q.id}" class="input-text" placeholder="Type answer keyword (e.g. splitting)" value="${userText}" ${isDisabled}>
-                        ${(examMode === 'practice' && !isSolved) ? `<button class="btn btn-primary btn-sm btn-check-blank" data-qid="${q.id}">Check Answer</button>` : ''}
+                    <div class="input-row" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;">
+                        <input type="text" id="input-${q.id}" class="input-text" placeholder="Type your answer (e.g. splitting)..." value="${userText}" style="flex:1;min-width:220px;padding:8px 12px;border:2px solid var(--border-color);border-radius:6px;background:var(--card-bg);color:var(--text-primary);font-size:0.95rem;">
+                        <button class="btn btn-primary btn-sm btn-check-blank" data-qid="${q.id}" onclick="if(window.handleBlankSubmission) window.handleBlankSubmission('${q.id}')" style="background:#4f46e5;color:#fff;font-weight:600;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;">${isSolved ? 'ðŸ”„ Update Answer' : 'âœ“ Check Answer'}</button>
+                        ${isSolved ? `<button class="btn btn-secondary btn-sm" onclick="if(window.resetSingleQuestion) window.resetSingleQuestion('${q.id}', 'dashboard')" style="background:#3b82f6;color:#fff;font-weight:600;padding:8px 14px;border-radius:6px;border:none;cursor:pointer;">ðŸ”„ Reset Blank</button>` : ''}
+                        ${statusBadgeText}
                     </div>
                 `;
             }
@@ -903,6 +1535,9 @@ function renderQuizList() {
 
             if (examMode === 'practice' && isSolved) {
                 html += `
+                    <div style="margin-top:14px;margin-bottom:8px;">
+                        <button class="btn btn-secondary btn-sm" onclick="if(window.resetSingleQuestion) window.resetSingleQuestion('${q.id}', 'dashboard')" style="background:#3b82f6;color:#fff;font-weight:600;padding:6px 14px;border-radius:6px;border:1px solid #60a5fa;cursor:pointer;">🔄 Reset Question & Try Again</button>
+                    </div>
                     <div class="solution-box">
                         <strong>💡 CSY3081 Solution & Course Documentation Reference:</strong>
                         ${q.explanation}
@@ -994,7 +1629,7 @@ function submitTimedExam() {
     try {
         clearInterval(timerInterval);
         let totalScore = 0;
-        const maxScore = 50;
+        const maxScore = typeof QUESTION_BANK !== 'undefined' && QUESTION_BANK.length ? QUESTION_BANK.reduce((sum, q) => sum + (q.points || 0), 0) : 122;
 
         QUESTION_BANK.forEach(q => {
             const card = document.getElementById(`card-${q.id}`);
@@ -1024,7 +1659,8 @@ function submitTimedExam() {
         localStorage.setItem('csy3081_solved_v1', JSON.stringify(solvedState));
         updateProgressUI();
         setTestingMode('practice');
-        alert(`🏆 CSY3081 Exam Graded! Your final score is ${totalScore} out of ${maxScore} possible points across all 30 questions.`);
+        const totalQuestionsCount = typeof QUESTION_BANK !== 'undefined' ? QUESTION_BANK.length : 66;
+        alert(`🏆 CSY3081 Exam Graded! Your final score is ${totalScore} out of ${maxScore} possible points across all ${totalQuestionsCount} questions.`);
     } catch (err) {
         console.error("submitTimedExam error:", err);
     }
@@ -1032,7 +1668,7 @@ function submitTimedExam() {
 window.submitTimedExam = submitTimedExam;
 
 
-// --- 4. INTERACTIVE LAB 1: DECISION TREE SPLIT SIMULATOR (`[1:35:36]`) ---
+// --- 4. INTERACTIVE LAB 1: DECISION TREE SPLIT SIMULATOR ---
 function initLab1Handlers() {
     const sliders = ['slider-c0', 'slider-c1', 'slider-c2', 'slider-total'];
     sliders.forEach(id => {
@@ -1135,7 +1771,7 @@ function runTreeSimulation() {
 window.runTreeSimulation = runTreeSimulation;
 
 
-// --- 5. INTERACTIVE LAB 2: K-MEANS 2D CLUSTERING CANVAS (`[2:50:49]`) ---
+// --- 5. INTERACTIVE LAB 2: K-MEANS 2D CLUSTERING CANVAS ---
 let kmeansPoints = [];
 let kmeansK = 3;
 let kmeansCentroids = [];
@@ -1308,7 +1944,7 @@ function drawKMeansCanvas() {
 }
 
 
-// --- 6. INTERACTIVE LAB 3: KNN DISTANCE SIMULATOR (`[2:14:37]`) ---
+// --- 6. INTERACTIVE LAB 3: KNN DISTANCE SIMULATOR ---
 let knnTrainingPoints = [];
 let knnTestPoint = { x: 240, y: 170 };
 let knnK = 1;
@@ -1461,7 +2097,7 @@ function drawKNNCanvas(neighbors) {
 }
 
 
-// --- 7. INTERACTIVE LAB 4: RANDOM FOREST COMPARATOR (`[1:55:18]`) ---
+// --- 7. INTERACTIVE LAB 4: RANDOM FOREST COMPARATOR ---
 function initLab4Handlers() {
     const treesEl = document.getElementById('slider-rf-trees');
     const noiseEl = document.getElementById('slider-rf-noise');
@@ -2276,10 +2912,11 @@ function renderTest1Questions(filter = 'all', btnEl = null) {
                         }
                         return `<button class="${btnClass}" onclick="if(window.checkTest1Option) checkTest1Option(${q.id}, ${optIdx}, this)">
                             <span>${String.fromCharCode(65 + optIdx)}. ${opt}</span>
-                            ${solved && solved.selectedIndex === optIdx ? (solved.status === 'correct' ? '<span>✓ Correct</span>' : '<span>× Incorrect</span>') : ''}
+                            ${solved && solved.selectedIndex === optIdx ? (solved.status === 'correct' ? '<span>[Correct]</span>' : '<span>[Incorrect]</span>') : ''}
                         </button>`;
                     }).join('')}
                 </div>
+                ${solved ? `<div style="margin-top:12px;margin-bottom:8px;"><button class="btn btn-secondary btn-sm" onclick="if(window.resetSingleQuestion) window.resetSingleQuestion('${q.id}', 'test1')" style="background:#3b82f6;color:#fff;font-weight:600;padding:6px 14px;border-radius:6px;border:1px solid #60a5fa;cursor:pointer;">ðŸ”„ Reset Question & Try Again</button></div>` : ''}
                 <div class="test1-explanation ${solved ? 'show' : ''}" id="test1-exp-${q.id}">
                     <div class="test1-exp-title">💡 Official CSY3081 Detailed Explanation & Proof (${q.pts} Pts):</div>
                     <div>${q.explanation}</div>
@@ -2288,15 +2925,15 @@ function renderTest1Questions(filter = 'all', btnEl = null) {
             `;
         });
 
-        container.innerHTML = html;
+        container.innerHTML = html; setTimeout(() => { if (window.renderAllMath) window.renderAllMath(); }, 30);
         updateTest1ProgressUI();
     } catch (err) {
-        console.error("renderTest1Questions error:", err);
+        console.error("renderTest1Questions error:", err); window._lastRenderError = err.toString() + " at test1";
     }
 }
 window.renderTest1Questions = renderTest1Questions;
 
-function checkTest1Option(qId, optIdx, btnEl) {
+function checkTest1Option(qId, optIdx, btnEl) { setTimeout(() => { if (window.renderAllMath) window.renderAllMath(); }, 50);
     try {
         const q = window.test1Questions.find(x => x.id === qId);
         if (!q) return;
@@ -2395,3 +3032,1042 @@ function updateTest1ProgressUI() {
 }
 window.updateTest1ProgressUI = updateTest1ProgressUI;
 
+
+
+/* ==========================================================================
+   CSY3081: TEST 2 ASSESSMENT ENGINE (36 ADVANCED QUESTIONS & CODE LABS)
+   ========================================================================== */
+
+window.test2SolvedState = JSON.parse(localStorage.getItem('csy3081_test2_solved_v1') || '{}');
+window.test2CurrentFilter = 'all';
+
+window.test2Questions = [
+    // === CATEGORY 1: REAL-WORLD CASE STUDIES (12 Questions, 2 Pts Each) ===
+    {
+        id: 1,
+        category: 'case-studies',
+        pts: 2,
+        type: 'mcq',
+        question: 'A financial institution deploys a credit scoring machine learning model trained on historical data from 2015-2019. In 2023, the model begins rejecting creditworthy applicants and approving high-risk defaults at an alarming rate without any code modifications. Which of the following phenomena best explains this failure?',
+        options: [
+            'Concept Drift and Data Drift (`P(y|X)` and `P(X)` distribution shift due to macroeconomic inflation and interest rate changes over time)',
+            'Gradient Vanishing inside the Decision Tree splitting logic over extended operating hours',
+            'Overfitting caused by the `StandardScaler` transforming test samples differently than training samples',
+            'Numerical instability caused by `random_state=42` expiring after three years of consecutive inference'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation & Diagnosis:</strong> Real-world distributions change over time ($P_{\\text{test}}(X, y) \\neq P_{\\text{train}}(X, y)$). This is formally known as <strong>Concept Drift / Data Drift</strong>. A model trained on pre-inflation economic data fails when macroeconomic conditions shift unless automated monitoring and retraining pipelines are implemented.'
+    },
+    {
+        id: 2,
+        category: 'case-studies',
+        pts: 2,
+        type: 'mcq',
+        question: 'An AI healthcare startup builds an oncology diagnostic classifier to detect rare early-stage tumors. Only 0.5% of patients in the dataset actually have the tumor (`class 1`), while 99.5% are healthy (`class 0`). A junior data scientist trains a model that achieves 99.5% overall accuracy on the test set, yet the medical director rejects the model immediately. Why?',
+        options: [
+            'The model has collapsed into a majority-class predictor (`always guessing class 0`), resulting in 0% Recall and missing 100% of true tumor cases',
+            'The data scientist should have used $L_1$ regularized Linear Regression instead of a classification estimator',
+            '99.5% accuracy indicates extreme bias (underfitting) on the training dataset',
+            'The model required a minimum of 10,000 Support Vectors to achieve medical certification'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> In highly imbalanced datasets, overall accuracy is a misleading metric (`Accuracy Paradox`). A trivial dummy classifier predicting `class 0` for every patient achieves 99.5% accuracy but has $0\\%$ Sensitivity/Recall ($TP / (TP + FN) = 0 / (0 + FN) = 0$). Medical diagnosis requires optimizing <strong>Recall and F1-Score</strong> alongside stratified sampling.'
+    },
+    {
+        id: 3,
+        category: 'case-studies',
+        pts: 2,
+        type: 'mcq',
+        question: 'During a cross-validation experiment on a tabular real estate dataset, a student imputes missing values using `SimpleImputer(strategy="mean").fit_transform(X)` across the entire dataset $X$ before performing `train_test_split()`. Why is this experimental setup scientifically invalid?',
+        options: [
+            'It introduces severe Data Leakage because the overall mean computed across all samples includes information from the held-out test set',
+            'Decision Trees and Random Forests are mathematically incompatible with mean imputed continuous values',
+            '`fit_transform(X)` converts the pandas DataFrame into a sparse matrix that breaks downstream accuracy metrics',
+            'The student should have applied `StandardScaler` before running `SimpleImputer` on the global dataset'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> Computing preprocessing statistics (mean, median, standard deviation) across the entire dataset prior to splitting leaks test-set distributional knowledge into the training phase. To prevent leakage, preprocessing must be encapsulated inside a `Pipeline` where transformers are fitted solely on training folds.'
+    },
+    {
+        id: 4,
+        category: 'case-studies',
+        pts: 2,
+        type: 'mcq',
+        question: 'An e-commerce company uses an unsupervised `KMeans` clustering model to segment customers based on annual spending ($X_1 \in [100, 100000]$) and website visit frequency ($X_2 \in [1, 50]$). Without feature scaling, all resulting clusters are split exclusively along the annual spending axis while completely ignoring visit frequency. What is the geometric reason for this behavior?',
+        options: [
+            'Euclidean distance ($L_2$) squared is dominated by variables with larger numerical scale ($100,000^2 \gg 50^2$), making unscaled $K$-Means blind to smaller-scale features',
+            '$K$-Means algorithm assumes that all input variables follow an exact Poisson distribution',
+            'The centroid update rule ($\mu_k = \frac{1}{|C_k|} \sum x_i$) diverges if features have different units of measurement',
+            'Annual spending is a continuous variable whereas visit frequency is discrete, which violates the $K$-Means objective function'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> $K$-Means minimizes Within-Cluster Sum of Squares (WCSS) using Euclidean distance: $d(u,v) = \\sqrt{(u_1 - v_1)^2 + (u_2 - v_2)^2}$. Because $(100000 - 100)^2$ is orders of magnitude larger than $(50 - 1)^2$, distance calculations are almost entirely dictated by $X_1$. Applying `StandardScaler` ($\mu=0, \sigma=1$) is mandatory prior to distance-based clustering.'
+    },
+    {
+        id: 5,
+        category: 'case-studies',
+        pts: 2,
+        type: 'mcq',
+        question: 'A machine learning engineer trains a deep `DecisionTreeClassifier` (`max_depth=None`) on an employee attrition dataset, achieving 100% accuracy on the training split. However, when evaluated on unseen validation data, the accuracy drops precipitously to 62%. What formal bias-variance diagnosis applies here?',
+        options: [
+            'High Variance and Low Bias (`Overfitting`: the tree memorized training noise, outliers, and exact sample quirks rather than generalizable decision boundaries)',
+            'High Bias and Low Variance (`Underfitting`: the tree failed to capture linear separations in the data)',
+            'Optimal Generalization (`The model has reached the Bayes error rate for tabular attrition datasets`)',
+            'Collinearity Collapse (`Input variables share high correlation, forcing leaf nodes to evaluate to zero probability`)'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> Unconstrained Decision Trees recursively split until every leaf node is pure ($\text{Gini}=0$), resulting in $100\%$ training accuracy. This creates hyper-complex, jagged decision boundaries (`High Variance`) that generalize poorly to unseen validation data. Mitigating overfitting requires hyperparameter regularization (`max_depth`, `min_samples_split`, `ccp_alpha`).'
+    },
+    {
+        id: 6,
+        category: 'case-studies',
+        pts: 2,
+        type: 'mcq',
+        question: 'In a fraud detection workflow where missing fraudulent transactions (`False Negatives`) cost $50,000 each, whereas false alarms (`False Positives`) cost only $10 in manual verification time, how should the decision threshold of a Logistic Regression classifier be adjusted from its default 0.50 cutoff?',
+        options: [
+            'Lower the classification threshold below 0.50 (`e.g., to 0.15`) to increase Recall and capture significantly more potential fraud cases at the expense of extra false alarms',
+            'Raise the classification threshold above 0.50 (`e.g., to 0.90`) to ensure 100% Precision before triggering an expensive alert',
+            'Maintain exact 0.50 threshold because logistic regression coefficients are calibrated specifically for symmetric log-odds',
+            'Switch from `kernel="rbf"` to `kernel="linear"` to guarantee zero false negative rate across the test fold'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> By default, `predict()` assigns class 1 if $P(y=1|x) \ge 0.50$. When False Negatives carry catastrophic asymmetric costs compared to False Positives, lowering the probability threshold (`e.g., classifying as fraud if P >= 0.15`) maximizes Sensitivity/Recall, drastically reducing costly undetected fraud.'
+    },
+    {
+        id: 7,
+        category: 'case-studies',
+        pts: 2,
+        type: 'mcq',
+        question: 'An NLP engineer builds an email spam filter using a Multinomial Naive Bayes classifier. During test-time inference, an incoming email contains a brand new vocabulary word ("cryptoransomware") that never appeared anywhere in the training corpus. What mathematical issue occurs if Laplace smoothing (`alpha=0`) is disabled?',
+        options: [
+            'Zero-Probability Problem (`The conditional probability P("cryptoransomware" | Spam) = 0 causes the entire multiplicative posterior probability product to collapse to zero`)',
+            'Logarithmic Overflow (`The sum of log probabilities exceeds double-precision floating point limits`)',
+            'Centroid Divergence (`The feature vector cannot be mapped onto the prior probability distribution plane`)',
+            'Kernel Matrix Singularization (`The Gram matrix determinant equals zero, preventing inverse matrix calculation`)'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> Naive Bayes calculates class posterior probability via multiplication of conditional word probabilities: $P(\\text{Spam}|W) \\propto P(\\text{Spam}) \\times \\prod_{i=1}^n P(w_i|\\text{Spam})$. If a single word has zero frequency in training ($P(w_{\\text{new}}|\\text{Spam}) = 0$), the entire product becomes zero. Laplace smoothing (`alpha=1.0`) adds $+1$ count to every vocabulary term to guarantee non-zero probabilities.'
+    },
+    {
+        id: 8,
+        category: 'case-studies',
+        pts: 2,
+        type: 'mcq',
+        question: 'An autonomous driving team trains an image segmentation model using 50,000 daytime highway photos from California. When deployed on test vehicles in London during heavy winter fog and rain, the vision system frequently misclassifies pedestrians as guardrails. Which core machine learning limitation is demonstrated?',
+        options: [
+            'Sampling Bias & Domain Shift (`The training distribution lacked weather, lighting, and geographic diversity, violating the independent and identically distributed assumption`)',
+            'Curse of Dimensionality (`High-resolution image pixels exceed the capacity of polynomial regression kernels`)',
+            'Reinforcement Reward Exploitation (`The agent optimized for speed rather than safety reward penalties`)',
+            'Linear Separability Collapse (`Fog images cannot be projected into higher-dimensional kernel space`)'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> Machine learning models are bounded by the empirical distribution of their training datasets. If training data lacks domain coverage ($X_{\\text{fog}} \\notin X_{\\text{train}}$), the model relies on spurious correlations learned in clear weather, leading to dangerous out-of-distribution generalization failures.'
+    },
+    {
+        id: 9,
+        category: 'case-studies',
+        pts: 2,
+        type: 'mcq',
+        question: 'When tuning a Support Vector Classifier (`SVC`) with an RBF kernel, an engineer sets hyperparameter `gamma=100.0` and `C=1000.0`. What happens to the decision boundary and cross-validation performance?',
+        options: [
+            'The decision boundary breaks into isolated, microscopic islands around individual training points (`Extreme Overfitting`), yielding near-perfect training accuracy but terrible cross-validation score',
+            'The decision boundary flattens into a rigid straight line (`Severe Underfitting`), causing high bias across both training and test sets',
+            'The support vectors converge to the exact center of mass, resulting in $0.0\\%$ training error and maximum margin separation',
+            'The kernel trick mathematically degrades into standard linear logistic regression due to high penalty weighting'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> In RBF kernel $K(x, x\') = \\exp(-\\gamma ||x - x\'||^2)$, the parameter $\\gamma$ (`gamma`) controls the radius of influence of each support vector. Very large $\\gamma$ means only samples immediately adjacent to a data point are influenced, creating complex islands around every training point. Coupled with large $C$ (zero tolerance for margin errors), the model severely overfits.'
+    },
+    {
+        id: 10,
+        category: 'case-studies',
+        pts: 2,
+        type: 'mcq',
+        question: 'A data science team needs to predict exact house sale prices in dollars ($y \in [100000, 5000000]$) using 45 continuous and categorical features. Which evaluation metric and Scikit-Learn estimator pair is mathematically correct for this task?',
+        options: [
+            '`RandomForestRegressor` evaluated via Root Mean Squared Error (`RMSE = sqrt(mean_squared_error(y_true, y_pred))`) and $R^2$ Score',
+            '`RandomForestClassifier` evaluated via Log-Loss (`log_loss(y_true, y_pred)`) and Area Under the ROC Curve (`roc_auc_score`)',
+            '`LogisticRegression` evaluated via Confusion Matrix (`confusion_matrix(y_true, y_pred)`) and F1-Score',
+            '`KMeans` evaluated via Within-Cluster Sum of Squares (`kmeans.inertia_`) and Silhouette Coefficient'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> Predicting a continuous scalar target value ($y \in \mathbb{R}$) is a <strong>Regression</strong> problem. Using classification metrics (ROC-AUC, F1-Score) or classification estimators on continuous targets causes type errors and invalid math. `RandomForestRegressor` optimized and evaluated via RMSE / $R^2$ is the industry standard for tabular regression.'
+    },
+    {
+        id: 11,
+        category: 'case-studies',
+        pts: 2,
+        type: 'mcq',
+        question: 'To evaluate a new recommendation model, an engineer performs 10-Fold Cross-Validation. What is the primary statistical advantage of 10-Fold Cross-Validation over a single static `train_test_split(test_size=0.20)`?',
+        options: [
+            'It utilizes 100% of the dataset for both training and testing across 10 non-overlapping validation folds, providing a much lower variance estimate of out-of-sample generalization performance',
+            'It reduces total computational training time by 90% because each fold only trains on 10% of the data',
+            'It automatically removes outliers and high-leverage data points from the dataset prior to model fitting',
+            'It eliminates the need to set hyperparameters or run grid search optimization across different model choices'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> A single train-test split (`70/30` or `80/20`) can be highly sensitive to the random seed (`high variance`). In $K$-Fold CV ($K=10$), the data is split into 10 equal folds; the model is trained 10 times, each time using 9 folds for training and 1 fold for validation. Every sample is tested exactly once, ensuring robust statistical evaluation.'
+    },
+    {
+        id: 12,
+        category: 'case-studies',
+        pts: 2,
+        type: 'mcq',
+        question: 'When explaining the difference between Artificial Intelligence (AI), Machine Learning (ML), and Deep Learning (DL) to executive stakeholders, which hierarchical definition is technically rigorous according to CSY3081 curriculum specifications?',
+        options: [
+            'AI is the overarching concept of machines mimicking cognitive behaviors; ML is a subset of AI where systems learn statistical patterns from data without explicit hardcoded rules; DL is a subset of ML utilizing multi-layered artificial neural networks',
+            'DL is the broadest parent category containing both ML and AI as legacy sub-modules created prior to 2012',
+            'ML refers exclusively to supervised regression algorithms, whereas AI refers exclusively to unsupervised clustering models like $K$-Means',
+            'AI, ML, and DL are exact synonyms with identical mathematical foundations, differing only in commercial marketing terminology'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> From the **CSY3081 Core Introduction**: The strict concentric hierarchy is $\\text{DL} \\subset \\text{ML} \\subset \\text{AI}$. AI encompasses all intelligent systems (including symbolic logic and rule-based expert systems). ML is the data-driven subset optimizing parameters via loss functions. DL is the specialized subset of ML using deep multi-layer neural architectures.'
+    },
+
+    // === CATEGORY 2: SCIKIT-LEARN CODE DEBUGGING (10 Questions, 2 Pts Each) ===
+    {
+        id: 13,
+        category: 'code-debug',
+        pts: 2,
+        type: 'mcq',
+        code: `from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.fit_transform(X_test) # <-- CHECK THIS LINE
+
+model = LogisticRegression()
+model.fit(X_train_scaled, y_train)
+accuracy = model.score(X_test_scaled, y_test)`,
+        question: 'Look at the Scikit-Learn code block above. Why is line 8 (`X_test_scaled = scaler.fit_transform(X_test)`) a severe methodology error?',
+        options: [
+            '`fit_transform()` re-estimates new mean ($\mu_{\text{test}}$) and variance ($\sigma_{\text{test}}^2$) on the test fold, causing Data Leakage and feature space misalignment. It should be `scaler.transform(X_test)`',
+            '`StandardScaler` cannot be applied to `LogisticRegression` without first setting `with_std=False`',
+            '`fit_transform()` on `X_test` will automatically overwrite the trained weights inside the `model` object',
+            'The code should have called `model.fit_transform(X_train_scaled, y_train)` instead of separating scaling and training'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> Calling `fit_transform()` on the test set (`X_test`) calculates a completely different mean and standard deviation from the training set. When `model.predict()` is called, the test features are mapped into an altered coordinate space. Test data must **always** be scaled using `scaler.transform(X_test)` using parameters learned during `scaler.fit(X_train)`.'
+    },
+    {
+        id: 14,
+        category: 'code-debug',
+        pts: 2,
+        type: 'mcq',
+        code: `from sklearn.linear_model import LinearRegression
+import numpy as np
+
+# Single input feature (housing square footage)
+X = np.array([1200, 1500, 1800, 2200, 2500])
+y = np.array([250000, 310000, 380000, 450000, 520000])
+
+model = LinearRegression()
+model.fit(X, y) # <-- RAISES ValueError`,
+        question: 'When running `model.fit(X, y)` in the code block above, Scikit-Learn raises `ValueError: Expected 2D array, got 1D array instead`. What is the exact syntax required to fix this bug?',
+        options: [
+            'Reshape `X` into a 2D column vector: `X = X.reshape(-1, 1)` or define as a 2D list `[[1200], [1500], [1800], ...]` before passing to `.fit()`',
+            'Convert `y` into a 2D matrix using `y = y.reshape(-1, 1)` while leaving `X` as a 1D array',
+            'Set hyperparameter `fit_intercept=False` when initializing `LinearRegression()` to accept 1D arrays',
+            'Cast `X` into a standard Python dictionary (`{"sqft": X}`) before passing to `fit()`'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> Scikit-Learn estimators strictly mandate that the feature matrix $X$ must be a **2D array-like** shape `(n_samples, n_features)`, even when there is only $1$ input variable. The target vector $y$ can be 1D `(n_samples,)`. Calling `X.reshape(-1, 1)` transforms `shape (5,)` into required `shape (5, 1)`.'
+    },
+    {
+        id: 15,
+        category: 'code-debug',
+        pts: 2,
+        type: 'mcq',
+        code: `from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+import numpy as np
+
+X = np.random.rand(100, 4) # 100 samples, 4 features
+kmeans = KMeans(n_clusters=3, random_state=42)
+kmeans.fit(X)
+
+# Attempting to get cluster labels for evaluation
+labels = kmeans.labels
+score = silhouette_score(X, labels)`,
+        question: 'Why does line 9 (`labels = kmeans.labels`) throw an `AttributeError` or return `undefined`/`function object` when running this $K$-Means script?',
+        options: [
+            'In Scikit-Learn, attributes estimated after `fit()` end with a trailing underscore. It must be accessed as `kmeans.labels_` (`with trailing underscore`)',
+            'The correct method to obtain training cluster assignments is `kmeans.get_labels(X)`',
+            '`silhouette_score` requires passing the raw `kmeans` estimator object directly instead of numerical array labels',
+            '`KMeans` clustering does not assign cluster labels until `kmeans.predict_proba(X)` is explicitly invoked'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> From Scikit-Learn API design conventions, any model attribute estimated from data during `.fit()` always ends with a **trailing underscore (`_`)**. This distinguishes estimated parameters (`labels_`, `cluster_centers_`, `inertia_`, `coef_`, `intercept_`) from user-provided hyperparameters (`n_clusters`, `random_state`).'
+    },
+    {
+        id: 16,
+        category: 'code-debug',
+        pts: 2,
+        type: 'mcq',
+        code: `from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+
+pipe = Pipeline([
+    ('imputer', SimpleImputer(strategy='median')),
+    ('scaler', StandardScaler()),
+    ('clf', SVC(kernel='rbf'))
+])
+
+# Attempting to tune SVC hyperparameter C and imputer strategy via GridSearchCV
+param_grid = {
+    'C': [0.1, 1, 10],
+    'strategy': ['mean', 'median']
+}
+grid = GridSearchCV(pipe, param_grid, cv=5)
+grid.fit(X_train, y_train) # <-- RAISES ValueError / Invalid parameter`,
+        question: 'When executing `grid.fit(X_train, y_train)` in the code block above, `GridSearchCV` throws an error stating that `C` and `strategy` are invalid parameters for `Pipeline`. What is the exact syntax convention required inside `param_grid` for Pipeline step tuning?',
+        options: [
+            'Prefix each parameter with its step step name followed by double underscores (`__`): `{"clf__C": [0.1, 1, 10], "imputer__strategy": ["mean", "median"]}`',
+            'Pass nested dictionaries inside `param_grid`: `{"clf": {"C": [0.1, 1, 10]}, "imputer": {"strategy": ["mean", "median"]}}`',
+            'Prefix each parameter with single underscore (`_`): `{"clf_C": [0.1, 1, 10], "imputer_strategy": ["mean", "median"]}`',
+            '`GridSearchCV` cannot tune parameters across multiple preprocessing steps simultaneously; two separate grid searches must be executed'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> When optimizing a `Pipeline` using `GridSearchCV`, Scikit-Learn uses a double underscore syntax (`step_name__parameter_name`) to route hyperparameters to the correct sub-estimator inside the pipeline. Using `clf__C` directs hyperparameter `C` to step `clf` (`SVC`).'
+    },
+    {
+        id: 17,
+        category: 'code-debug',
+        pts: 2,
+        type: 'mcq',
+        code: `from sklearn.tree import DecisionTreeClassifier
+from sklearn.datasets import load_iris
+
+data = load_iris()
+X, y = data.data, data.target
+
+clf = DecisionTreeClassifier(criterion='gini', max_depth=3, random_state=42)
+clf.fit(X, y)
+
+# Retrieve probability distribution for sample 0
+probs = clf.predict_proba(X[0]) # <-- RAISES ValueError`,
+        question: 'Why does `clf.predict_proba(X[0])` raise a `ValueError` (`Expected 2D array, got 1D array instead`), and how should sample 0 be passed for inference?',
+        options: [
+            '`X[0]` extracts a 1D slice of shape `(n_features,)`. Pass slice `X[[0]]` (double brackets) or `X[0:1]` to preserve 2D shape `(1, n_features)`',
+            '`predict_proba` only accepts pandas DataFrames; numpy arrays must be converted using `pd.DataFrame(X[0])`',
+            '`DecisionTreeClassifier` does not implement `predict_proba` unless `probability=True` is passed during class initialization',
+            '`X[0]` must be transposed using `X[0].T` before passing to `.predict_proba()`'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> In Python indexing, `X[0]` extracts the first row as a 1D vector of shape `(4,)`. Scikit-Learn inference methods (`predict`, `predict_proba`, `transform`) always require 2D input `(n_samples, n_features)`. Using slice notation `X[[0]]` or `X[0:1]` maintains 2D shape `(1, 4)`.'
+    },
+    {
+        id: 18,
+        category: 'code-debug',
+        pts: 2,
+        type: 'mcq',
+        code: `from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import log_loss
+
+# Multi-class dataset with 3 classes: [0, 1, 2]
+model = LogisticRegression(multi_class='multinomial', solver='lbfgs')
+model.fit(X_train, y_train)
+
+# Calculate cross-entropy loss on test set
+preds = model.predict(X_test)
+loss = log_loss(y_test, preds) # <-- RAISES ValueError / Invalid Input`,
+        question: 'Why does line 10 (`loss = log_loss(y_test, preds)`) raise an error or produce mathematically invalid results when evaluating multi-class Logistic Regression?',
+        options: [
+            '`log_loss` (`Cross-Entropy`) requires predicted class probability distributions (`model.predict_proba(X_test)`), NOT discrete integer class predictions (`model.predict(X_test)`)',
+            '`log_loss` can only be computed on binary classification ($y \in [0, 1]$); for multi-class problems, `mean_squared_error` must be used',
+            '`solver="lbfgs"` does not optimize logarithmic loss; the model must be trained using `solver="sag"`',
+            '`y_test` must be manually one-hot encoded using `pd.get_dummies()` before calling `log_loss()`'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> Logarithmic loss (`log_loss`) evaluates the negative log-likelihood of the true class given the predicted probability distribution: $L = -\\frac{1}{N} \\sum_{i=1}^N \\sum_{k=1}^K y_{i,k} \\log(p_{i,k})$. Passing discrete hard predictions (`0, 1, 2`) from `predict()` assigns absolute $0.0$ or $1.0$ probabilities, causing $\\log(0) = -\\infty$. You must pass `model.predict_proba(X_test)`.'
+    },
+    {
+        id: 19,
+        category: 'code-debug',
+        pts: 2,
+        type: 'mcq',
+        code: `from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import cross_val_score
+
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+
+# Evaluate 5-fold cross validation score using Mean Squared Error
+scores = cross_val_score(rf, X, y, cv=5, scoring='mean_squared_error') # <-- RAISES ValueError`,
+        question: 'Why does line 7 (`cross_val_score(..., scoring="mean_squared_error")`) throw a `ValueError: "mean_squared_error" is not a valid scoring value`?',
+        options: [
+            'In Scikit-Learn cross validation, loss metrics are maximized using negative values: the exact string name is `"neg_mean_squared_error"`',
+            '`RandomForestClassifier` cannot be evaluated with `cross_val_score`; you must use `KFold()` directly inside a for-loop',
+            'The string name must be written in camelCase: `"meanSquaredError"` without underscores',
+            '`cv=5` requires `scoring="accuracy"`; regression loss metrics cannot be passed to any `cross_val_score` function call'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> Scikit-Learn\'s model selection tools (`cross_val_score`, `GridSearchCV`) follow a strict convention where **higher scores are always better**. Because Mean Squared Error is a loss (`lower is better`), Scikit-Learn negates the metric so optimizer maximization works correctly. The required string is `"neg_mean_squared_error"`.'
+    },
+    {
+        id: 20,
+        category: 'code-debug',
+        pts: 2,
+        type: 'mcq',
+        code: `from sklearn.preprocessing import OneHotEncoder
+import pandas as pd
+
+df = pd.DataFrame({
+    'City': ['London', 'Paris', 'Berlin', 'London'],
+    'Salary': [65000, 72000, 58000, 81000]
+})
+
+encoder = OneHotEncoder()
+encoded_cities = encoder.fit_transform(df['City']) # <-- RAISES ValueError / Reshape required`,
+        question: 'Why does `encoder.fit_transform(df["City"])` raise a `ValueError` in the code block above?',
+        options: [
+            '`df["City"]` returns a 1D pandas Series of shape `(4,)`. `OneHotEncoder` mandates 2D DataFrame input `df[["City"]]` (`double square brackets`) of shape `(4, 1)`',
+            '`OneHotEncoder` only works on integer numerical IDs; strings must be pre-transformed using `LabelEncoder` first',
+            '`df["City"]` must be converted to a Python tuple `tuple(df["City"])` before one-hot encoding can execute',
+            '`OneHotEncoder` requires `sparse=False` inside constructor `OneHotEncoder(sparse=False)` to accept pandas series'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> In pandas, single bracket indexing `df["City"]` returns a 1D `pd.Series`. Double brackets `df[["City"]]` returns a 2D `pd.DataFrame`. Because `OneHotEncoder` expects 2D tabular features where columns represent categorical variables, `df[["City"]]` (`shape (n_samples, 1)`) is strictly required.'
+    },
+    {
+        id: 21,
+        category: 'code-debug',
+        pts: 2,
+        type: 'mcq',
+        code: `from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+
+knn = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2)
+knn.fit(X_train, y_train)
+
+# Predict accuracy
+y_pred = knn.predict(X_test)
+acc = accuracy_score(y_test, y_pred)
+print("Accuracy:", acc)
+
+# Check distance metric used by inspecting model attributes
+print("Fitted metric:", knn.effective_metric_) # <-- Returns 'euclidean' instead of 'minkowski'`,
+        question: 'In the code above, we initialized `KNeighborsClassifier` with `metric="minkowski"` and `p=2`. Why does `knn.effective_metric_` evaluate to `"euclidean"` after fitting?',
+        options: [
+            'Minkowski distance with power $p=2$ ($D = (\sum |x_i - y_i|^2)^{1/2}$) is mathematically and identically the definition of **Euclidean distance ($L_2$)**',
+            'Scikit-Learn encountered a memory overflow while computing Minkowski weights and fell back to Euclidean distance automatically',
+            'Setting `p=2` overrides any custom string passed to `metric` and forces Manhattan distance ($L_1$)',
+            '`effective_metric_` is a deprecated attribute that returns the hardcoded default metric of the operating system'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> The generalized Minkowski distance formula is $D(x, y) = \\left( \\sum_{i=1}^n |x_i - y_i|^p \\right)^{1/p}$. When $p=1$, this simplifies to Manhattan/City-Block distance ($L_1$). When $p=2$, this simplifies to Euclidean distance ($L_2$). Scikit-Learn optimizes execution by mapping `metric="minkowski", p=2` directly to `"euclidean"`.'
+    },
+    {
+        id: 22,
+        category: 'code-debug',
+        pts: 2,
+        type: 'mcq',
+        code: `from sklearn.tree import plot_tree
+import matplotlib.pyplot as plt
+
+clf = DecisionTreeClassifier(max_depth=2, random_state=42)
+clf.fit(X_train, y_train)
+
+plt.figure(figsize=(12, 8))
+plot_tree(clf, filled=True, feature_names=feature_cols, class_names=['Negative', 'Positive'])
+# Figure window opens or exports as a blank white canvas without rendering trees!`,
+        question: 'When running `plot_tree(clf, ...)` in the script above inside a standard Python script or IDE, why does the saved or displayed plot sometimes appear entirely blank, and what line must be added immediately after `plot_tree()`?',
+        options: [
+            'Add `plt.show()` (`or plt.savefig("tree.png")` before `plt.close()`) because `plot_tree` draws onto the active matplotlib axes without automatically flushing the graphics buffer',
+            'Add `clf.render_graphviz()` because `plot_tree` requires GraphViz binary compilation to display node colors',
+            'Change `filled=True` to `filled=False` because matplotlib cannot render RGBA hex colors inside decision tree boxes',
+            'Call `plt.draw_tree(clf)` prior to setting `figsize` to initialize canvas memory allocation'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation:</strong> `sklearn.tree.plot_tree` uses `matplotlib.pyplot` underlying rendering engine to draw nodes and splitting arrows onto the current figure object (`plt.gca()`). Unlike interactive Jupyter notebooks that auto-display return objects, standard Python scripts strictly require calling `plt.show()` or `plt.savefig()` to trigger rendering.'
+    },
+
+    // === CATEGORY 3: MATH & IMPURITY FORMULAS (8 Questions, 2 Pts Each) ===
+    {
+        id: 23,
+        category: 'math-formulas',
+        pts: 2,
+        type: 'mcq',
+        question: 'A `DecisionTreeClassifier` evaluates a candidate split that creates a child node containing `[10 Setosa, 10 Versicolor, 20 Virginica]` samples (`Total N = 40`). Using the exact Scikit-Learn Gini Impurity formula $\\text{Gini} = 1 - \\sum_{i=1}^C p_i^2$, what is the precise Gini impurity of this node?',
+        options: [
+            '`0.625` (`computed as 1 - [ (10/40)^2 + (10/40)^2 + (20/40)^2 ] = 1 - [ 0.0625 + 0.0625 + 0.25 ] = 1 - 0.375 = 0.625`)',
+            '`0.500` (`computed as 1 - [ 1/3 + 1/3 + 1/3 ]`)',
+            '`0.375` (`computed as the sum of squared class probabilities without subtracting from 1`)',
+            '`0.750` (`maximum possible impurity for a 3-class distribution`)'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation & Math Proof:</strong><br>1. Calculate class probabilities: $p_0 = \\frac{10}{40} = 0.25$, $p_1 = \\frac{10}{40} = 0.25$, $p_2 = \\frac{20}{40} = 0.50$.<br>2. Square probabilities: $p_0^2 = 0.0625$, $p_1^2 = 0.0625$, $p_2^2 = 0.25$.<br>3. Sum squares: $\\sum p_i^2 = 0.0625 + 0.0625 + 0.25 = 0.375$.<br>4. Subtract from 1: $\\text{Gini} = 1 - 0.375 = \\mathbf{0.625}$.'
+    },
+    {
+        id: 24,
+        category: 'math-formulas',
+        pts: 2,
+        type: 'mcq',
+        question: 'Calculate the **Shannon Entropy ($H$)** using base-2 logarithm ($H = -\\sum p_i \\log_2 p_i$) for a binary classification leaf node split evenly with `[32 positive, 32 negative]` samples (`Total N = 64`).',
+        options: [
+            '`1.000` (`Since p_0 = 0.5 and p_1 = 0.5: -[0.5*log2(0.5) + 0.5*log2(0.5)] = -[0.5*(-1) + 0.5*(-1)] = -(-1.0) = 1.000`)',
+            '`0.500` (`Entropy equals exactly half of the sample distribution size`)',
+            '`0.000` (`An equal split represents maximum purity under Shannon entropy rules`)',
+            '`2.000` (`Computed as log2(64) divided by binary classes C=2`)'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation & Math Proof:</strong> For any $C$-class problem, Shannon Entropy is maximized when all classes are equally likely (`uniform distribution`). For a binary node ($p_0=0.5, p_1=0.5$), $H = -[0.5\\log_2(0.5) + 0.5\\log_2(0.5)] = -[0.5(-1) + 0.5(-1)] = \\mathbf{1.000}$. Maximum entropy for $C$ classes is $\\log_2(C)$.'
+    },
+    {
+        id: 25,
+        category: 'math-formulas',
+        pts: 2,
+        type: 'mcq',
+        question: 'Compute the **Euclidean Distance ($L_2$)** between two patient medical feature vectors in 3D coordinate space: Patient A $u = (1, 4, 2)$ and Patient B $v = (4, 8, 2)$.',
+        options: [
+            '`5.00` (`computed as sqrt[ (4-1)^2 + (8-4)^2 + (2-2)^2 ] = sqrt[ 3^2 + 4^2 + 0 ] = sqrt[ 9 + 16 ] = sqrt(25) = 5.00`)',
+            '`7.00` (`computed via Manhattan L1 distance: |4-1| + |8-4| + |2-2| = 3 + 4 + 0 = 7.00`)',
+            '`25.00` (`computed as the sum of squared differences before applying the square root`)',
+            '`3.50` (`computed as the arithmetic average coordinate difference across all 3 axes`)'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation & Math Proof:</strong> The Euclidean ($L_2$) distance formula in $N$-dimensions is $d(u,v) = \\sqrt{\\sum_{i=1}^n (u_i - v_i)^2}$. Substituting values: $\\Delta x = 4-1=3$, $\\Delta y = 8-4=4$, $\\Delta z = 2-2=0$. Thus, $d = \\sqrt{3^2 + 4^2 + 0^2} = \\sqrt{9+16} = \\sqrt{25} = \\mathbf{5.00}$.'
+    },
+    {
+        id: 26,
+        category: 'math-formulas',
+        pts: 2,
+        type: 'mcq',
+        question: 'Compute the **Manhattan Distance ($L_1$)** between the same two patient vectors: Patient A $u = (1, 4, 2)$ and Patient B $v = (4, 8, 2)$.',
+        options: [
+            '`7.00` (`computed via absolute coordinate differences: |4-1| + |8-4| + |2-2| = 3 + 4 + 0 = 7.00`)',
+            '`5.00` (`Euclidean distance result`)',
+            '`14.00` (`computed by doubling the absolute differences across active axes`)',
+            '`2.33` (`computed by dividing total Manhattan distance by 3 spatial dimensions`)'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation & Math Proof:</strong> Manhattan ($L_1$) distance, also known as City-Block distance, measures the sum of absolute differences along each axis: $d_{L1}(u,v) = \\sum_{i=1}^n |u_i - v_i|$. Substituting values: $|4-1| + |8-4| + |2-2| = 3 + 4 + 0 = \\mathbf{7.00}$. Notice $L_1 \\ge L_2$ always holds.'
+    },
+    {
+        id: 27,
+        category: 'math-formulas',
+        pts: 2,
+        type: 'mcq',
+        question: 'In a Simple Linear Regression model $\hat{y} = w x + b$, what is the exact **Mean Squared Error (MSE)** if the model makes the following predictions across $N=4$ test samples:<br>`y_true = [10, 20, 30, 40]` and `y_pred = [12, 18, 33, 37]`?',
+        options: [
+            '`6.50` (`squared errors: (10-12)^2=4, (20-18)^2=4, (30-33)^2=9, (40-37)^2=9; sum=26; MSE = 26 / 4 = 6.50`)',
+            '`2.55` (`computed as the Root Mean Squared Error RMSE = sqrt(6.50)`)',
+            '`26.00` (`computed as the Residual Sum of Squares RSS without dividing by N=4`)',
+            '`2.25` (`computed via Mean Absolute Error MAE: [2 + 2 + 3 + 3] / 4 = 10 / 4 = 2.50`)'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation & Math Proof:</strong> Mean Squared Error is defined as $\\text{MSE} = \\frac{1}{N} \\sum_{i=1}^N (y_i - \\hat{y}_i)^2$.<br>1. Calculate residuals $(y_i - \\hat{y}_i)$: $-2, +2, -3, +3$.<br>2. Square residuals: $4, 4, 9, 9$.<br>3. Sum squared residuals (`RSS`): $4 + 4 + 9 + 9 = 26$.<br>4. Divide by sample count $N=4$: $\\text{MSE} = \\frac{26}{4} = \\mathbf{6.50}$.'
+    },
+    {
+        id: 28,
+        category: 'math-formulas',
+        pts: 2,
+        type: 'mcq',
+        question: 'A logistic regression model produces a raw linear log-odds output score of $z = w^T x + b = 0.00$. Using the exact Sigmoid activation formula $\\sigma(z) = \\frac{1}{1 + e^{-z}}$, what is the predicted output probability $P(y=1|x)$?',
+        options: [
+            '`0.500` (`Since e^(-0) = e^0 = 1.0, sigma(0) = 1 / (1 + 1) = 1 / 2 = 0.500`)',
+            '`1.000` (`Zero log-odds indicates 100% confidence in class 1 boundary alignment`)',
+            '`0.000` (`An intercept of zero evaluates to zero probability under exponential curves`)',
+            '`0.731` (`Sigmoid value corresponding to input z = +1.0`)'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation & Math Proof:</strong> The Sigmoid activation curve maps any real number $z \in (-\infty, +\infty)$ to $(0, 1)$. When the linear combination $z = 0$, substituting yields $\\sigma(0) = \\frac{1}{1 + e^{-0}} = \\frac{1}{1 + 1} = \\mathbf{0.500}$. Geometrically, $z=0$ represents the exact decision boundary where both classes are equally probable.'
+    },
+    {
+        id: 29,
+        category: 'math-formulas',
+        pts: 2,
+        type: 'mcq',
+        question: 'In a multi-class neural network or `LogisticRegression(multi_class="multinomial")`, three output neurons produce raw unnormalized logit scores: $z_1 = 2.0$, $z_2 = 1.0$, $z_3 = 0.0$. Using the exact **Softmax formula** $P(y=k) = \\frac{e^{z_k}}{\\sum_{j=1}^3 e^{z_j}}$, what is the approximate probability assigned to Class 1 ($z_1 = 2.0$)? (`Use e^2 ≈ 7.389, e^1 ≈ 2.718, e^0 = 1.000`)',
+        options: [
+            '`0.665` (`Sum of exponentials = 7.389 + 2.718 + 1.000 = 11.107; P(Class 1) = 7.389 / 11.107 ≈ 0.665`)',
+            '`0.333` (`Since there are 3 classes, Softmax assigns equal 1/3 probability`)',
+            '`0.850` (`Computed as z_1 / sum(z) = 2.0 / 3.0 = 0.667 before applying exponentiation`)',
+            '`0.245` (`Softmax probability corresponding to Class 2 where z_2 = 1.0`)'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation & Math Proof:</strong> Softmax exponentiates logits to ensure positivity and normalizes across all classes so $\\sum P_k = 1.0$.<br>1. Exponentials: $e^{2.0} \\approx 7.389$, $e^{1.0} \\approx 2.718$, $e^{0.0} = 1.000$.<br>2. Denominator sum: $7.389 + 2.718 + 1.000 = 11.107$.<br>3. Class 1 Probability: $\\frac{7.389}{11.107} \\approx \\mathbf{0.665}$ (`66.5% confidence`).'
+    },
+    {
+        id: 30,
+        category: 'math-formulas',
+        pts: 2,
+        type: 'mcq',
+        question: 'Compute the exact **R-squared ($R^2$) Coefficient of Determination** using formula $R^2 = 1 - \\frac{\\text{SS}_{\\text{res}}}{\\text{SS}_{\\text{tot}}}$ for a regression model where the Residual Sum of Squares is $\\text{SS}_{\\text{res}} = 20$ and the Total Variance Sum of Squares around the mean $\\bar{y}$ is $\\text{SS}_{\\text{tot}} = 100$.',
+        options: [
+            '`0.800` (`computed as 1 - (20 / 100) = 1 - 0.20 = 0.800, explaining exactly 80% of target variance`)',
+            '`0.200` (`computed as SS_res divided by SS_tot without subtracting from 1`)',
+            '`1.200` (`computed as 1 + (SS_res / SS_tot)`)',
+            '`5.000` (`computed as SS_tot / SS_res = 100 / 20 = 5.0`)'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Explanation & Math Proof:</strong> The $R^2$ score measures how much better the regression line explains target variance compared to a horizontal baseline predicting mean $\\bar{y}$. With $\\text{SS}_{\\text{res}} = \\sum (y_i - \\hat{y}_i)^2 = 20$ and $\\text{SS}_{\\text{tot}} = \\sum (y_i - \\bar{y})^2 = 100$: $R^2 = 1 - \\frac{20}{100} = 1 - 0.20 = \\mathbf{0.800}$ (`80% variance explained`).'
+    },
+
+    // === CATEGORY 4: MATCHING PAIRS & SCENARIOS (6 Questions, 2 Pts Each) ===
+    {
+        id: 31,
+        category: 'matching',
+        pts: 2,
+        type: 'matching',
+        question: 'Match each foundational **Machine Learning Learning Paradigm** with its exact official definition and representative Scikit-Learn algorithm:',
+        matchingTable: [
+            { colA: 'Supervised Learning (Classification)', colB: 'Predicts discrete categorical labels from labeled training data; evaluated via Confusion Matrix (`e.g., LogisticRegression, SVC`)' },
+            { colA: 'Supervised Learning (Regression)', colB: 'Predicts continuous numerical target quantities from labeled data; evaluated via MSE / R2 (`e.g., LinearRegression, RandomForestRegressor`)' },
+            { colA: 'Unsupervised Learning (Clustering)', colB: 'Discovers inherent groupings and structural patterns in unlabeled datasets (`e.g., KMeans, DBSCAN, Hierarchical Clustering`)' },
+            { colA: 'Unsupervised Learning (Dimensionality Reduction)', colB: 'Compresses high-dimensional feature spaces while preserving maximum variance (`e.g., Principal Component Analysis PCA`)' },
+            { colA: 'Reinforcement Learning (RL)', colB: 'An autonomous agent learns optimal decision policies through trial-and-error reward feedback inside a Markov Decision Process' }
+        ],
+        options: [
+            'Confirm & Verify Correct Column A vs Column B Matching Pairs (2 Points)'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Course Taxonomy (` - `):</strong> Supervised models mandate labeled target column $y$. Unsupervised models operate strictly on feature matrix $X$ to find latent patterns ($K$-Means clusters, PCA components). Reinforcement Learning ($Q$-Learning) dynamically interacts with an environment without static datasets.'
+    },
+    {
+        id: 32,
+        category: 'matching',
+        pts: 2,
+        type: 'matching',
+        question: 'Match each **Decision Tree & Ensemble Hyperparameter** with its exact mathematical regularizing mechanism:',
+        matchingTable: [
+            { colA: 'max_depth', colB: 'Hard limit on the maximum vertical depth (`path length from root to leaf`) to prevent hyper-complex jagged boundaries' },
+            { colA: 'min_samples_split', colB: 'The minimum number of internal samples required inside a node before splitting is permitted (`e.g., min_samples_split=20`)' },
+            { colA: 'min_samples_leaf', colB: 'The minimum mandatory number of samples that must exist in any newly created child leaf node after a split' },
+            { colA: 'criterion', colB: 'The mathematical impurity function evaluated to select optimal splitting features (`"gini"` vs `"entropy"`)' },
+            { colA: 'n_estimators (`RandomForest`)', colB: 'The total number of independent bootstrap decision trees aggregated via majority voting inside the ensemble' }
+        ],
+        options: [
+            'Confirm & Verify Correct Column A vs Column B Matching Pairs (2 Points)'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Hyperparameter Reference (`Handson on Decision Tree.pdf`):</strong> Unconstrained trees (`max_depth=None`, `min_samples_leaf=1`) overfit $100\%$ (`High Variance`). Increasing `min_samples_leaf` (`e.g., to 5 or 10`) guarantees smooth, statistically significant regional leaf predictions.'
+    },
+    {
+        id: 33,
+        category: 'matching',
+        pts: 2,
+        type: 'matching',
+        question: 'Match each **Classification Evaluation Metric** with its exact formula derived from True Positives (TP), False Positives (FP), True Negatives (TN), and False Negatives (FN):',
+        matchingTable: [
+            { colA: 'Precision (`Positive Predictive Value`)', colB: 'Formula: TP / (TP + FP) | Measures exactness: when the classifier alerts positive, what fraction is genuinely positive?' },
+            { colA: 'Recall (`Sensitivity / True Positive Rate`)', colB: 'Formula: TP / (TP + FN) | Measures completeness: what fraction of true ground-truth positive cases were successfully detected?' },
+            { colA: 'F1-Score (`Harmonic Mean`)', colB: 'Formula: 2 * (Precision * Recall) / (Precision + Recall) | Balances precision and recall, severely penalizing extreme imbalances' },
+            { colA: 'Overall Accuracy', colB: 'Formula: (TP + TN) / (TP + TN + FP + FN) | Percentage of total correct predictions across both positive and negative classes' },
+            { colA: 'Specificity (`True Negative Rate`)', colB: 'Formula: TN / (TN + FP) | Measures how accurately the classifier identifies and rejects true negative / healthy samples' }
+        ],
+        options: [
+            'Confirm & Verify Correct Column A vs Column B Matching Pairs (2 Points)'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Metric Derivations:</strong> In medical and fraud detection tasks, Recall and Precision are inversely coupled (`Precision-Recall Tradeoff`). The F1-Score uses the harmonic mean rather than arithmetic average ($2PR / (P+R)$) so that if either Precision or Recall drops near $0$, the F1-Score drops near $0$.'
+    },
+    {
+        id: 34,
+        category: 'matching',
+        pts: 2,
+        type: 'matching',
+        question: 'Match each **Support Vector Machine (SVM) Kernel** with its mathematical transformation and geometric use case:',
+        matchingTable: [
+            { colA: 'kernel="linear"', colB: 'Transformation: K(x, z) = x^T z + c | Constructs a flat hyperdimensional separating plane; ideal for text classification and linearly separable data' },
+            { colA: 'kernel="poly" (`Polynomial`)', colB: 'Transformation: K(x, z) = (gamma * x^T z + coef0)^degree | Projects features into polynomial combinations of degree d' },
+            { colA: 'kernel="rbf" (`Radial Basis Function`)', colB: 'Transformation: K(x, z) = exp(-gamma * ||x - z||^2) | Infinite-dimensional Gaussian radial kernel; industry standard for non-linear boundaries' },
+            { colA: 'kernel="sigmoid"', colB: 'Transformation: K(x, z) = tanh(gamma * x^T z + coef0) | Emulates a two-layer neural network perceptron activation curve' },
+            { colA: 'Support Vectors', colB: 'The exact subset of data points ($0 < \alpha_i \le C$) touching or violating the soft margin bounds that solely define the hyperplane position' }
+        ],
+        options: [
+            'Confirm & Verify Correct Column A vs Column B Matching Pairs (2 Points)'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Kernel Trick Proof:</strong> Computing non-linear boundaries by explicitly mapping vectors $\Phi(x)$ to infinite dimensions requires infinite RAM. The Mercer Kernel Trick computes the inner dot-product $\langle \Phi(x), \Phi(z) \rangle$ directly inside the original feature space via closed-form functions like RBF (`Gaussian Kernel`).'
+    },
+    {
+        id: 35,
+        category: 'matching',
+        pts: 2,
+        type: 'matching',
+        question: 'Match each **Scikit-Learn Preprocessing & Validation Transformer** with its exact data transformation formula:',
+        matchingTable: [
+            { colA: 'StandardScaler (`Z-Score Normalization`)', colB: 'Formula: z = (x - mean) / std | Centers features to mean 0.0 and variance 1.0; required for KNN, KMeans, SVM, and Neural Nets' },
+            { colA: 'MinMaxScaler (`Range Normalization`)', colB: 'Formula: x_scaled = (x - x_min) / (x_max - x_min) | Compresses feature values bounded strictly between [0.0, 1.0]' },
+            { colA: 'SimpleImputer(strategy="median")', colB: 'Replaces missing `NaN` / `null` values with the statistical median (`50th percentile`) computed solely on the fitted training fold' },
+            { colA: 'OneHotEncoder(drop="first")', colB: 'Converts categorical strings into binary indicator columns (`0 or 1`) while dropping the first category to eliminate multicollinearity' },
+            { colA: 'StratifiedKFold(n_splits=5)', colB: 'Splits data into 5 cross-validation folds while guaranteeing that each fold maintains the exact class ratio distribution of the original dataset' }
+        ],
+        options: [
+            'Confirm & Verify Correct Column A vs Column B Matching Pairs (2 Points)'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Preprocessing Checklist:</strong> `StandardScaler` is sensitive to extreme outliers (`which skew mean and std`). For datasets with massive outliers (`e.g., billionaire incomes`), `RobustScaler` (`using median and Interquartile Range IQR`) or `MinMaxScaler` should be selected depending on downstream distance assumptions.'
+    },
+    {
+        id: 36,
+        category: 'matching',
+        pts: 2,
+        type: 'matching',
+        question: 'Match each **Core AI Ethics & Production Limitation** directly tested in CSY3081 exams with its diagnostic mitigation:',
+        matchingTable: [
+            { colA: '1. Data Dependence (`Garbage In / Garbage Out`)', colB: 'If historical training data reflects societal or sampling bias, models amplify those disparities (`Mitigation: Stratified sampling & fairness auditing`)' },
+            { colA: '2. Lack of Causality (`Correlation != Causation`)', colB: 'ML algorithms discover statistical correlations, not cause-and-effect (`Mitigation: Randomized Controlled Trials RCTs & causal inference models`)' },
+            { colA: '3. Concept Drift (`Distribution Shift over Time`)', colB: 'Real-world environments evolve, rendering historical models obsolete (`Mitigation: Continuous monitoring pipelines & automated rolling retraining`)' },
+            { colA: '4. Interpretability Tradeoff (`Black-Box vs White-Box`)', colB: 'Deep neural networks achieve high accuracy but lack transparency (`Mitigation: SHAP / LIME explainability frameworks or white-box Decision Trees`)' },
+            { colA: '5. Adversarial Vulnerability (`Security & Perturbations`)', colB: 'Imperceptible noise added to inputs can fool deep learning classifiers into catastrophic misclassifications (`Mitigation: Adversarial training & input sanitization`)' }
+        ],
+        options: [
+            'Confirm & Verify Correct Column A vs Column B Matching Pairs (2 Points)'
+        ],
+        correctIndex: 0,
+        explanation: '<strong>💡 Official Exam Guarantee:</strong> In the final exam case study essay, examiners specifically grade whether candidates identify at least one of these 5 core limitations before recommending an AI deployment to a commercial client!'
+    }
+];
+
+// --- TEST 2 RENDERING ENGINE ---
+function renderTest2Questions(filter = 'all', btnEl = null) {
+    try {
+        if (btnEl) {
+            document.querySelectorAll('.test2-filter-btn').forEach(b => b.classList.remove('active'));
+            btnEl.classList.add('active');
+        }
+        window.test2CurrentFilter = filter;
+
+        const container = document.getElementById('test2-questions-container');
+        if (!container) return;
+
+        const filtered = window.test2Questions.filter(q => filter === 'all' || q.category === filter);
+
+        let html = '';
+        filtered.forEach((q) => {
+            const solved = window.test2SolvedState[q.id];
+            const statusBadge = solved
+                ? (solved.status === 'correct' ? '<span class="badge" class="status-badge status-active">✓ Solved (+2 Pts)</span>' : '<span class="badge" class="status-badge status-alert">× Incorrect</span>')
+                : '<span class="badge" class="status-badge status-neutral">Unanswered</span>';
+
+            html += `
+            <div class="test1-card" id="test2-card-${q.id}" style="border-left: 4px solid var(--primary);">
+                <div class="test1-card-head">
+                    <div>
+                        <span class="test1-num" class="badge badge-primary">Question ${q.id} | ${q.category.toUpperCase()}</span>
+                        <span class="test1-pts" class="badge badge-purple">${q.pts} Points</span>
+                    </div>
+                    <div>${statusBadge}</div>
+                </div>
+                <div class="test1-question" style="font-size:1.05rem;line-height:1.65;margin-top:1rem;">${q.question}</div>
+                ${q.code ? `<div class="test1-code-block" class="code-box"><code class="code-text">${q.code}</code></div>` : ''}
+                ${q.type === 'matching' ? `
+                    <table class="test1-match-table" class="data-table">
+                        <thead>
+                            <tr class="table-header"><th class="table-cell-th">Column A (Concept / Parameter)</th><th class="table-cell-th">Column B (Official CSY3081 Definition & Formula)</th></tr>
+                        </thead>
+                        <tbody>
+                            ${q.matchingTable.map(row => `<tr class="table-row"><td class="table-cell-colA">${row.colA}</td><td class="table-cell-colB">${row.colB}</td></tr>`).join('')}
+                        </tbody>
+                    </table>
+                ` : ''}
+                <div class="test1-options">
+                    ${q.options.map((opt, optIdx) => {
+                        let btnClass = 'test1-opt-btn';
+                        if (solved && solved.selectedIndex === optIdx) {
+                            btnClass += solved.status === 'correct' ? ' correct' : ' incorrect';
+                        } else if (solved && solved.status !== 'correct' && optIdx === q.correctIndex) {
+                            btnClass += ' correct';
+                        }
+                        return `<button class="${btnClass}" onclick="if(window.checkTest2Option) checkTest2Option(${q.id}, ${optIdx}, this)">
+                            <span>${q.type === 'matching' ? '🎯 ' : String.fromCharCode(65 + optIdx) + '. '}${opt}</span>
+                            ${solved && solved.selectedIndex === optIdx ? (solved.status === 'correct' ? '<span>[Correct]</span>' : '<span>[Incorrect]</span>') : ''}
+                        </button>`;
+                    }).join('')}
+                </div>
+                ${solved ? `<div style="margin-top:12px;margin-bottom:8px;"><button class="btn btn-secondary btn-sm" onclick="if(window.resetSingleQuestion) window.resetSingleQuestion('${q.id}', 'test2')" style="background:#3b82f6;color:#fff;font-weight:600;padding:6px 14px;border-radius:6px;border:1px solid #60a5fa;cursor:pointer;">ðŸ”„ Reset Question & Try Again</button></div>` : ''}
+                <div class="test1-explanation ${solved ? 'show' : ''}" id="test2-exp-${q.id}" style="border-left:4px solid var(--primary);">
+                    <div class="test1-exp-title" style="color:var(--primary);font-weight:700;">💡 Official CSY3081 Detailed Solution & Proof (${q.pts} Pts):</div>
+                    <div style="color:var(--text-primary);line-height:1.6;">${q.explanation}</div>
+                </div>
+            </div>
+            `;
+        });
+
+        container.innerHTML = html; setTimeout(() => { if (window.renderAllMath) window.renderAllMath(); }, 30);
+        updateTest2ProgressUI();
+    } catch (err) {
+        console.error("renderTest2Questions error:", err); window._lastRenderError = err.toString() + " at test2";
+    }
+}
+window.renderTest2Questions = renderTest2Questions;
+
+function checkTest2Option(qId, optIdx, btnEl) { setTimeout(() => { if (window.renderAllMath) window.renderAllMath(); }, 50);
+    try {
+        const q = window.test2Questions.find(x => x.id === qId);
+        if (!q) return;
+
+        const isCorrect = (optIdx === q.correctIndex);
+        window.test2SolvedState[qId] = {
+            status: isCorrect ? 'correct' : 'incorrect',
+            selectedIndex: optIdx,
+            pts: isCorrect ? q.pts : 0
+        };
+        localStorage.setItem('csy3081_test2_solved_v1', JSON.stringify(window.test2SolvedState));
+
+        const card = document.getElementById(`test2-card-${qId}`);
+        if (card) {
+            const btns = card.querySelectorAll('.test1-opt-btn');
+            btns.forEach((b, idx) => {
+                b.classList.remove('correct', 'incorrect');
+                if (idx === q.correctIndex) b.classList.add('correct');
+                else if (idx === optIdx && !isCorrect) b.classList.add('incorrect');
+            });
+
+            const exp = document.getElementById(`test2-exp-${qId}`);
+            if (exp) exp.classList.add('show');
+        }
+
+        updateTest2ProgressUI();
+        if (typeof showToast === 'function') {
+            showToast(isCorrect ? `Spot on! +${q.pts} Points added to your Test 2 Assessment Score` : "× Incorrect. Review the code syntax / math proof below!");
+        }
+    } catch (err) {
+        console.error("checkTest2Option error:", err);
+    }
+}
+window.checkTest2Option = checkTest2Option;
+
+function filterTest2Questions(filter, btnEl) {
+    renderTest2Questions(filter, btnEl);
+}
+window.filterTest2Questions = filterTest2Questions;
+
+function toggleAllTest2Explanations() {
+    try {
+        const exps = document.querySelectorAll('#test2-questions-container .test1-explanation');
+        let anyHidden = false;
+        exps.forEach(e => {
+            if (!e.classList.contains('show')) anyHidden = true;
+        });
+
+        exps.forEach(e => {
+            if (anyHidden) e.classList.add('show');
+            else e.classList.remove('show');
+        });
+
+        const toggleBtn = document.getElementById('btn-toggle-test2-exp');
+        if (toggleBtn) {
+            toggleBtn.innerText = anyHidden ? "Hide All Solutions" : "Reveal All Explanations";
+        }
+        if (typeof showToast === 'function') {
+            showToast(anyHidden ? "💡 Revealed all 36 Test 2 code fixes, math proofs, and answers!" : "Hidden Test 2 solutions.");
+        }
+    } catch (err) {
+        console.error("toggleAllTest2Explanations error:", err);
+    }
+}
+window.toggleAllTest2Explanations = toggleAllTest2Explanations;
+
+function resetTest2Progress() {
+    try {
+        if (confirm("Are you sure you want to reset all solved Test 2 case studies & debugging scores back to 0?")) {
+            window.test2SolvedState = {};
+            localStorage.removeItem('csy3081_test2_solved_v1');
+            renderTest2Questions(window.test2CurrentFilter || 'all');
+            if (typeof showToast === 'function') showToast("Test 2 assessment score reset to 0/72 Pts!");
+        }
+    } catch (err) {
+        console.error("resetTest2Progress error:", err);
+    }
+}
+window.resetTest2Progress = resetTest2Progress;
+
+function updateTest2ProgressUI() {
+    try {
+        const solvedCount = Object.keys(window.test2SolvedState || {}).length;
+        let totalScore = 0;
+        Object.values(window.test2SolvedState || {}).forEach(s => {
+            if (s && s.status === 'correct') totalScore += (s.pts || 0);
+        });
+
+        const solvedVal = document.getElementById('test2-solved-val');
+        const scoreVal = document.getElementById('test2-score-val');
+        if (solvedVal) solvedVal.innerText = `${solvedCount}/36`;
+        if (scoreVal) scoreVal.innerText = `${totalScore}/72 Pts`;
+    } catch (err) {
+        console.error("updateTest2ProgressUI error:", err);
+    }
+}
+window.updateTest2ProgressUI = updateTest2ProgressUI;
+
+/* ==========================================================================
+   THEME TOGGLE & PROFESSIONAL WORKBENCH INITIALIZATION
+   ========================================================================== */
+window.toggleTheme = function() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('csy3081_theme_preference', newTheme);
+    updateThemeToggleUI(newTheme);
+    if (typeof showToast === 'function') {
+        showToast(newTheme === 'dark' ? "Switched to Midnight Studio Dark Theme" : "Switched to Executive Light Academic Theme");
+    }
+};
+
+window.updateThemeToggleUI = function(theme) {
+    const icon = document.getElementById('theme-toggle-icon');
+    const text = document.getElementById('theme-toggle-text');
+    if (icon && text) {
+        if (theme === 'dark') {
+            icon.innerText = '\u2600\uFE0F';
+            text.innerText = 'Executive Light';
+        } else {
+            icon.innerText = '\uD83C\uDF19';
+            text.innerText = 'Dark Studio';
+        }
+    }
+};
+
+// Initialize saved theme on script load & DOMContentLoaded
+(function() {
+    try {
+        const savedTheme = localStorage.getItem('csy3081_theme_preference');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+        window.addEventListener('DOMContentLoaded', function() {
+            const current = document.documentElement.getAttribute('data-theme') || 'light';
+            if (window.updateThemeToggleUI) updateThemeToggleUI(current);
+        });
+        // Also run immediately if DOM is already ready
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            const current = document.documentElement.getAttribute('data-theme') || 'light';
+            if (window.updateThemeToggleUI) updateThemeToggleUI(current);
+        }
+    } catch(e) {
+        console.error("Theme init error:", e);
+    }
+})();
+/* ==========================================================================
+   MATHEMATICAL FORMULA RENDERING ENGINE (KaTeX + OFFLINE FALLBACK)
+   ========================================================================== */
+window.formatMathFallback = function(container) {
+    if (!container) return;
+    if (container.querySelectorAll('.katex').length > 0) return;
+
+    function cleanLatexString(str) {
+        return str
+            .replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '<span class="math-fraction"><span class="math-num">$1</span><span class="math-den">$2</span></span>')
+            .replace(/\\sum_\{([^}]+)\}\^\{([^}]+)\}/g, '<span class="math-op-box"><span class="math-limit-top">$2</span><span class="math-op-sym">&sum;</span><span class="math-limit-bot">$1</span></span>')
+            .replace(/\\sum_\{([^}]+)\}/g, '<span class="math-op-box"><span class="math-op-sym">&sum;</span><span class="math-limit-bot">$1</span></span>')
+            .replace(/\\sum/g, '<span class="math-op-sym">&sum;</span>')
+            .replace(/\\prod_\{([^}]+)\}\^\{([^}]+)\}/g, '<span class="math-op-box"><span class="math-limit-top">$2</span><span class="math-op-sym">&prod;</span><span class="math-limit-bot">$1</span></span>')
+            .replace(/\\prod/g, '<span class="math-op-sym">&prod;</span>')
+            .replace(/\\log_([0-9a-zA-Z]+)/g, 'log<sub>$1</sub>')
+            .replace(/\\log_\{([^}]+)\}/g, 'log<sub>$1</sub>')
+            .replace(/\\ln/g, 'ln')
+            .replace(/\\exp/g, 'exp')
+            .replace(/\\arg\\max_\{([^}]+)\}/g, 'arg max<sub>$1</sub>')
+            .replace(/\\arg\\min_\{([^}]+)\}/g, 'arg min<sub>$1</sub>')
+            .replace(/\\theta/g, '&theta;')
+            .replace(/\\sigma/g, '&sigma;')
+            .replace(/\\mu/g, '&mu;')
+            .replace(/\\eta/g, '&eta;')
+            .replace(/\\alpha/g, '&alpha;')
+            .replace(/\\beta/g, '&beta;')
+            .replace(/\\gamma/g, '&gamma;')
+            .replace(/\\Delta/g, '&Delta;')
+            .replace(/\\nabla/g, '&nabla;')
+            .replace(/\\lambda/g, '&lambda;')
+            .replace(/\\epsilon/g, '&epsilon;')
+            .replace(/\\omega/g, '&omega;')
+            .replace(/\\partial/g, '&part;')
+            .replace(/\\infty/g, '&infin;')
+            .replace(/\\sqrt\{([^}]+)\}/g, '<span class="math-sqrt">&radic;<span class="math-sqrt-content">$1</span></span>')
+            .replace(/\\left\(|\\right\)/g, '')
+            .replace(/\\left\||\\right\|/g, '|')
+            .replace(/\\left\[|\\right\]/g, '')
+            .replace(/\\mid/g, '|')
+            .replace(/\\quad|\\qquad/g, ' &nbsp;&nbsp; ')
+            .replace(/\\text\{([^}]+)\}/g, '<span style="font-family:var(--font-sans);font-weight:600;color:var(--primary);">$1</span>')
+            .replace(/\\in/g, '&isin;')
+            .replace(/\\mathbb\{R\}/g, '&#8477;')
+            .replace(/\\approx/g, '&approx;')
+            .replace(/\\ge/g, '&ge;')
+            .replace(/\\le/g, '&le;')
+            .replace(/\\rightarrow|\\to/g, '&rarr;')
+            .replace(/\\Rightarrow/g, '&rArr;')
+            .replace(/\\cdot/g, '&middot;')
+            .replace(/\\times/g, '&times;')
+            .replace(/\\dots|\\ldots/g, '...')
+            .replace(/\\mathbf\{([^}]+)\}/g, '<b>$1</b>')
+            .replace(/\\mathcal\{([^}]+)\}/g, '<span style="font-family:serif;font-style:italic;">$1</span>')
+            .replace(/\^([0-9A-Za-z]+)/g, '<sup>$1</sup>')
+            .replace(/\^\{([^}]+)\}/g, '<sup>$1</sup>')
+            .replace(/_([0-9A-Za-z]+)/g, '<sub>$1</sub>')
+            .replace(/_\{([^}]+)\}/g, '<sub>$1</sub>');
+    }
+
+    const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
+    const textNodes = [];
+    while (walker.nextNode()) {
+        const node = walker.currentNode;
+        if (node.parentElement && !['SCRIPT', 'STYLE', 'CODE', 'PRE'].includes(node.parentElement.tagName)) {
+            if (node.nodeValue && (node.nodeValue.includes('$') || node.nodeValue.includes('\\(') || node.nodeValue.includes('\\['))) {
+                textNodes.push(node);
+            }
+        }
+    }
+
+    textNodes.forEach(node => {
+        let text = node.nodeValue;
+        let modified = false;
+
+        if (/\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]/.test(text)) {
+            text = text.replace(/\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]/g, (match, p1, p2) => {
+                const mathContent = p1 || p2;
+                return `<div class="display-math-fallback">${cleanLatexString(mathContent)}</div>`;
+            });
+            modified = true;
+        }
+
+        if (/\$([^\$]+?)\$|\\\(([^\)]+?)\\\)/.test(text)) {
+            text = text.replace(/\$([^\$]+?)\$|\\\(([^\)]+?)\\\)/g, (match, p1, p2) => {
+                const mathContent = p1 || p2;
+                return `<span class="inline-math-fallback">${cleanLatexString(mathContent)}</span>`;
+            });
+            modified = true;
+        }
+
+        if (modified) {
+            const span = document.createElement('span');
+            span.innerHTML = text;
+            node.parentNode.replaceChild(span, node);
+        }
+    });
+};
+
+window.renderAllMath = function(containerEl) {
+    const el = containerEl || document.body;
+    if (typeof renderMathInElement === 'function') {
+        try {
+            renderMathInElement(el, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError: false
+            });
+            return;
+        } catch(e) {
+            console.warn("KaTeX render error:", e);
+        }
+    }
+    if (window.formatMathFallback) {
+        window.formatMathFallback(el);
+    }
+};
+
+window.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => { if (window.renderAllMath) window.renderAllMath(); }, 50);
+    setTimeout(() => { if (window.renderAllMath) window.renderAllMath(); }, 600);
+});

@@ -9,11 +9,11 @@ $htmlClean = [regex]::Replace($htmlClean, '<script src="app\.js[^"]*"></script>'
 
 # Insert inline style inside head
 $styleTag = "`n<style>`n" + $css + "`n</style>`n</head>"
-$htmlCombined = $htmlClean -replace '</head>', $styleTag
+$htmlCombined = $htmlClean.Replace('</head>', $styleTag)
 
 # Insert inline script right before </body>
 $scriptTag = "`n<script>`n" + $js + "`n</script>`n</body>"
-$htmlCombined = $htmlCombined -replace '</body>', $scriptTag
+$htmlCombined = $htmlCombined.Replace('</body>', $scriptTag)
 
 $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
 [System.IO.File]::WriteAllText("c:\Users\Anuskar\Downloads\ai-practice\ml-exam-portal\index.html", $htmlCombined, $utf8NoBom)

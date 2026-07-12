@@ -1,0 +1,30 @@
+$pathJs = "c:\Users\Anuskar\Downloads\ai-practice\ml-exam-portal\app.js"
+$js = [System.IO.File]::ReadAllText($pathJs, [System.Text.Encoding]::UTF8)
+
+# Replace literal unicode symbols in cleanLatexString with clean HTML entities
+$js = $js.Replace("'∑<sub>`$1</sub><sup>`$2</sup>'", "'&sum;<sub>`$1</sub><sup>`$2</sup>'")
+$js = $js.Replace("'∑<sub>`$1</sub>'", "'&sum;<sub>`$1</sub>'")
+$js = $js.Replace("'∑'", "'&sum;'")
+$js = $js.Replace("'∏<sub>`$1</sub><sup>`$2</sup>'", "'&prod;<sub>`$1</sub><sup>`$2</sup>'")
+$js = $js.Replace("'∏'", "'&prod;'")
+$js = $js.Replace("'θ'", "'&theta;'")
+$js = $js.Replace("'σ'", "'&sigma;'")
+$js = $js.Replace("'μ'", "'&mu;'")
+$js = $js.Replace("'η'", "'&eta;'")
+$js = $js.Replace("'α'", "'&alpha;'")
+$js = $js.Replace("'β'", "'&beta;'")
+$js = $js.Replace("'γ'", "'&gamma;'")
+$js = $js.Replace("'Δ'", "'&Delta;'")
+$js = $js.Replace("'∇'", "'&nabla;'")
+$js = $js.Replace("'√(`$1)'", "'&radic;(`$1)'")
+$js = $js.Replace("'∈'", "'&isin;'")
+$js = $js.Replace("'ℝ'", "'&#8477;'")
+$js = $js.Replace("'≈'", "'&approx;'")
+$js = $js.Replace("'≥'", "'&ge;'")
+$js = $js.Replace("'≤'", "'&le;'")
+$js = $js.Replace("'→'", "'&rarr;'")
+$js = $js.Replace("'⇒'", "'&rArr;'")
+
+$utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+[System.IO.File]::WriteAllText($pathJs, $js, $utf8NoBom)
+Write-Host "Updated cleanLatexString to use clean HTML entities in app.js."

@@ -1,5 +1,5 @@
 # Read existing html and strip out ALL style blocks and script blocks except the top diagnostic block
-$html = [System.IO.File]::ReadAllText("c:\Users\Anuskar\Downloads\ai-practice\ml-exam-portal\index.html", [System.Text.Encoding]::UTF8)
+$html = [System.IO.File]::ReadAllText("c:\Users\Anuskar\Downloads\ai-practice\ml-exam-portal\csy3081_external.html", [System.Text.Encoding]::UTF8)
 
 # Remove all <style>...</style> blocks
 $htmlNoStyle = [regex]::Replace($html, '(?s)<style>.*?</style>', '')
