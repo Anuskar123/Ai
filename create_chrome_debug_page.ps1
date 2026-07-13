@@ -65,6 +65,38 @@ window.addEventListener("DOMContentLoaded", function() {
             } catch(e) {
                 logDebug("EXC_CLICK_OPT", e + " " + e.stack);
             }
+
+            setTimeout(function() {
+                logDebug("INFO", "Running switchTabSection('mock-questions')...");
+                try {
+                    window.switchTabSection('mock-questions');
+                    var mc = document.getElementById('mock-questions-container');
+                    logDebug("INFO", "switchTabSection('mock-questions') completed. container length: " + (mc ? mc.innerHTML.length : "null"));
+                    if (mc && mc.innerHTML.length > 10000) {
+                        logDebug("SUCCESS", "Mock Possible questions rendered successfully (" + mc.innerHTML.length + " characters)!");
+                    }
+                    // Test clicking Option on True/False or MCQ inside mock questions
+                    var mockOpt = document.querySelector('#mock-questions-container .option-item');
+                    if (mockOpt) {
+                        mockOpt.click();
+                        logDebug("SUCCESS", "Mock Option item clicked successfully without error!");
+                    }
+                    // Test clicking Check Answer on Fill in the Blank when empty
+                    var blankBtn = document.querySelector('#mock-questions-container .btn-check-blank');
+                    if (blankBtn) {
+                        blankBtn.click();
+                        logDebug("SUCCESS", "Mock Fill-in-blank Check Answer clicked successfully when empty!");
+                    }
+
+                    if (window.toggleAllMockExplanations) {
+                        window.toggleAllMockExplanations();
+                        var anyShow = document.querySelectorAll('#mock-questions-container .mock-explanation').length;
+                        logDebug("SUCCESS", "toggleAllMockExplanations ran successfully across " + anyShow + " explanations!");
+                    }
+                } catch(e) {
+                    logDebug("EXC_MOCK_TEST", e + " " + e.stack);
+                }
+            }, 1000);
         }, 1000);
     }, 1000);
 });

@@ -27,6 +27,22 @@
 
 
 <link rel="stylesheet" href="style.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="if(window.renderAllMath) window.renderAllMath()"></script>
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Diagnostic Error Banner (Hidden unless browser encounters a JS issue) -->
@@ -34,53 +50,23 @@
 
     <!-- Top Bar Navigation -->
     <header class="topbar">
-        <div class="topbar-inner">
+        <!-- Top Tier: Brand Logo, Title, and Executive Controls -->
+        <div class="topbar-header">
             <div class="brand">
                 <div class="brand-logo">
-                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.2" fill="none">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.2" fill="none">
                         <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-0.5-5.0H20"></path>
                     </svg>
                 </div>
                 <div class="brand-details">
-                    <span class="brand-name">CSY3081: AI Concepts and Applications</span>
-                    <span class="brand-sub">University of Northampton | 20-Credit Module Prep Workbench</span>
+                    <span class="brand-name">CSY3081: AI Concepts & Applications</span>
+                    <span class="brand-sub">University of Northampton | Official 20-Credit Module Prep & Exam Workbench</span>
                 </div>
             </div>
 
-            <!-- Double-Guaranteed Navigation Tabs (Inline onclick + Event Delegation) -->
-            <nav class="nav-tabs" id="main-nav">
-                <button class="nav-tab active" data-target="dashboard" onclick="if(window.switchTabSection) switchTabSection('dashboard')">
-                    <span>Overview & Syllabus</span>
-                </button>
-                <button class="nav-tab" data-target="study-notes" onclick="if(window.switchTabSection) switchTabSection('study-notes')">
-                    <span>Course Documentation</span>
-                    <span class="badge badge-primary">Syllabus</span>
-                </button>
-                <button class="nav-tab" data-target="detailed-notes" onclick="if(window.switchTabSection) switchTabSection('detailed-notes')">
-                    <span>Detailed Notes & Case Studies</span>
-                    <span class="badge badge-accent">Real-World</span>
-                </button>
-                <button class="nav-tab" data-target="interactive-visualizer" onclick="if(window.switchTabSection) switchTabSection('interactive-visualizer')">
-                    <span>Interactive Labs</span>
-                    <span class="badge">4 Demos</span>
-                </button>
-                <button class="nav-tab" data-target="exam-simulator" onclick="if(window.switchTabSection) switchTabSection('exam-simulator')">
-                    <span>Practice Exam</span>
-                    <span class="badge badge-accent">50 Qs</span>
-                </button>
-                <button class="nav-tab" data-target="test-1" onclick="if(window.switchTabSection) switchTabSection('test-1')">
-                    <span>Test 1 Assessment</span>
-                    <span class="badge badge-primary">46 Qs</span>
-                </button>
-                <button class="nav-tab" data-target="test-2" onclick="if(window.switchTabSection) switchTabSection('test-2')">
-                    <span>Test 2 Assessment</span>
-                    <span class="badge badge-purple">36 Qs</span>
-                </button>
-            </nav>
-
-            <div class="user-status" style="display: flex; align-items: center; gap: 1.2rem;">
+            <div class="user-status">
                 <button id="btn-theme-toggle" class="theme-toggle-btn" onclick="if(window.toggleTheme) toggleTheme()" title="Switch between Executive Light and Midnight Dark themes">
-                    <span id="theme-toggle-icon">ðŸŒ™</span>
+                    <span id="theme-toggle-icon">🌙</span>
                     <span id="theme-toggle-text">Dark Studio</span>
                 </button>
                 <div class="readiness-meter">
@@ -93,6 +79,89 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Bottom Tier: Horizontal Scrollable & Responsive Navigation Tabs -->
+        <div class="topbar-nav-bar">
+            <div class="nav-dropdown-wrap" title="Quickly jump directly to any module notes, lab simulator, or exam assessment">
+                <label for="nav-jump-select" class="nav-dropdown-label">🧭 Quick Jump Menu:</label>
+                <select class="nav-jump-dropdown" id="nav-jump-select" onchange="if(window.switchTabSection && this.value) { const parts = this.value.split('|'); switchTabSection(parts[0], parts[1] || null); }">
+                    <option value="dashboard">⚡ Select Destination to Jump...</option>
+                    <optgroup label="📊 Overview & Dashboard">
+                        <option value="dashboard">🏠 Main Dashboard & Module Overview</option>
+                        <option value="dashboard|syllabus-directory">📑 6-Module Syllabus Directory</option>
+                    </optgroup>
+                    <optgroup label="📚 Course Theory & Documentation">
+                        <option value="study-notes">📖 Course Documentation (Full Syllabus Notes)</option>
+                        <option value="study-notes|notes-ai-intro">Module 1: AI vs ML Hierarchy & History</option>
+                        <option value="study-notes|notes-ml-process">Module 2: 7-Step ML Process & Paradigms</option>
+                        <option value="study-notes|notes-supervised-linear">Module 3: Linear & Softmax Regression</option>
+                        <option value="study-notes|notes-trees-ensembles">Module 4: Decision Trees & Random Forest</option>
+                        <option value="study-notes|notes-bayes-knn-svm">Module 5: Naive Bayes, KNN & SVM</option>
+                        <option value="study-notes|notes-unsupervised-rl">Module 6: K-Means, Apriori & RL</option>
+                    </optgroup>
+                    <optgroup label="🔬 Detailed Notes & Case Studies">
+                        <option value="detailed-notes">📋 Detailed Notes Overview & Deep Dive</option>
+                        <option value="detailed-notes|cs-titanic">Case Study 1: Titanic Disaster Survival Prediction</option>
+                        <option value="detailed-notes|cs-spam">Case Study 2: Email Spam Filter (Naive Bayes)</option>
+                        <option value="detailed-notes|cs-customer">Case Study 3: Retail Customer Segmentation (K-Means)</option>
+                    </optgroup>
+                    <optgroup label="⚡ Interactive Lab Simulators">
+                        <option value="interactive-visualizer">🧪 All 4 Interactive Lab Simulators</option>
+                        <option value="interactive-visualizer|lab-dt">Lab 1: Decision Tree Leaf Gini Purity Calculator</option>
+                        <option value="interactive-visualizer|lab-kmeans">Lab 2: 2D K-Means Clustering Centroid Convergence</option>
+                        <option value="interactive-visualizer|lab-knn">Lab 3: K-Nearest Neighbours Distance & Voting</option>
+                        <option value="interactive-visualizer|lab-rf">Lab 4: Random Forest Bagging & Noise Tolerance</option>
+                    </optgroup>
+                    <optgroup label="📝 Exam Practice & Assessments">
+                        <option value="exam-simulator">📝 Practice Exam Simulation Workbench (66 Qs)</option>
+                        <option value="mock-questions">💡 Mock Possible Exam Questions (32 High-Yield Qs)</option>
+                        <option value="test-1">🎯 Test 1: Core Theory Assessment (46 Qs)</option>
+                        <option value="test-2">🏆 Test 2: Scikit-Learn Lab Practicals (36 Qs)</option>
+                    </optgroup>
+                </select>
+            </div>
+            <nav class="nav-tabs" id="main-nav">
+                <button class="nav-tab active" data-target="dashboard" onclick="if(window.switchTabSection) switchTabSection('dashboard')">
+                    <span class="nav-icon">📊</span>
+                    <span>Overview & Syllabus</span>
+                </button>
+                <button class="nav-tab" data-target="study-notes" onclick="if(window.switchTabSection) switchTabSection('study-notes')">
+                    <span class="nav-icon">📚</span>
+                    <span>Course Documentation</span>
+                    <span class="badge badge-primary">Syllabus</span>
+                </button>
+                <button class="nav-tab" data-target="detailed-notes" onclick="if(window.switchTabSection) switchTabSection('detailed-notes')">
+                    <span class="nav-icon">🔬</span>
+                    <span>Detailed Notes & Case Studies</span>
+                    <span class="badge badge-accent">Real-World</span>
+                </button>
+                <button class="nav-tab" data-target="interactive-visualizer" onclick="if(window.switchTabSection) switchTabSection('interactive-visualizer')">
+                    <span class="nav-icon">⚡</span>
+                    <span>Interactive Labs</span>
+                    <span class="badge">4 Demos</span>
+                </button>
+                <button class="nav-tab" data-target="exam-simulator" onclick="if(window.switchTabSection) switchTabSection('exam-simulator')">
+                    <span class="nav-icon">📝</span>
+                    <span>Practice Exam</span>
+                    <span class="badge badge-accent">66 Qs</span>
+                </button>
+                <button class="nav-tab" data-target="mock-questions" onclick="if(window.switchTabSection) switchTabSection('mock-questions')">
+                    <span class="nav-icon">💡</span>
+                    <span>Mock Possible Qs</span>
+                    <span class="badge badge-cyan">32 Qs</span>
+                </button>
+                <button class="nav-tab" data-target="test-1" onclick="if(window.switchTabSection) switchTabSection('test-1')">
+                    <span class="nav-icon">🎯</span>
+                    <span>Test 1 Assessment</span>
+                    <span class="badge badge-primary">46 Qs</span>
+                </button>
+                <button class="nav-tab" data-target="test-2" onclick="if(window.switchTabSection) switchTabSection('test-2')">
+                    <span class="nav-icon">🏆</span>
+                    <span>Test 2 Assessment</span>
+                    <span class="badge badge-purple">36 Qs</span>
+                </button>
+            </nav>
         </div>
     </header>
 
@@ -1366,6 +1435,38 @@ print("Number of Support Vectors per class:", svm_pipeline.named_steps['svm'].n_
                 <button class="btn btn-accent btn-lg" id="btn-grade-exam" onclick="if(window.submitTimedExam) submitTimedExam()">
                     <span>Submit & Grade Complete Exam</span>
                 </button>
+            </div>
+        </section>
+
+        <!-- ================= MOCK POSSIBLE EXAM QUESTIONS SECTION (32 Qs) ================= -->
+        <section id="section-mock-questions" class="content-section">
+            <div class="section-top-header">
+                <div>
+                    <h2>Mock Possible Exam Questions (`32 High-Yield University Exam Prompts`)</h2>
+                    <p class="section-sub">Comprehensive predicted high-probability CSY3081 exam questions: 6 Fill-in-the-Blank, 8 True/False, 12 Multiple Choice (`Softmax, Decision Trees, K-Means, RF`), 3 Code Completions, and 3 Paradigm Matchings</p>
+                </div>
+                <div style="display:flex; gap:0.75rem; align-items:center;">
+                    <button class="btn btn-primary" onclick="if(window.toggleAllMockExplanations) toggleAllMockExplanations()">
+                        <span id="btn-toggle-mock-exp-text">Reveal All 32 Answers & Explanations</span>
+                    </button>
+                    <button class="btn btn-outline" onclick="if(window.resetMockExam) resetMockExam()">Reset Section</button>
+                </div>
+            </div>
+
+            <div class="test-instructions-panel" style="margin-bottom: 2rem;">
+                <h4>🎯 High-Yield Exam Question Breakdown (`32 Total Curated & Predicted Questions`)</h4>
+                <p>These 32 carefully gathered and predicted questions cover the core theoretical paradigms, mathematical equations, and exact Scikit-Learn code manipulations across your 4 university lab modules:</p>
+                <ul style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.45rem;">
+                    <li><strong>Fill in the Blank (`q67 - q70, q77 - q81`):</strong> Unsupervised clustering paradigms, K-Means centroid convergence, LASSO ($L_1$) feature sparsity, Decision Tree Gini impurity, Recall sensitivity equations, and Reinforcement Learning scalar reward goals.</li>
+                    <li><strong>True / False (`q68 - q70, q82 - q86`):</strong> Clustering label assumptions, Linear regression bias vs CART non-linearity, Softmax multiclass generalizations, unconstrained tree overfitting, KNN distance magnitude sensitivity (`StandardScaler`), K-Means local minima (`init='k-means++'`), and Naive Bayes conditional independence.</li>
+                    <li><strong>Multiple Choice & Theoretical Proofs (`q71 - q73, q87 - q93`):</strong> Customer segmentation, CART leaf probability normalization (`[0.05, 0.85, 0.10]`), Softmax cross-entropy loss, exact 50-50 Gini calculation ($0.50$), Scikit-Learn `fit -> predict -> accuracy_score` pipelines, K-Means Elbow Method curvature, Random Forest variance reduction via bootstrap bagging, and Overfitting vs Underfitting diagnostics.</li>
+                    <li><strong>Code Slicing & Completion (`q74, q75, q93 - q96`):</strong> `softmax_reg.predict(X_test)` vs `.predict_proba()` 2D array shape `(5, 3)` proofs, `.feature_importances_` trailing underscore rules, `.cluster_centers_` coordinates, and `train_test_split(..., random_state=42)` deterministic reproducibility guarantees.</li>
+                    <li><strong>Interactive Paradigm & Method Matchings (`q76, q97, q98`):</strong> Machine Learning paradigms vs real-world applications (`Spam, House Prices, Robotics`), Scikit-Learn core estimator methods (`fit, predict, predict_proba, transform, score`), and algorithm hyperparameter tuning cheat sheets (`max_depth, C, n_clusters, n_neighbors, n_estimators`).</li>
+                </ul>
+            </div>
+
+            <div class="question-list" id="mock-questions-container">
+                <!-- Mock questions dynamically rendered by app.js -->
             </div>
         </section>
 
