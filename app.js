@@ -1120,239 +1120,268 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
         correctOption: 'B',
         explanation: `Total samples = $25 + 25 + 25 + 25 = 100$. Each class $i$ has equal probability $p_i = \\frac{25}{100} = \\frac{1}{4}$. Using the Shannon Entropy formula (base 2): $H(X) = -\\sum_{i=1}^{4} \\frac{1}{4} \\log_2\\left(\\frac{1}{4}\\right)$. Since $\\log_2(1/4) = \\log_2(2^{-2}) = -2$: $H(X) = -4 \\times \\left[\\frac{1}{4} \\times (-2)\\right] = -(-2) = 2.000$.<br><br><strong>💡 Exam & Interview Tip:</strong> For $C$ classes, maximum entropy occurs when classes are perfectly equal: $H_{\\max} = \\log_2(C)$. For 2 classes ($C=2$), maximum entropy = $\\log_2(2) = 1.0$. For 4 classes ($C=4$), maximum entropy = $\\log_2(4) = 2.0$. For 8 classes ($C=8$), maximum entropy = $\\log_2(8) = 3.0$.`
     },
-    // --- 10 NEW USER-REQUESTED CORE MOCK EXAM QUESTIONS (q67 - q76) ---
+    // --- 16 OFFICIAL MOCK EXAM ASSESSMENT QUESTIONS (q67 - q82) ---
     {
         id: 'q67',
-        type: 'fill-blank',
-        category: 'fill-blank',
-        points: 1,
-        title: 'Question 67 (1 Point): Clustering Paradigm',
-        text: 'Clustering is a type of _______ learning.',
-        correctAnswer: 'unsupervised',
-        acceptableAnswers: ['unsupervised', 'unsupervised learning', 'unsupervised-learning'],
-        explanation: `Clustering algorithms (such as <strong>K-Means</strong>, <strong>Hierarchical Clustering</strong>, and <strong>DBSCAN</strong>) discover inherent natural groupings (<em>clusters</em>) within data without relying on predefined ground-truth target labels ($y$). Therefore, clustering is a foundational pillar of <strong>unsupervised learning</strong>.<br><br><strong>💡 Official CSY3081 Theory:</strong> Unlike supervised algorithms (<em>regression and classification</em>) which optimize error against known target vectors, unsupervised clustering optimizes internal structural metrics such as minimizing <strong>within-cluster sum of squares (WCSS)</strong> or maximizing <strong>Silhouette Scores</strong>.`
+        type: 'mcq',
+        category: 'mcq',
+        points: 3,
+        title: 'Question 1 (3 Points): Softmax Regression Output Format & Normalization',
+        text: 'You use softmax regression to classify the iris flowers into all three classes (`0: Setosa, 1: Versicolor, 2: Virginica`) using petal length and petal width. With the following code, what is a possible output?\n\n```python\nX_train, X_test, y_train, y_test = train_test_split(X, y)\nsoftmax_reg = LogisticRegression(C=30)\nsoftmax_reg.fit(X_train, y_train)\nprint(softmax_reg.predict([[5, 2]]), softmax_reg.predict_proba([[5, 2]]).round(2))\n```',
+        options: [
+            { letter: 'A', text: '[3] [[0. 0.03 0.97]]' },
+            { letter: 'B', text: '[2] [[0. 0.03 0.97]]' },
+            { letter: 'C', text: '[0.97] [[0 1 2]]' },
+            { letter: 'D', text: '[2] [[0.97]]' }
+        ],
+        correctOption: 'B',
+        explanation: `Let's break down the exact return values of Scikit-Learn's Softmax (<code>LogisticRegression(multi_class='multinomial')</code>) methods when passed a 2D sample <code>[[5, 2]]</code>:<br>1. <strong><code>softmax_reg.predict([[5, 2]])</code></strong>: Predicts the discrete class label with the highest probability. Since the Iris dataset has 3 classes indexed <code>0</code>, <code>1</code>, and <code>2</code>, Option A (<code>[3]</code>) is impossible. Class <code>2</code> (Iris virginica) is predicted, returning <code>[2]</code>.<br>2. <strong><code>softmax_reg.predict_proba([[5, 2]]).round(2)</code></strong>: Returns a 2D probability matrix of shape <code>(1, 3)</code> containing <code>[[P(Y=0), P(Y=1), P(Y=2)]]</code>. By the axioms of probability and Softmax normalization ($\hat{p}_k = \\frac{e^{s_k}}{\\sum e^{s_j}}$), the probabilities across all 3 classes must sum exactly to <code>1.0</code>. Here, <code>0.00 + 0.03 + 0.97 = 1.00</code>.<br><br>Therefore, <strong>Option B (<code>[2] [[0. 0.03 0.97]]</code>)</strong> is the only mathematically valid and structurally correct output.`
     },
     {
         id: 'q68',
-        type: 'true-false',
-        category: 'true-false',
-        points: 1,
-        title: 'Question 68 (1 Point): Clustering Label Requirement',
-        text: 'Clustering algorithms require labelled training data.',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 2 (2 Points): Scikit-Learn Inference Feature Matrix vs Target Vector',
+        text: 'If you want to predict the labels of the first ten samples in the test dataset, which of the following options should replace the question mark (<code>?</code>) in the code?\n\n```python\nX = iris.data[["petal length (cm)", "petal width (cm)"]].values\ny = iris["target"].values\nX_train, X_test, y_train, y_test = train_test_split(X, y)\nsoftmax_reg = LogisticRegression(C=30)\nsoftmax_reg.fit(X_train, y_train)\ny_pred = softmax_reg.predict(? [:10])\n```',
         options: [
-            { letter: 'A', text: 'True' },
-            { letter: 'B', text: 'False' }
+            { letter: 'A', text: 'X_test' },
+            { letter: 'B', text: 'X_train' },
+            { letter: 'C', text: 'y_test' },
+            { letter: 'D', text: 'y_train' }
         ],
-        correctOption: 'B',
-        explanation: `Clustering algorithms are strictly <strong>unsupervised</strong>, meaning they operate exclusively on input feature matrices ($X$) and <strong>do not require or utilize labeled training data ($y$)</strong>. They partition data by measuring geometric or probabilistic similarity across feature dimensions.<br><br><strong>💡 Exam & Interview Tip:</strong> If an algorithm requires labeled training data ($y$) to assign new instances to discrete classes, it is called <strong>Supervised Classification</strong> (<em>e.g., KNN Classifier, Decision Tree Classifier, Logistic Regression</em>), NOT clustering.`
+        correctOption: 'A',
+        explanation: `To evaluate or generate predictions on unseen test data using <code>softmax_reg.predict()</code>, we must pass the feature matrix corresponding to the test split (<code>X_test</code>), sliced as <code>X_test[:10]</code>.<br><br><strong>💡 Exam & Interview Tip:</strong> Scikit-Learn estimator <code>predict(X)</code> methods always require a 2D feature matrix containing independent variables ($n\_samples, n\_features$). Passing <code>y_test</code> or <code>y_train</code> (<code>Option C</code> or <code>D</code>) would throw an error because target vectors (<code>y</code>) contain 1D class labels, not feature attributes. Passing <code>X_train</code> (<code>Option B</code>) would evaluate on training data rather than the unseen test set.`
     },
     {
         id: 'q69',
         type: 'true-false',
         category: 'true-false',
-        points: 1,
-        title: 'Question 69 (1 Point): Linear Regression Assumption',
-        text: 'Linear regression assumes a linear relationship between input variables and the target.',
-        options: [
-            { letter: 'A', text: 'True' },
-            { letter: 'B', text: 'False' }
-        ],
-        correctOption: 'A',
-        explanation: `Linear regression explicitly models the predicted target $\\hat{y}$ as a linear combination of input features: $\\hat{y} = w_0 + w_1 x_1 + w_2 x_2 + \\dots + w_n x_n$. Thus, its primary theoretical assumption is a <strong>linear relationship</strong> between independent variables ($X$) and the continuous dependent variable ($Y$).<br><br><strong>💡 Exam & Interview Tip:</strong> If the true underlying data generating process is highly non-linear (<em>e.g., quadratic or exponential</em>), a standard linear regression model will suffer from <strong>High Bias (Underfitting)</strong>. To fix this, you must apply <code>PolynomialFeatures</code> or non-linear models like Decision Trees / Neural Networks.`
-    },
-    {
-        id: 'q70',
-        type: 'true-false',
-        category: 'true-false',
-        points: 1,
-        title: 'Question 70 (1 Point): Decision Tree Nonlinearity Requirement',
+        points: 3,
+        title: 'Question 3 (3 Points): Decision Tree Linearity Assumptions',
         text: 'Decision Trees require a nonlinear relationship between input variables and the target.',
         options: [
             { letter: 'A', text: 'True' },
             { letter: 'B', text: 'False' }
         ],
         correctOption: 'B',
-        explanation: `Decision Trees are highly versatile non-parametric models that can easily handle <strong>both linear and non-linear</strong> relationships! While they excel at partitioning complex non-linear feature spaces via recursive orthogonal (<em>axis-aligned</em>) threshold splits, they do *not* require a non-linear relationship to function.<br><br><strong>💡 Official CSY3081 Theory:</strong> If given a purely linear relationship, a Decision Tree will approximate the linear hyperplane using a staircase-like sequence of axis-aligned step splits.`
+        explanation: `<strong>False.</strong> Decision Trees do <strong>not</strong> require a non-linear (or linear) relationship between input variables and the target.<br><br>Decision Trees are non-parametric models that partition the feature space using orthogonal, axis-parallel decision boundaries ($X_j \\le \\text{threshold}$). Because of this flexible hierarchical splitting mechanism, Decision Trees can accurately model both simple linear relationships and highly complex non-linear structures without making any prior parametric assumptions about the underlying data generating process.`
+    },
+    {
+        id: 'q70',
+        type: 'matching',
+        category: 'matching',
+        points: 4,
+        title: 'Question 4 (4 Points): Machine Learning Learning Paradigms vs Canonical Examples',
+        text: 'Match each fundamental machine learning term (<code>Prompts 1 - 5</code>) directly to its correct real-world application or dataset structure (<code>Answers</code>):',
+        matchingPairs: [
+            { left: '1. Unsupervised learning', right: 'Grouping customers by purchase habits' },
+            { left: '2. Classification', right: 'Predict spam or non-spam email' },
+            { left: '3. Semi-supervised learning', right: 'Training data includes a small portion of labeled data and lots of unlabeled data' },
+            { left: '4. Regression', right: 'Predict a value given input features' },
+            { left: '5. Reinforcement learning', right: 'A robot learns to play games from interactions with the environment' }
+        ],
+        rightOptions: [
+            'Grouping customers by purchase habits',
+            'Predict spam or non-spam email',
+            'Training data includes a small portion of labeled data and lots of unlabeled data',
+            'Predict a value given input features',
+            'A robot learns to play games from interactions with the environment'
+        ],
+        correctMatches: [
+            'Grouping customers by purchase habits',
+            'Predict spam or non-spam email',
+            'Training data includes a small portion of labeled data and lots of unlabeled data',
+            'Predict a value given input features',
+            'A robot learns to play games from interactions with the environment'
+        ],
+        explanation: `<strong>💡 Machine Learning Paradigms Master Summary:</strong><br>- <strong>Unsupervised Learning:</strong> Discovers natural patterns and segments without target labels (<code>Grouping customers by purchase habits</code>).<br>- <strong>Classification (Supervised):</strong> Predicts discrete categorical class labels (<code>Predict spam or non-spam email</code>).<br>- <strong>Semi-supervised Learning:</strong> Combines a small labeled dataset with a massive pool of unlabeled data to improve generalization (<code>Small portion of labeled data + lots of unlabeled data</code>).<br>- <strong>Regression (Supervised):</strong> Predicts continuous numerical target quantities (<code>Predict a value given input features</code>).<br>- <strong>Reinforcement Learning:</strong> An autonomous agent learns optimal policies through sequential environmental interactions, reward feedback, and trial-and-error (<code>A robot learns to play games from environment</code>).`
     },
     {
         id: 'q71',
         type: 'mcq',
         category: 'mcq',
         points: 2,
-        title: 'Question 71 (2 Points): Selecting Tasks for Clustering',
-        text: 'Which task is best suited for clustering?',
+        title: 'Question 5 (2 Points): Primary Problem Domain of Logistic Regression',
+        text: 'Logistic regression is mainly used for ________ problems.',
         options: [
-            { letter: 'A', text: 'Spam detection (Predicting Spam vs Non-Spam emails)' },
-            { letter: 'B', text: 'Image classification (Categorizing photos into predefined object classes)' },
-            { letter: 'C', text: 'Customer segmentation (Grouping customers by purchasing habits without prior labels)' },
-            { letter: 'D', text: 'Financial forecasting (Predicting future continuous stock or revenue values)' }
+            { letter: 'A', text: 'Classification' },
+            { letter: 'B', text: 'Regression' },
+            { letter: 'C', text: 'Clustering' },
+            { letter: 'D', text: 'Reinforcement Learning' }
         ],
-        correctOption: 'C',
-        explanation: `<strong>Customer segmentation</strong> aims to group individuals into distinct cohorts (<em>e.g., budget shoppers, high-value loyalists, occasional buyers</em>) based on similarity across purchasing metrics without pre-existing category labels—making it the classic real-world application of <strong>Unsupervised Clustering</strong> (<em>e.g., K-Means</em>).<br><br><strong>💡 Task Breakdown:</strong><br>• <strong>Spam detection & Image classification:</strong> Supervised Classification (<em>discrete targets</em>).<br>• <strong>Financial forecasting:</strong> Supervised Regression / Time-Series (<em>continuous target</em>).`
+        correctOption: 'A',
+        explanation: `Despite containing the word "regression" in its name due to statistical derivation, <strong>Logistic Regression</strong> is fundamentally a <strong>classification</strong> algorithm.<br><br>It models the log-odds of a categorical outcome as a linear combination of features, then applies the logistic (sigmoid) function to produce class membership probabilities $P(Y=1|X) \\in (0, 1)$ used for binary or multi-class classification.`
     },
     {
         id: 'q72',
         type: 'mcq',
         category: 'mcq',
         points: 2,
-        title: 'Question 72 (2 Points): Decision Tree Leaf Node Probability Calculation',
-        text: 'In a Decision Tree, if a leaf node has total <code>samples = 100</code> and class distribution <code>values = [5, 85, 10]</code> across three classes, what should be the output probability vector <code>predict_proba()</code> of this leaf node?',
+        title: 'Question 6 (2 Points): Role of the Sigmoid Function in Logistic Regression',
+        text: 'What is the primary purpose of the sigmoid function in logistic regression?',
         options: [
-            { letter: 'A', text: '0.85 (Only the probability of the majority class)' },
-            { letter: 'B', text: '1 (Absolute prediction for the majority class)' },
-            { letter: 'C', text: '[0.05, 0.85, 0.1] (Exact normalized class probabilities across all 3 classes)' },
-            { letter: 'D', text: '[0, 1, 0] (One-hot argmax vector)' }
+            { letter: 'A', text: 'To reduce overfitting' },
+            { letter: 'B', text: 'To normalise input features' },
+            { letter: 'C', text: 'To cluster data points' },
+            { letter: 'D', text: 'To convert outputs into probabilities' }
         ],
-        correctOption: 'C',
-        explanation: `In Scikit-Learn (and standard decision tree theory), when <code>predict_proba(X)</code> is evaluated for a test instance that lands in a specific leaf node, the model outputs the <strong>normalized relative frequency distribution</strong> of the training samples residing in that leaf: $$P(\\text{class } k) = \\frac{\\text{value}_k}{\\text{total samples in leaf}}$$ For this leaf node: <br>• Class 0 Probability: $\\frac{5}{100} = \\mathbf{0.05}$ <br>• Class 1 Probability: $\\frac{85}{100} = \\mathbf{0.85}$ <br>• Class 2 Probability: $\\frac{10}{100} = \\mathbf{0.10}$ <br>Therefore, the complete probability vector is <strong><code>[0.05, 0.85, 0.1]</code></strong>.<br><br><strong>💡 Note:</strong> Calling <code>.predict(X)</code> would apply <code>argmax</code> and output discrete label <code>1</code>, but <code>.predict_proba(X)</code> strictly outputs the full probability vector across all classes.`
+        correctOption: 'D',
+        explanation: `The primary purpose of the <strong>sigmoid function</strong> $\\sigma(z) = \\frac{1}{1 + e^{-z}}$ is <strong>to convert unbounded linear outputs into probabilities</strong>.<br><br>When a logistic regression model computes the linear weighted sum $z = w \\cdot x + b$, $z$ can range anywhere from $-\\infty$ to $+\\infty$. Passing $z$ through the sigmoid transformation compresses the value strictly into the bounded interval $(0, 1)$, allowing it to be interpreted as the probability of belonging to the positive class.`
     },
     {
         id: 'q73',
         type: 'mcq',
         category: 'mcq',
         points: 2,
-        title: 'Question 73 (2 Points): Softmax Regression Characteristics',
-        text: 'Which statement about <strong>Softmax Regression</strong> (Multinomial Logistic Regression) is correct?',
+        title: 'Question 7 (2 Points): Clustering Learning Type',
+        text: 'Clustering is a type of __________ learning.',
         options: [
-            { letter: 'A', text: 'It produces a single continuous output value ($Y \\in \\mathbb{R}$)' },
-            { letter: 'B', text: 'It is only used for continuous regression problems despite its name' },
-            { letter: 'C', text: 'It cannot be evaluated using classification accuracy metrics' },
-            { letter: 'D', text: 'It outputs probabilities across multiple mutually exclusive classes summing to 1.0' }
+            { letter: 'A', text: 'Unsupervised' },
+            { letter: 'B', text: 'Supervised' },
+            { letter: 'C', text: 'Reinforcement' },
+            { letter: 'D', text: 'Semi-supervised' }
         ],
-        correctOption: 'D',
-        explanation: `Despite the historical name <strong>Softmax Regression</strong> (or Multinomial Logistic Regression), it is strictly a <strong>multiclass classification algorithm</strong>. The Softmax activation function converts raw linear logit scores $z_1, z_2, \\dots, z_K$ into a valid probability distribution across $K$ classes: $$\\hat{p}_k = \\sigma(z)_k = \\frac{e^{z_k}}{\\sum_{j=1}^{K} e^{z_j}}$$ This guarantees that $0 \\le \\hat{p}_k \\le 1$ for every class and $\\sum_{k=1}^{K} \\hat{p}_k = 1.0$.`
+        correctOption: 'A',
+        explanation: `<strong>Clustering</strong> (e.g., K-Means, DBSCAN, Agglomerative Hierarchical Clustering) is the canonical example of <strong>unsupervised learning</strong>.<br><br>It partitions unlabeled data points ($X$) into distinct clusters based purely on geometric distances and feature similarities, without any supervisory target labels ($y$).`
     },
     {
         id: 'q74',
-        type: 'mcq',
-        category: 'mcq',
-        points: 3,
-        title: 'Question 74 (3 Points): Softmax Regression Prediction Code Completion',
-        text: 'If you want to predict the class labels of the test dataset (specifically inspecting the first ten samples), which of the following options should correctly replace the question mark `?` in the code below?\n\n```python\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import train_test_split\n\nX = iris_data[[\'petal length (cm)\', \'petal width (cm)\']].values\ny = iris_data[\'target\'].values\nX_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)\n\nsoftmax_reg = LogisticRegression(C=30)\nsoftmax_reg.fit(X_train, y_train)\n\n# What should replace the question mark to predict labels on the test set?\ny_pred = softmax_reg.predict(?)\n```',
-        options: [
-            { letter: 'A', text: 'y_test (Ground truth target vector)' },
-            { letter: 'B', text: 'X_train (Training feature matrix)' },
-            { letter: 'C', text: 'X_test (Test feature matrix, or X_test[:10] for first 10 rows)' },
-            { letter: 'D', text: 'y_train (Training target vector)' }
-        ],
-        correctOption: 'C',
-        explanation: `In Scikit-Learn, the <code>.predict(X)</code> method of any trained estimator strictly expects a <strong>feature matrix ($X$)</strong> (shape: <code>[n_samples, n_features]</code>), <strong>never target vectors ($y$)</strong>! <br><br>To generate predictions for the evaluation fold, you must pass the test feature matrix <strong><code>X_test</code></strong> (or <code>X_test[:10]</code> specifically to slice the first ten test instances). Passing <code>y_test</code> or <code>y_train</code> will raise a severe <code>ValueError</code> due to feature dimension mismatch, and passing <code>X_train</code> would evaluate training error rather than generalization performance.`
-    },
-    {
-        id: 'q75',
-        type: 'mcq',
-        category: 'mcq',
-        points: 3,
-        title: 'Question 75 (3 Points): Interpreting Softmax `predict_proba` Output Array',
-        text: 'You use softmax regression to classify Iris flowers into all 3 classes (<code>0: Setosa, 1: Versicolor, 2: Virginica</code>) using petal length and petal width. With the following code, what is a <strong>mathematically valid possible output</strong> when running <code>predict_proba</code> on a single sample <code>[[5, 2]]</code>?\n\n```python\nX_train, X_test, y_train, y_test = train_test_split(X, y)\nsoftmax_reg = LogisticRegression(C=30)\nsoftmax_reg.fit(X_train, y_train)\n\n# Evaluating class membership probabilities for a 2D sample [petal length=5, petal width=2]\nprint(softmax_reg.predict_proba([[5, 2]]))\n```',
-        options: [
-            { letter: 'A', text: '[[ 0.20, 0.03, 0.97 ]] (Sum = 1.20 - Invalid probability distribution)' },
-            { letter: 'B', text: '[[0.97] [0] [2]] (Malformed 3x1 array with numbers > 1.0)' },
-            { letter: 'C', text: '[2] (Discrete class label - returned by .predict(), not .predict_proba())' },
-            { letter: 'D', text: '[[ 0, 0.03, 0.97 ]] (Valid 2D probability array summing exactly to 1.00)' }
-        ],
-        correctOption: 'D',
-        explanation: `Let's analyze Scikit-Learn's <strong>Softmax <code>.predict_proba(X)</code></strong> return structure and mathematical properties: <br>1. <strong>Dimensionality:</strong> Because the input <code>[[5, 2]]</code> contains 1 sample (shape $1 \\times 2$), and there are 3 classes ($K=3$), <code>predict_proba()</code> returns a 2D array of shape <strong><code>(1, 3)</code></strong>: <code>[[P(Y=0), P(Y=1), P(Y=2)]]</code>. <br>2. <strong>Normalization Axiom:</strong> By definition of the Softmax equation, all probabilities must satisfy $0 \\le P_k \\le 1$ and <strong>must sum exactly to $1.00$</strong> across the row. <br><br>Let's check each option: <br>• Option A: $0.20 + 0.03 + 0.97 = 1.20 \\neq 1.0$ (<em>Mathematically impossible for softmax</em>). <br>• Option D: $0 + 0.03 + 0.97 = \\mathbf{1.00}$ (<strong>Valid Softmax Probability Vector where Class 2 / Virginica is predicted with 97% confidence</strong>).`
-    },
-    {
-        id: 'q76',
-        type: 'matching',
-        category: 'matching',
-        points: 3,
-        title: 'Question 76 (3 Points): Machine Learning Paradigms vs Real-World Examples',
-        text: 'Match each foundational <strong>Machine Learning Paradigm</strong> directly to its correct real-world application example:',
-        matchingPairs: [
-            { left: 'Unsupervised learning', right: 'Grouping customers by purchase habits without predefined category labels' },
-            { left: 'Classification (Supervised)', right: 'Predicting discrete spam or non-spam email categories from text features' },
-            { left: 'Semi-supervised learning', right: 'Training data includes a small portion of labeled data and lots of unlabeled data (e.g. medical scans)' },
-            { left: 'Regression (Supervised)', right: 'Predicting a continuous numerical value (e.g., house price or stock revenue) given input features' },
-            { left: 'Reinforcement learning', right: 'An autonomous robot or agent learns to play games from trial-and-error interactions with the environment' }
-        ],
-        rightOptions: [
-            'Grouping customers by purchase habits without predefined category labels',
-            'Predicting discrete spam or non-spam email categories from text features',
-            'Training data includes a small portion of labeled data and lots of unlabeled data (e.g. medical scans)',
-            'Predicting a continuous numerical value (e.g., house price or stock revenue) given input features',
-            'An autonomous robot or agent learns to play games from trial-and-error interactions with the environment'
-        ],
-        correctMatches: [
-            'Grouping customers by purchase habits without predefined category labels',
-            'Predicting discrete spam or non-spam email categories from text features',
-            'Training data includes a small portion of labeled data and lots of unlabeled data (e.g. medical scans)',
-            'Predicting a continuous numerical value (e.g., house price or stock revenue) given input features',
-            'An autonomous robot or agent learns to play games from trial-and-error interactions with the environment'
-        ],
-        explanation: `<strong>💡 CSY3081 Core Taxonomy Summary:</strong><br>• <strong>Supervised Classification:</strong> Discrete target labels $y \\in \\{0, 1, \\dots\\}$ (<em>e.g., Spam vs Non-Spam</em>).<br>• <strong>Supervised Regression:</strong> Continuous target values $y \\in \\mathbb{R}$ (<em>e.g., Price forecasting</em>).<br>• <strong>Unsupervised Clustering:</strong> No targets; grouping points purely by feature similarity (<em>e.g., Customer Segmentation</em>).<br>• <strong>Semi-Supervised Learning:</strong> Leverages a tiny labeled dataset along with a massive unlabeled dataset (<em>reduces expensive manual labeling costs in bioinformatics and computer vision</em>).<br>• <strong>Reinforcement Learning (RL):</strong> An agent executes actions $a_t$ in state $s_t$ inside an environment to maximize cumulative scalar reward $\\sum \\gamma^t r_t$ (<em>e.g., Robotics and Game AI</em>).`
-    },
-    // --- 22 NEW PREDICTED HIGH-YIELD MOCK POSSIBLE EXAM QUESTIONS (q77 - q98) TO REACH EXACTLY 32 QS ---
-    {
-        id: 'q77',
-        type: 'fill-blank',
-        category: 'fill-blank',
-        points: 1,
-        title: 'Question 77 (1 Point): K-Means Centroid Convergence',
-        text: 'In K-Means clustering, the algorithm iteratively updates the geometric centers of each cluster, called _______, until their positions stabilize and stop moving.',
-        correctAnswer: 'centroids',
-        acceptableAnswers: ['centroids', 'centroid', 'cluster centroids', 'cluster centers'],
-        explanation: `In <strong>K-Means clustering</strong>, each cluster is represented by its mean vector (center of mass across all dimensions), formally called the <strong>centroid</strong> $\\mu_k$. During iteration, each data point is assigned to its nearest centroid, after which new centroids are computed by taking the average of all points in that cluster: $$\\mu_k^{(t+1)} = \\frac{1}{|S_k|} \\sum_{x \\in S_k} x$$ This Expectation-Maximization loop repeats until the centroids converge (<em>stop shifting</em>).`
-    },
-    {
-        id: 'q78',
-        type: 'fill-blank',
-        category: 'fill-blank',
-        points: 1,
-        title: 'Question 78 (1 Point): Regularized Linear Regression ($L_1$ Penalty)',
-        text: 'The linear regression regularization technique that adds an $L_1$ norm penalty (sum of absolute weights) to the loss function to enforce sparsity and feature selection is called _______ regression.',
-        correctAnswer: 'lasso',
-        acceptableAnswers: ['lasso', 'lasso regression', 'l1', 'l1 regularization'],
-        explanation: `<strong>LASSO (<em>Least Absolute Shrinkage and Selection Operator</em>)</strong> adds an $L_1$ penalty term to the residual sum of squares loss: $$J(w) = \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2 + \\alpha \\sum_{j=1}^{p} |w_j|$$ Because the $L_1$ constraint geometry has sharp diamond corners on the axes, it drives non-informative feature weights exactly to <strong>zero ($0.0$)</strong>, performing built-in <strong>automatic feature selection</strong> (<em>unlike Ridge / L2 which shrinks weights toward zero but rarely exactly to zero</em>).`
-    },
-    {
-        id: 'q79',
-        type: 'fill-blank',
-        category: 'fill-blank',
-        points: 1,
-        title: 'Question 79 (1 Point): Decision Tree Splitting Criterion',
-        text: 'The default impurity metric used by Scikit-Learn\'s DecisionTreeClassifier (CART algorithm) to measure how mixed or impure the classes are within a node is called _______ impurity.',
-        correctAnswer: 'gini',
-        acceptableAnswers: ['gini', 'gini impurity', 'gini index'],
-        explanation: `By default, Scikit-Learn uses <strong>Gini Impurity</strong> (<code>criterion='gini'</code>) to evaluate candidate splits. For a node with class probabilities $p_i$: $$I_G = 1 - \\sum_{i=1}^{C} p_i^2$$ A pure node (<em>containing 100% of one class</em>) achieves $I_G = 0.0$, while a maximally mixed binary split (<em>50/50</em>) reaches $I_G = 0.50$. Gini is preferred computationally over Entropy because it does not require calculating expensive logarithms ($\\log_2$).`
-    },
-    {
-        id: 'q80',
-        type: 'fill-blank',
-        category: 'fill-blank',
-        points: 1,
-        title: 'Question 80 (1 Point): Classification Performance Metrics',
-        text: 'In binary classification evaluation, the ratio of True Positives (TP) to the total number of actual positive instances (TP + FN) is formally known as _______ (also called Sensitivity or True Positive Rate).',
-        correctAnswer: 'recall',
-        acceptableAnswers: ['recall', 'sensitivity', 'true positive rate', 'tpr'],
-        explanation: `<strong>Recall (<em>Sensitivity</em>)</strong> measures a classifier's ability to capture all true positive instances in a dataset without missing them (<em>minimizing False Negatives</em>): $$\\text{Recall} = \\frac{\\text{TP}}{\\text{TP} + \\text{FN}}$$ <strong>💡 Exam Contrast:</strong> <strong>Precision</strong> measures exactness ($\\frac{\\text{TP}}{\\text{TP} + \\text{FP}}$), answering: *Out of all positive predictions made, what fraction were genuinely correct?*`
-    },
-    {
-        id: 'q81',
-        type: 'fill-blank',
-        category: 'fill-blank',
-        points: 1,
-        title: 'Question 81 (1 Point): Reinforcement Learning Optimization Goal',
-        text: 'In Reinforcement Learning (RL), an autonomous agent takes actions in an environment with the goal of maximizing the expected cumulative scalar _______ over time.',
-        correctAnswer: 'reward',
-        acceptableAnswers: ['reward', 'rewards', 'cumulative reward', 'return'],
-        explanation: `The central objective of <strong>Reinforcement Learning (<em>Markov Decision Processes</em>)</strong> is to discover an optimal policy $\\pi^*(a|s)$ that maximizes the <strong>expected discounted cumulative reward</strong> (<em>return $G_t$</em>): $$G_t = \\sum_{k=0}^{\\infty} \\gamma^k r_{t+k+1}$$ where $\\gamma \\in [0, 1)$ is the discount factor ensuring future rewards converge.`
-    },
-    {
-        id: 'q82',
         type: 'true-false',
         category: 'true-false',
-        points: 1,
-        title: 'Question 82 (1 Point): Softmax Regression Multiclass Capability',
-        text: 'Softmax Regression (Multinomial Logistic Regression) is strictly limited to classifying instances into two classes (binary classification only).',
+        points: 2,
+        title: 'Question 8 (2 Points): Mini-Batch Gradient Descent vs Stochastic Gradient Descent',
+        text: 'Mini-batch gradient descent uses one instance to compute the gradients at every step.',
         options: [
             { letter: 'A', text: 'True' },
             { letter: 'B', text: 'False' }
         ],
         correctOption: 'B',
-        explanation: `Softmax Regression (<em>Multinomial Logistic Regression</em>) is specifically designed to generalize standard binary logistic regression to <strong>multiclass classification problems ($K \\ge 3$ classes)</strong>! For $K$ classes, the Softmax activation normalizes $K$ linear logit scores into a valid $K$-element probability vector where all probabilities sum to $1.00$.`
+        explanation: `<strong>False.</strong> Using exactly <strong>one</strong> instance per optimization step is the definition of <strong>Stochastic Gradient Descent (SGD)</strong> ($b = 1$).<br><br><strong>Mini-batch Gradient Descent</strong> computes gradients using a small subset (a mini-batch) of $b$ instances per step (typically $b \\in [16, 512]$), combining the vectorization computational efficiency of full Batch Gradient Descent with the fast convergence and escape dynamics of SGD.`
+    },
+    {
+        id: 'q75',
+        type: 'true-false',
+        category: 'true-false',
+        points: 2,
+        title: 'Question 9 (2 Points): Clustering Label Dependence',
+        text: 'Clustering algorithms require labelled training data.',
+        options: [
+            { letter: 'A', text: 'True' },
+            { letter: 'B', text: 'False' }
+        ],
+        correctOption: 'B',
+        explanation: `<strong>False.</strong> Clustering algorithms are <strong>unsupervised</strong> learning techniques and require <strong>zero labeled training data</strong>.<br><br>They group instances purely by calculating feature proximity and spatial separation (e.g., Euclidean or Manhattan distance) directly on the feature matrix $X$.`
+    },
+    {
+        id: 'q76',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 10 (2 Points): Core Mathematical Output of Softmax Regression',
+        text: 'Which statement about softmax regression is correct?',
+        options: [
+            { letter: 'A', text: 'It outputs probabilities across multiple classes' },
+            { letter: 'B', text: 'It is only used for regression problems' },
+            { letter: 'C', text: 'It cannot be evaluated using accuracy' },
+            { letter: 'D', text: 'It produces a single continuous output' }
+        ],
+        correctOption: 'A',
+        explanation: `<strong>Softmax Regression</strong> (Multinomial Logistic Regression) generalizes binary logistic regression to multi-class classification ($K > 2$).<br><br>Using the Softmax activation function $\\hat{p}_k = \\frac{\\exp(s_k(x))}{\\sum_{j=1}^K \\exp(s_j(x))}$, it computes a normalized probability vector across all $K$ mutually exclusive classes such that all probabilities satisfy $0 \\le \\hat{p}_k \\le 1$ and sum exactly to $1.00$.`
+    },
+    {
+        id: 'q77',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 11 (2 Points): Identifying Supervised Learning Algorithms',
+        text: 'Which of the following is an example of supervised learning?',
+        options: [
+            { letter: 'A', text: 'Reinforcement learning' },
+            { letter: 'B', text: 'K-means clustering' },
+            { letter: 'C', text: 'Anomaly detection using unlabeled dataset' },
+            { letter: 'D', text: 'Linear regression' }
+        ],
+        correctOption: 'D',
+        explanation: `<strong>Linear Regression</strong> ($y = w \\cdot x + b$) is a <strong>supervised learning</strong> algorithm because it requires paired training samples containing input features ($X$) and ground-truth continuous target labels ($y$) to optimize the slope ($w$) and intercept ($b$).<br><br>K-means clustering and unlabeled anomaly detection are unsupervised, and reinforcement learning operates on environmental reward signals rather than labeled input-output pairs.`
+    },
+    {
+        id: 'q78',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 12 (2 Points): Interpretation of Linear Regression Intercept',
+        text: 'In a linear regression model, $y = w \\cdot x + b$, what does the <code>b</code> represent?',
+        options: [
+            { letter: 'A', text: 'The point where the line crosses the y-axis (the intercept)' },
+            { letter: 'B', text: 'The number of data points' },
+            { letter: 'C', text: 'The slope of the line' },
+            { letter: 'D', text: 'The steepness of the curve' }
+        ],
+        correctOption: 'A',
+        explanation: `In the linear regression equation $y = w \\cdot x + b$:<br>- <strong>$w$ (Weight / Coefficient):</strong> Represents the <strong>slope</strong> of the line (the change in target $y$ per unit change in input $x$).<br>- <strong>$b$ (Bias / Intercept):</strong> Represents <strong>the point where the line crosses the y-axis (the intercept)</strong>, which corresponds to the baseline predicted value of $y$ when all input features $x = 0$.`
+    },
+    {
+        id: 'q79',
+        type: 'true-false',
+        category: 'true-false',
+        points: 2,
+        title: 'Question 13 (2 Points): Linear Regression Functional Form Assumption',
+        text: 'Linear regression assumes a linear relationship between input variables and the target.',
+        options: [
+            { letter: 'A', text: 'True' },
+            { letter: 'B', text: 'False' }
+        ],
+        correctOption: 'A',
+        explanation: `<strong>True.</strong> Linear regression models the expected target $\\hat{y}$ as a linear weighted sum of independent variables: $\\hat{y} = w_0 + w_1 x_1 + w_2 x_2 + \\dots + w_n x_n$.<br><br>Thus, its primary parametric hypothesis and theoretical assumption is that the relationship between the independent input variables ($X$) and the dependent target variable ($y$) is linear.`
+    },
+    {
+        id: 'q80',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 14 (2 Points): Canonical Applications of Clustering',
+        text: 'Which task is best suited for clustering?',
+        options: [
+            { letter: 'A', text: 'Spam detection' },
+            { letter: 'B', text: 'Image classification' },
+            { letter: 'C', text: 'Credit risk prediction' },
+            { letter: 'D', text: 'Customer segmentation' }
+        ],
+        correctOption: 'D',
+        explanation: `<strong>Customer segmentation</strong> involves discovering natural demographic or purchasing cohorts among consumers without prior predefined class labels. This makes it the quintessential real-world application for <strong>unsupervised clustering algorithms</strong> (such as K-Means or Hierarchical Clustering).<br><br>Spam detection, image classification, and credit risk prediction all rely on known ground-truth labels ($y$), making them supervised classification problems.`
+    },
+    {
+        id: 'q81',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 15 (2 Points): Decision Tree Leaf Node Class Probability Vector',
+        text: 'In a Decision Tree, if a leaf node has <code>sample = 100</code>, <code>value = [5, 85, 10]</code>, what should be the output probability of this node?',
+        options: [
+            { letter: 'A', text: '0.85' },
+            { letter: 'B', text: '0, 1, 0' },
+            { letter: 'C', text: '0.05, 0.85, 0.1' },
+            { letter: 'D', text: '1' }
+        ],
+        correctOption: 'C',
+        explanation: `When a test instance lands in a terminal leaf node of a <code>DecisionTreeClassifier</code>, the method <code>predict_proba(X)</code> calculates the exact predicted probability vector by dividing each class count in <code>value</code> by the total number of <code>samples</code> in that node:<br>- $P(\\text{Class 0}) = \\frac{5}{100} = 0.05$<br>- $P(\\text{Class 1}) = \\frac{85}{100} = 0.85$<br>- $P(\\text{Class 2}) = \\frac{10}{100} = 0.10$<br><br>Therefore, the complete predicted probability distribution across the 3 classes is exactly <strong><code>[0.05, 0.85, 0.1]</code></strong> (<code>Option C</code>).`
+    },
+    {
+        id: 'q82',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 16 (2 Points): Canonical Applications of Supervised Classification',
+        text: 'Which of the following tasks is best suited for classification?',
+        options: [
+            { letter: 'A', text: 'Detecting email spam' },
+            { letter: 'B', text: 'Predicting house prices' },
+            { letter: 'C', text: 'Predicting temperature' },
+            { letter: 'D', text: 'Estimating fuel consumption' }
+        ],
+        correctOption: 'A',
+        explanation: `<strong>Detecting email spam</strong> requires predicting a discrete categorical class outcome (<code>1: Spam</code> vs <code>0: Non-Spam</code>), which is the definition of a <strong>classification</strong> task.<br><br>In contrast, predicting house prices, estimating future temperatures, and calculating fuel consumption all require predicting continuous numerical values, making them <strong>regression</strong> tasks.`
     },
     {
         id: 'q83',
@@ -1632,7 +1661,1198 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
     }
 ];
 
+// --- PREDICTED TCA PRACTICE QUESTIONS (32 High-Yield Qs) ---
+window.QUESTION_BANK = QUESTION_BANK;
+const PREDICTED_TCA_QUESTIONS = [
+    // --- 10 NEW USER-REQUESTED CORE MOCK EXAM QUESTIONS (q67 - q76) ---
+    {
+        id: 'tca_pred_1',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 1,
+        title: 'Predicted TCA Q1 (1 Point): Clustering Paradigm',
+        text: 'Clustering is a type of _______ learning.',
+        correctAnswer: 'unsupervised',
+        acceptableAnswers: ['unsupervised', 'unsupervised learning', 'unsupervised-learning'],
+        explanation: `Clustering algorithms (such as <strong>K-Means</strong>, <strong>Hierarchical Clustering</strong>, and <strong>DBSCAN</strong>) discover inherent natural groupings (<em>clusters</em>) within data without relying on predefined ground-truth target labels ($y$). Therefore, clustering is a foundational pillar of <strong>unsupervised learning</strong>.<br><br><strong>💡 Official CSY3081 Theory:</strong> Unlike supervised algorithms (<em>regression and classification</em>) which optimize error against known target vectors, unsupervised clustering optimizes internal structural metrics such as minimizing <strong>within-cluster sum of squares (WCSS)</strong> or maximizing <strong>Silhouette Scores</strong>.`
+    },
+    {
+        id: 'tca_pred_2',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'Predicted TCA Q2 (1 Point): Clustering Label Requirement',
+        text: 'Clustering algorithms require labelled training data.',
+        options: [
+            { letter: 'A', text: 'True' },
+            { letter: 'B', text: 'False' }
+        ],
+        correctOption: 'B',
+        explanation: `Clustering algorithms are strictly <strong>unsupervised</strong>, meaning they operate exclusively on input feature matrices ($X$) and <strong>do not require or utilize labeled training data ($y$)</strong>. They partition data by measuring geometric or probabilistic similarity across feature dimensions.<br><br><strong>💡 Exam & Interview Tip:</strong> If an algorithm requires labeled training data ($y$) to assign new instances to discrete classes, it is called <strong>Supervised Classification</strong> (<em>e.g., KNN Classifier, Decision Tree Classifier, Logistic Regression</em>), NOT clustering.`
+    },
+    {
+        id: 'tca_pred_3',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'Predicted TCA Q3 (1 Point): Linear Regression Assumption',
+        text: 'Linear regression assumes a linear relationship between input variables and the target.',
+        options: [
+            { letter: 'A', text: 'True' },
+            { letter: 'B', text: 'False' }
+        ],
+        correctOption: 'A',
+        explanation: `Linear regression explicitly models the predicted target $\\hat{y}$ as a linear combination of input features: $\\hat{y} = w_0 + w_1 x_1 + w_2 x_2 + \\dots + w_n x_n$. Thus, its primary theoretical assumption is a <strong>linear relationship</strong> between independent variables ($X$) and the continuous dependent variable ($Y$).<br><br><strong>💡 Exam & Interview Tip:</strong> If the true underlying data generating process is highly non-linear (<em>e.g., quadratic or exponential</em>), a standard linear regression model will suffer from <strong>High Bias (Underfitting)</strong>. To fix this, you must apply <code>PolynomialFeatures</code> or non-linear models like Decision Trees / Neural Networks.`
+    },
+    {
+        id: 'tca_pred_4',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'Predicted TCA Q4 (1 Point): Decision Tree Nonlinearity Requirement',
+        text: 'Decision Trees require a nonlinear relationship between input variables and the target.',
+        options: [
+            { letter: 'A', text: 'True' },
+            { letter: 'B', text: 'False' }
+        ],
+        correctOption: 'B',
+        explanation: `Decision Trees are highly versatile non-parametric models that can easily handle <strong>both linear and non-linear</strong> relationships! While they excel at partitioning complex non-linear feature spaces via recursive orthogonal (<em>axis-aligned</em>) threshold splits, they do *not* require a non-linear relationship to function.<br><br><strong>💡 Official CSY3081 Theory:</strong> If given a purely linear relationship, a Decision Tree will approximate the linear hyperplane using a staircase-like sequence of axis-aligned step splits.`
+    },
+    {
+        id: 'tca_pred_5',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Predicted TCA Q5 (2 Points): Selecting Tasks for Clustering',
+        text: 'Which task is best suited for clustering?',
+        options: [
+            { letter: 'A', text: 'Spam detection (Predicting Spam vs Non-Spam emails)' },
+            { letter: 'B', text: 'Image classification (Categorizing photos into predefined object classes)' },
+            { letter: 'C', text: 'Customer segmentation (Grouping customers by purchasing habits without prior labels)' },
+            { letter: 'D', text: 'Financial forecasting (Predicting future continuous stock or revenue values)' }
+        ],
+        correctOption: 'C',
+        explanation: `<strong>Customer segmentation</strong> aims to group individuals into distinct cohorts (<em>e.g., budget shoppers, high-value loyalists, occasional buyers</em>) based on similarity across purchasing metrics without pre-existing category labels—making it the classic real-world application of <strong>Unsupervised Clustering</strong> (<em>e.g., K-Means</em>).<br><br><strong>💡 Task Breakdown:</strong><br>- <strong>Spam detection & Image classification:</strong> Supervised Classification (<em>discrete targets</em>).<br>- <strong>Financial forecasting:</strong> Supervised Regression / Time-Series (<em>continuous target</em>).`
+    },
+    {
+        id: 'tca_pred_6',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Predicted TCA Q6 (2 Points): Decision Tree Leaf Node Probability Calculation',
+        text: 'In a Decision Tree, if a leaf node has total <code>samples = 100</code> and class distribution <code>values = [5, 85, 10]</code> across three classes, what should be the output probability vector <code>predict_proba()</code> of this leaf node?',
+        options: [
+            { letter: 'A', text: '0.85 (Only the probability of the majority class)' },
+            { letter: 'B', text: '1 (Absolute prediction for the majority class)' },
+            { letter: 'C', text: '[0.05, 0.85, 0.1] (Exact normalized class probabilities across all 3 classes)' },
+            { letter: 'D', text: '[0, 1, 0] (One-hot argmax vector)' }
+        ],
+        correctOption: 'C',
+        explanation: `In Scikit-Learn (and standard decision tree theory), when <code>predict_proba(X)</code> is evaluated for a test instance that lands in a specific leaf node, the model outputs the <strong>normalized relative frequency distribution</strong> of the training samples residing in that leaf: $$P(\\text{class } k) = \\frac{\\text{value}_k}{\\text{total samples in leaf}}$$ For this leaf node: <br>- Class 0 Probability: $\\frac{5}{100} = \\mathbf{0.05}$ <br>- Class 1 Probability: $\\frac{85}{100} = \\mathbf{0.85}$ <br>- Class 2 Probability: $\\frac{10}{100} = \\mathbf{0.10}$ <br>Therefore, the complete probability vector is <strong><code>[0.05, 0.85, 0.1]</code></strong>.<br><br><strong>💡 Note:</strong> Calling <code>.predict(X)</code> would apply <code>argmax</code> and output discrete label <code>1</code>, but <code>.predict_proba(X)</code> strictly outputs the full probability vector across all classes.`
+    },
+    {
+        id: 'tca_pred_7',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Predicted TCA Q7 (2 Points): Softmax Regression Characteristics',
+        text: 'Which statement about <strong>Softmax Regression</strong> (Multinomial Logistic Regression) is correct?',
+        options: [
+            { letter: 'A', text: 'It produces a single continuous output value ($Y \\in \\mathbb{R}$)' },
+            { letter: 'B', text: 'It is only used for continuous regression problems despite its name' },
+            { letter: 'C', text: 'It cannot be evaluated using classification accuracy metrics' },
+            { letter: 'D', text: 'It outputs probabilities across multiple mutually exclusive classes summing to 1.0' }
+        ],
+        correctOption: 'D',
+        explanation: `Despite the historical name <strong>Softmax Regression</strong> (or Multinomial Logistic Regression), it is strictly a <strong>multiclass classification algorithm</strong>. The Softmax activation function converts raw linear logit scores $z_1, z_2, \\dots, z_K$ into a valid probability distribution across $K$ classes: $$\\hat{p}_k = \\sigma(z)_k = \\frac{e^{z_k}}{\\sum_{j=1}^{K} e^{z_j}}$$ This guarantees that $0 \\le \\hat{p}_k \\le 1$ for every class and $\\sum_{k=1}^{K} \\hat{p}_k = 1.0$.`
+    },
+    {
+        id: 'tca_pred_8',
+        type: 'mcq',
+        category: 'mcq',
+        points: 3,
+        title: 'Predicted TCA Q8 (3 Points): Softmax Regression Prediction Code Completion',
+        text: 'If you want to predict the class labels of the test dataset (specifically inspecting the first ten samples), which of the following options should correctly replace the question mark `?` in the code below?\n\n```python\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import train_test_split\n\nX = iris_data[[\'petal length (cm)\', \'petal width (cm)\']].values\ny = iris_data[\'target\'].values\nX_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)\n\nsoftmax_reg = LogisticRegression(C=30)\nsoftmax_reg.fit(X_train, y_train)\n\n# What should replace the question mark to predict labels on the test set?\ny_pred = softmax_reg.predict(?)\n```',
+        options: [
+            { letter: 'A', text: 'y_test (Ground truth target vector)' },
+            { letter: 'B', text: 'X_train (Training feature matrix)' },
+            { letter: 'C', text: 'X_test (Test feature matrix, or X_test[:10] for first 10 rows)' },
+            { letter: 'D', text: 'y_train (Training target vector)' }
+        ],
+        correctOption: 'C',
+        explanation: `In Scikit-Learn, the <code>.predict(X)</code> method of any trained estimator strictly expects a <strong>feature matrix ($X$)</strong> (shape: <code>[n_samples, n_features]</code>), <strong>never target vectors ($y$)</strong>! <br><br>To generate predictions for the evaluation fold, you must pass the test feature matrix <strong><code>X_test</code></strong> (or <code>X_test[:10]</code> specifically to slice the first ten test instances). Passing <code>y_test</code> or <code>y_train</code> will raise a severe <code>ValueError</code> due to feature dimension mismatch, and passing <code>X_train</code> would evaluate training error rather than generalization performance.`
+    },
+    {
+        id: 'tca_pred_9',
+        type: 'mcq',
+        category: 'mcq',
+        points: 3,
+        title: 'Predicted TCA Q9 (3 Points): Interpreting Softmax `predict_proba` Output Array',
+        text: 'You use softmax regression to classify Iris flowers into all 3 classes (<code>0: Setosa, 1: Versicolor, 2: Virginica</code>) using petal length and petal width. With the following code, what is a <strong>mathematically valid possible output</strong> when running <code>predict_proba</code> on a single sample <code>[[5, 2]]</code>?\n\n```python\nX_train, X_test, y_train, y_test = train_test_split(X, y)\nsoftmax_reg = LogisticRegression(C=30)\nsoftmax_reg.fit(X_train, y_train)\n\n# Evaluating class membership probabilities for a 2D sample [petal length=5, petal width=2]\nprint(softmax_reg.predict_proba([[5, 2]]))\n```',
+        options: [
+            { letter: 'A', text: '[[ 0.20, 0.03, 0.97 ]] (Sum = 1.20 - Invalid probability distribution)' },
+            { letter: 'B', text: '[[0.97] [0] [2]] (Malformed 3x1 array with numbers > 1.0)' },
+            { letter: 'C', text: '[2] (Discrete class label - returned by .predict(), not .predict_proba())' },
+            { letter: 'D', text: '[[ 0, 0.03, 0.97 ]] (Valid 2D probability array summing exactly to 1.00)' }
+        ],
+        correctOption: 'D',
+        explanation: `Let's analyze Scikit-Learn's <strong>Softmax <code>.predict_proba(X)</code></strong> return structure and mathematical properties: <br>1. <strong>Dimensionality:</strong> Because the input <code>[[5, 2]]</code> contains 1 sample (shape $1 \\times 2$), and there are 3 classes ($K=3$), <code>predict_proba()</code> returns a 2D array of shape <strong><code>(1, 3)</code></strong>: <code>[[P(Y=0), P(Y=1), P(Y=2)]]</code>. <br>2. <strong>Normalization Axiom:</strong> By definition of the Softmax equation, all probabilities must satisfy $0 \\le P_k \\le 1$ and <strong>must sum exactly to $1.00$</strong> across the row. <br><br>Let's check each option: <br>- Option A: $0.20 + 0.03 + 0.97 = 1.20 \\neq 1.0$ (<em>Mathematically impossible for softmax</em>). <br>- Option D: $0 + 0.03 + 0.97 = \\mathbf{1.00}$ (<strong>Valid Softmax Probability Vector where Class 2 / Virginica is predicted with 97% confidence</strong>).`
+    },
+    {
+        id: 'tca_pred_10',
+        type: 'matching',
+        category: 'matching',
+        points: 3,
+        title: 'Predicted TCA Q10 (3 Points): Machine Learning Paradigms vs Real-World Examples',
+        text: 'Match each foundational <strong>Machine Learning Paradigm</strong> directly to its correct real-world application example:',
+        matchingPairs: [
+            { left: 'Unsupervised learning', right: 'Grouping customers by purchase habits without predefined category labels' },
+            { left: 'Classification (Supervised)', right: 'Predicting discrete spam or non-spam email categories from text features' },
+            { left: 'Semi-supervised learning', right: 'Training data includes a small portion of labeled data and lots of unlabeled data (e.g. medical scans)' },
+            { left: 'Regression (Supervised)', right: 'Predicting a continuous numerical value (e.g., house price or stock revenue) given input features' },
+            { left: 'Reinforcement learning', right: 'An autonomous robot or agent learns to play games from trial-and-error interactions with the environment' }
+        ],
+        rightOptions: [
+            'Grouping customers by purchase habits without predefined category labels',
+            'Predicting discrete spam or non-spam email categories from text features',
+            'Training data includes a small portion of labeled data and lots of unlabeled data (e.g. medical scans)',
+            'Predicting a continuous numerical value (e.g., house price or stock revenue) given input features',
+            'An autonomous robot or agent learns to play games from trial-and-error interactions with the environment'
+        ],
+        correctMatches: [
+            'Grouping customers by purchase habits without predefined category labels',
+            'Predicting discrete spam or non-spam email categories from text features',
+            'Training data includes a small portion of labeled data and lots of unlabeled data (e.g. medical scans)',
+            'Predicting a continuous numerical value (e.g., house price or stock revenue) given input features',
+            'An autonomous robot or agent learns to play games from trial-and-error interactions with the environment'
+        ],
+        explanation: `<strong>💡 CSY3081 Core Taxonomy Summary:</strong><br>- <strong>Supervised Classification:</strong> Discrete target labels $y \\in \\{0, 1, \\dots\\}$ (<em>e.g., Spam vs Non-Spam</em>).<br>- <strong>Supervised Regression:</strong> Continuous target values $y \\in \\mathbb{R}$ (<em>e.g., Price forecasting</em>).<br>- <strong>Unsupervised Clustering:</strong> No targets; grouping points purely by feature similarity (<em>e.g., Customer Segmentation</em>).<br>- <strong>Semi-Supervised Learning:</strong> Leverages a tiny labeled dataset along with a massive unlabeled dataset (<em>reduces expensive manual labeling costs in bioinformatics and computer vision</em>).<br>- <strong>Reinforcement Learning (RL):</strong> An agent executes actions $a_t$ in state $s_t$ inside an environment to maximize cumulative scalar reward $\\sum \\gamma^t r_t$ (<em>e.g., Robotics and Game AI</em>).`
+    },
+    // --- 22 NEW PREDICTED HIGH-YIELD MOCK POSSIBLE EXAM QUESTIONS (q77 - q98) TO REACH EXACTLY 32 QS ---
+    {
+        id: 'tca_pred_11',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 1,
+        title: 'Predicted TCA Q11 (1 Point): K-Means Centroid Convergence',
+        text: 'In K-Means clustering, the algorithm iteratively updates the geometric centers of each cluster, called _______, until their positions stabilize and stop moving.',
+        correctAnswer: 'centroids',
+        acceptableAnswers: ['centroids', 'centroid', 'cluster centroids', 'cluster centers'],
+        explanation: `In <strong>K-Means clustering</strong>, each cluster is represented by its mean vector (center of mass across all dimensions), formally called the <strong>centroid</strong> $\\mu_k$. During iteration, each data point is assigned to its nearest centroid, after which new centroids are computed by taking the average of all points in that cluster: $$\\mu_k^{(t+1)} = \\frac{1}{|S_k|} \\sum_{x \\in S_k} x$$ This Expectation-Maximization loop repeats until the centroids converge (<em>stop shifting</em>).`
+    },
+    {
+        id: 'tca_pred_12',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 1,
+        title: 'Predicted TCA Q12 (1 Point): Regularized Linear Regression ($L_1$ Penalty)',
+        text: 'The linear regression regularization technique that adds an $L_1$ norm penalty (sum of absolute weights) to the loss function to enforce sparsity and feature selection is called _______ regression.',
+        correctAnswer: 'lasso',
+        acceptableAnswers: ['lasso', 'lasso regression', 'l1', 'l1 regularization'],
+        explanation: `<strong>LASSO (<em>Least Absolute Shrinkage and Selection Operator</em>)</strong> adds an $L_1$ penalty term to the residual sum of squares loss: $$J(w) = \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2 + \\alpha \\sum_{j=1}^{p} |w_j|$$ Because the $L_1$ constraint geometry has sharp diamond corners on the axes, it drives non-informative feature weights exactly to <strong>zero ($0.0$)</strong>, performing built-in <strong>automatic feature selection</strong> (<em>unlike Ridge / L2 which shrinks weights toward zero but rarely exactly to zero</em>).`
+    },
+    {
+        id: 'tca_pred_13',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 1,
+        title: 'Predicted TCA Q13 (1 Point): Decision Tree Splitting Criterion',
+        text: 'The default impurity metric used by Scikit-Learn\'s DecisionTreeClassifier (CART algorithm) to measure how mixed or impure the classes are within a node is called _______ impurity.',
+        correctAnswer: 'gini',
+        acceptableAnswers: ['gini', 'gini impurity', 'gini index'],
+        explanation: `By default, Scikit-Learn uses <strong>Gini Impurity</strong> (<code>criterion='gini'</code>) to evaluate candidate splits. For a node with class probabilities $p_i$: $$I_G = 1 - \\sum_{i=1}^{C} p_i^2$$ A pure node (<em>containing 100% of one class</em>) achieves $I_G = 0.0$, while a maximally mixed binary split (<em>50/50</em>) reaches $I_G = 0.50$. Gini is preferred computationally over Entropy because it does not require calculating expensive logarithms ($\\log_2$).`
+    },
+    {
+        id: 'tca_pred_14',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 1,
+        title: 'Predicted TCA Q14 (1 Point): Classification Performance Metrics',
+        text: 'In binary classification evaluation, the ratio of True Positives (TP) to the total number of actual positive instances (TP + FN) is formally known as _______ (also called Sensitivity or True Positive Rate).',
+        correctAnswer: 'recall',
+        acceptableAnswers: ['recall', 'sensitivity', 'true positive rate', 'tpr'],
+        explanation: `<strong>Recall (<em>Sensitivity</em>)</strong> measures a classifier's ability to capture all true positive instances in a dataset without missing them (<em>minimizing False Negatives</em>): $$\\text{Recall} = \\frac{\\text{TP}}{\\text{TP} + \\text{FN}}$$ <strong>💡 Exam Contrast:</strong> <strong>Precision</strong> measures exactness ($\\frac{\\text{TP}}{\\text{TP} + \\text{FP}}$), answering: *Out of all positive predictions made, what fraction were genuinely correct?*`
+    },
+    {
+        id: 'tca_pred_15',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 1,
+        title: 'Predicted TCA Q15 (1 Point): Reinforcement Learning Optimization Goal',
+        text: 'In Reinforcement Learning (RL), an autonomous agent takes actions in an environment with the goal of maximizing the expected cumulative scalar _______ over time.',
+        correctAnswer: 'reward',
+        acceptableAnswers: ['reward', 'rewards', 'cumulative reward', 'return'],
+        explanation: `The central objective of <strong>Reinforcement Learning (<em>Markov Decision Processes</em>)</strong> is to discover an optimal policy $\\pi^*(a|s)$ that maximizes the <strong>expected discounted cumulative reward</strong> (<em>return $G_t$</em>): $$G_t = \\sum_{k=0}^{\\infty} \\gamma^k r_{t+k+1}$$ where $\\gamma \\in [0, 1)$ is the discount factor ensuring future rewards converge.`
+    },
+    {
+        id: 'tca_pred_16',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'Predicted TCA Q16 (1 Point): Softmax Regression Multiclass Capability',
+        text: 'Softmax Regression (Multinomial Logistic Regression) is strictly limited to classifying instances into two classes (binary classification only).',
+        options: [
+            { letter: 'A', text: 'True' },
+            { letter: 'B', text: 'False' }
+        ],
+        correctOption: 'B',
+        explanation: `Softmax Regression (<em>Multinomial Logistic Regression</em>) is specifically designed to generalize standard binary logistic regression to <strong>multiclass classification problems ($K \\ge 3$ classes)</strong>! For $K$ classes, the Softmax activation normalizes $K$ linear logit scores into a valid $K$-element probability vector where all probabilities sum to $1.00$.`
+    },
+    {
+        id: 'tca_pred_17',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'Predicted TCA Q17 (1 Point): Decision Tree Unconstrained Growth & Overfitting',
+        text: 'Setting max_depth=None in a Scikit-Learn DecisionTreeClassifier without min_samples_split or min_samples_leaf constraints allows the tree to grow until all leaves are pure, often resulting in high variance and severe overfitting on noisy training data.',
+        options: [
+            { letter: 'A', text: 'True' },
+            { letter: 'B', text: 'False' }
+        ],
+        correctOption: 'A',
+        explanation: `When <code>max_depth=None</code> (<em>default in Scikit-Learn</em>), a Decision Tree will continue expanding nodes recursively until every leaf node achieves pure 100% homogeneity ($I_G = 0.0$ or $H = 0.0$). While this yields <strong>0% training error</strong>, the tree memorizes every outlier and noise grain (<em>High Variance</em>), causing poor generalization on test data. <strong>Pruning (<em>setting max_depth or min_samples_split</em>)</strong> is essential.`
+    },
+    {
+        id: 'tca_pred_18',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'Predicted TCA Q18 (1 Point): KNN Feature Magnitude Sensitivity',
+        text: 'In K-Nearest Neighbours (KNN), feature scaling (such as using StandardScaler or MinMaxScaler) is critical because distance metrics like Euclidean distance are heavily dominated by features with large numeric scales (e.g. Salary in $100,000s vs Age in years).',
+        options: [
+            { letter: 'A', text: 'True' },
+            { letter: 'B', text: 'False' }
+        ],
+        correctOption: 'A',
+        explanation: `KNN is an instance-based distance algorithm relying on <strong>Euclidean distance</strong>: $$d(x, z) = \\sqrt{\\sum_{j=1}^{n} (x_j - z_j)^2}$$ If Feature 1 ranges from $10,000$ to $100,000$ (<em>e.g., Income</em>) and Feature 2 ranges from $18$ to $65$ (<em>e.g., Age</em>), any difference in Income will completely overpower Age in the distance calculation. <strong>Scaling (<em>StandardScaler</em>)</strong> equalizes all feature contributions.`
+    },
+    {
+        id: 'tca_pred_19',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'Predicted TCA Q19 (1 Point): K-Means Centroid Initialization Guarantee',
+        text: 'Standard K-Means clustering (Lloyd\'s algorithm) is mathematically guaranteed to always converge to the exact global minimum within-cluster sum of squares (WCSS), regardless of initial centroid locations.',
+        options: [
+            { letter: 'A', text: 'True' },
+            { letter: 'B', text: 'False' }
+        ],
+        correctOption: 'B',
+        explanation: `K-Means (<em>Lloyd's algorithm</em>) optimizes a non-convex objective function and is <strong>only guaranteed to converge to a local minimum (<em>not the global minimum</em>)</strong>! If initial centroids start in poor locations (<em>e.g., two centroids trapped in one cluster</em>), the algorithm gets stuck. <br><br><strong>💡 Scikit-Learn Fix:</strong> This is precisely why Scikit-Learn uses <strong><code>init='k-means++'</code></strong> (<em>smart initialization spread across data points</em>) and defaults <code>n_init=10</code> (<em>running 10 random restarts and picking the lowest WCSS solution</em>).`
+    },
+    {
+        id: 'tca_pred_20',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'Predicted TCA Q20 (1 Point): Gaussian Naive Bayes Independence Assumption',
+        text: 'Gaussian Naive Bayes (GaussianNB) assumes that all input features $X_1, X_2, \\dots, X_n$ are conditionally independent of each other given the target class label $Y$.',
+        options: [
+            { letter: 'A', text: 'True' },
+            { letter: 'B', text: 'False' }
+        ],
+        correctOption: 'A',
+        explanation: `The fundamental assumption (<em>the 'Naive' assumption</em>) of all Naive Bayes classifiers is <strong>conditional feature independence given the class</strong>: $$P(X_1, X_2, \\dots, X_n | Y=c) = \\prod_{j=1}^{n} P(X_j | Y=c)$$ By assuming features do not interact, Naive Bayes dramatically reduces computational parameter estimation complexity from exponential $O(2^n)$ down to linear $O(n)$, making it extremely fast for high-dimensional text classification.`
+    },
+    {
+        id: 'tca_pred_21',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Predicted TCA Q21 (2 Points): Softmax Cross-Entropy Loss Function',
+        text: 'What is the core loss function minimized when training a Softmax Regression (Multinomial Logistic Regression) classifier using maximum likelihood estimation across $n$ samples and $K$ classes?',
+        options: [
+            { letter: 'A', text: 'Mean Squared Error (MSE: average of squared residuals)' },
+            { letter: 'B', text: 'Cross-Entropy Loss (Multinomial Log-Loss: sum of -y_ik log(p_ik))' },
+            { letter: 'C', text: 'Hinge Loss (Max margin boundary optimization as in SVMs)' },
+            { letter: 'D', text: 'Gini Impurity Loss (Quadratic class mixture minimization)' }
+        ],
+        correctOption: 'B',
+        explanation: `Softmax Regression is trained by maximizing log-likelihood, which is mathematically equivalent to minimizing the <strong>Multinomial Cross-Entropy Loss (<em>Log-Loss</em>)</strong>: $$J(\\Theta) = -\\frac{1}{n} \\sum_{i=1}^{n} \\sum_{k=1}^{K} y_{i,k} \\log(\\hat{p}_{i,k})$$ where $y_{i,k}$ is the one-hot indicator (<em>1 if sample i has class k, else 0</em>) and $\\hat{p}_{i,k}$ is the predicted probability from the Softmax equation.`
+    },
+    {
+        id: 'tca_pred_22',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Predicted TCA Q22 (2 Points): Exact Gini Impurity Calculation',
+        text: 'If a candidate split node in a binary classification tree contains exactly 10 positive class samples (+) and 10 negative class samples (-) (total samples = 20), what is the exact Gini impurity ($I_G$) of this node?',
+        options: [
+            { letter: 'A', text: '0.00 (Pure node containing only a single class)' },
+            { letter: 'B', text: '0.25 (Quarter uncertainty threshold)' },
+            { letter: 'C', text: '0.50 (Maximum impurity / 50-50 equal distribution across 2 classes)' },
+            { letter: 'D', text: '1.00 (Absolute entropy bound)' }
+        ],
+        correctOption: 'C',
+        explanation: `Let's calculate the exact Gini impurity using the definition: $$I_G = 1 - \\sum_{i=1}^{C} p_i^2$$ For this node: <br>- $p_+ = \\frac{10}{20} = 0.5$ <br>- $p_- = \\frac{10}{20} = 0.5$ <br><br>Substituting into the formula: $$I_G = 1 - (0.5^2 + 0.5^2) = 1 - (0.25 + 0.25) = 1 - 0.50 = \\mathbf{0.50}$$ A 50/50 split represents the maximum possible Gini impurity for a binary classification problem (<em>highest uncertainty</em>).`
+    },
+    {
+        id: 'tca_pred_23',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Predicted TCA Q23 (2 Points): Scikit-Learn Supervised Workflow Pipeline',
+        text: 'Which sequence of Scikit-Learn method calls represents the exact correct industry-standard workflow for training, predicting, and evaluating a supervised classifier?',
+        options: [
+            { letter: 'A', text: 'model.predict(X_train) ➔ model.fit(X_test, y_test) ➔ model.score(y_pred)' },
+            { letter: 'B', text: 'model.fit(X_train, y_train) ➔ model.predict(X_test) ➔ accuracy_score(y_test, y_pred)' },
+            { letter: 'C', text: 'model.transform(y_train) ➔ model.predict_proba(X_train) ➔ model.fit(X_test)' },
+            { letter: 'D', text: 'model.score(X_train, y_test) ➔ model.fit(X_test) ➔ model.predict(y_train)' }
+        ],
+        correctOption: 'B',
+        explanation: `In the Scikit-Learn API, all supervised estimators adhere strictly to the <strong>Fit ➔ Predict ➔ Evaluate</strong> pattern: <br>1. <strong><code>model.fit(X_train, y_train)</code>:</strong> Fits parameters (<em>weights, split thresholds</em>) using the training fold. <br>2. <strong><code>y_pred = model.predict(X_test)</code>:</strong> Generates class predictions for unseen test feature instances. <br>3. <strong><code>accuracy_score(y_test, y_pred)</code>:</strong> Compares predicted vectors against ground-truth test labels to compute accuracy percentage.`
+    },
+    {
+        id: 'tca_pred_24',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Predicted TCA Q24 (2 Points): K-Means Elbow Method Interpretation',
+        text: 'When using the Elbow Method to determine the optimal number of clusters ($k$) in K-Means, how do you identify the optimal $k$ from the evaluation curve plotted against Within-Cluster Sum of Squares (WCSS / Inertia)?',
+        options: [
+            { letter: 'A', text: 'Choose the exact value of k where WCSS reaches 0.0' },
+            { letter: 'B', text: 'Select the point of maximum curvature (the elbow point) where adding another cluster yields diminishing returns in WCSS reduction' },
+            { letter: 'C', text: 'Choose k = n_samples so every individual data point is its own centroid' },
+            { letter: 'D', text: 'Select the lowest possible k (k=1) because simpler models always generalize better' }
+        ],
+        correctOption: 'B',
+        explanation: `As you increase $k$, the <strong>Within-Cluster Sum of Squares (<em>Inertia / WCSS</em>)</strong> strictly decreases (<em>because more centroids mean data points are closer to their cluster center</em>). If $k = n$, WCSS becomes $0.0$, but that is useless overfitting! <br><br>The <strong>Elbow Method</strong> plots $k$ on the X-axis vs WCSS on the Y-axis and selects the <strong>'Elbow point' (<em>point of inflection / maximum curvature</em>)</strong>—where the rapid drop in WCSS levels off into a gradual plateau, indicating the optimal balance between cluster compactness and model simplicity.`
+    },
+    {
+        id: 'tca_pred_25',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Predicted TCA Q25 (2 Points): Random Forest Bagging vs Single Decision Tree',
+        text: 'Why does a Random Forest Classifier (an ensemble of bagged decision trees) consistently outperform a single deeply grown Decision Tree in test set generalization and noise tolerance?',
+        options: [
+            { letter: 'A', text: 'Random Forest replaces non-linear step splits with linear hyperplanes inside leaf nodes' },
+            { letter: 'B', text: 'By averaging predictions across many uncorrelated trees (trained on bootstrapped data subsets and random feature subsets), Random Forest drastically reduces variance without increasing bias' },
+            { letter: 'C', text: 'Random Forest eliminates all training bias and guarantees zero false positives' },
+            { letter: 'D', text: 'Random Forest requires zero hyperparameter tuning and trains in O(1) constant time' }
+        ],
+        correctOption: 'B',
+        explanation: `A single deep Decision Tree suffers from <strong>High Variance (<em>Overfitting</em>)</strong>—it memorizes noisy training fluctuations. <strong>Random Forest</strong> solves this using <strong>Bootstrap Aggregating (<em>Bagging</em>) + Random Feature Selection</strong>: <br>- Each tree is trained on a random bootstrapped sample of the data. <br>- At every node split, only a random subset of features (<em>usually $\\sqrt{p}$</em>) is considered. <br><br>By averaging (<em>or majority voting</em>) dozens of uncorrelated, noisy trees, individual tree variances cancel out ($Var(\\bar{X}) = \\frac{\\sigma^2}{M}$), leaving a highly accurate, robust ensemble boundary.`
+    },
+    {
+        id: 'tca_pred_26',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Predicted TCA Q26 (2 Points): Diagnosing Overfitting & Variance Remedies',
+        text: 'If a supervised classification model achieves 99.8% training accuracy but drops to 61.2% test accuracy, what learning pathology is occurring, and which remedy is most appropriate?',
+        options: [
+            { letter: 'A', text: 'High Bias (Underfitting); remedy: remove features and reduce model complexity' },
+            { letter: 'B', text: 'High Variance (Overfitting); remedy: apply L1/L2 regularization, increase training data, or prune tree depth (max_depth)' },
+            { letter: 'C', text: 'Model Equilibrium; remedy: deploy immediately without further tuning' },
+            { letter: 'D', text: 'Data Leakage; remedy: train the model directly on the test evaluation set' }
+        ],
+        correctOption: 'B',
+        explanation: `A massive gap between training accuracy (<em>99.8%</em>) and testing accuracy (<em>61.2%</em>) is the classic hallmark of <strong>High Variance (<em>Overfitting</em>)</strong>. The model has memorized the training set's specific noise and anomalies rather than learning generalizable decision boundaries. <br><br><strong>💡 Remedies:</strong><br>1. Apply <strong>Regularization</strong> (<em>$L_1$ Lasso or $L_2$ Ridge penalties</em>). <br>2. <strong>Prune complexity</strong> (<em>e.g., restrict max_depth or increase min_samples_split</em>). <br>3. <strong>Gather more training data</strong> (<em>or apply data augmentation</em>). <br>4. Switch to an <strong>Ensemble model</strong> (<em>Random Forest / Gradient Boosting</em>).`
+    },
+    {
+        id: 'tca_pred_27',
+        type: 'mcq',
+        category: 'mcq',
+        points: 3,
+        title: 'Predicted TCA Q27 (3 Points): Softmax predict_proba Array Shape & Slicing',
+        text: 'Inspect the Scikit-Learn Softmax code below on the Iris dataset (which has 3 target classes: Setosa, Versicolor, Virginica). What is the exact NumPy array shape of y_probs returned by softmax_reg.predict_proba(X_test[:5])?\n\n```python\nfrom sklearn.linear_model import LogisticRegression\nsoftmax_reg = LogisticRegression(C=30)\nsoftmax_reg.fit(X_train, y_train)\n\n# Slicing the first 5 test samples:\ny_probs = softmax_reg.predict_proba(X_test[:5])\nprint(y_probs.shape)\n```',
+        options: [
+            { letter: 'A', text: '(5,) ➔ A 1D vector containing 5 discrete integer class labels' },
+            { letter: 'B', text: '(3, 5) ➔ 3 rows representing classes and 5 columns representing instances' },
+            { letter: 'C', text: '(5, 3) ➔ 2D array with 5 rows (one per test instance) and 3 columns (one probability per class)' },
+            { letter: 'D', text: '(1, 15) ➔ A flattened 1D array of 15 probability numbers' }
+        ],
+        correctOption: 'C',
+        explanation: `In Scikit-Learn, calling <strong><code>.predict_proba(X)</code></strong> on an input matrix $X$ with $n$ samples and a model trained across $K$ classes always returns a 2D probability matrix of exact shape <strong><code>(n_samples, n_classes)</code></strong>! <br><br>Here, because <code>X_test[:5]</code> passes exactly <strong>$5$ test samples</strong>, and the Iris dataset has <strong>$3$ classes</strong> (<em>Setosa, Versicolor, Virginica</em>), <code>predict_proba</code> outputs a 2D array of shape <strong><code>(5, 3)</code></strong>, where each of the 5 rows sums exactly to $1.00$.`
+    },
+    {
+        id: 'tca_pred_28',
+        type: 'mcq',
+        category: 'mcq',
+        points: 3,
+        title: 'Predicted TCA Q28 (3 Points): Code Completion - Decision Tree Feature Importances',
+        text: 'If you want to inspect the relative importance scores of all features after training a DecisionTreeClassifier, which attribute should replace the question mark (?) in the code below?\n\n```python\nfrom sklearn.tree import DecisionTreeClassifier\ntree_clf = DecisionTreeClassifier(max_depth=3, random_state=42)\ntree_clf.fit(X_train, y_train)\n\n# What attribute retrieves the normalized feature importance scores?\nprint(tree_clf.?)\n```',
+        options: [
+            { letter: 'A', text: 'feature_importances_ (Scikit-Learn standard trailing underscore attribute for fitted parameters)' },
+            { letter: 'B', text: 'get_params() (Returns constructor initialization hyperparameters, not learned weights)' },
+            { letter: 'C', text: 'tree_importances() (Non-existent method)' },
+            { letter: 'D', text: 'coef_ (Used by linear models like LogisticRegression or LinearRegression, not trees)' }
+        ],
+        correctOption: 'A',
+        explanation: `In Scikit-Learn, any attribute learned from data during <code>.fit(X, y)</code> ends with a <strong>trailing underscore (<code>_</code>)</strong> by API convention! <br><br>For decision trees and random forests, the learned feature weights (<em>computed as the total normalized reduction in Gini impurity brought by splits on each feature</em>) are stored in the <strong><code>.feature_importances_</code></strong> attribute (<em>an array of shape [n_features] summing to 1.0</em>).`
+    },
+    {
+        id: 'tca_pred_29',
+        type: 'mcq',
+        category: 'mcq',
+        points: 3,
+        title: 'Predicted TCA Q29 (3 Points): Code Completion - K-Means Centroid Coordinates',
+        text: 'In Scikit-Learn\'s KMeans class, which fitted attribute returns the exact numeric coordinates (multi-dimensional vectors) of the $k$ cluster centroids after fit(X) is executed?\n\n```python\nfrom sklearn.cluster import KMeans\nkmeans = KMeans(n_clusters=3, random_state=42, n_init=10)\nkmeans.fit(X)\n\n# Retrieve coordinates of the 3 cluster centroids:\ncentroids = kmeans.?\n```',
+        options: [
+            { letter: 'A', text: 'cluster_centers_ (2D NumPy array of shape [n_clusters, n_features])' },
+            { letter: 'B', text: 'centroids_array_ (Non-existent attribute)' },
+            { letter: 'C', text: 'labels_ (1D integer array assigning each data point to its cluster integer 0 to k-1)' },
+            { letter: 'D', text: 'inertia_ (Scalar float returning total within-cluster sum of squares WCSS)' }
+        ],
+        correctOption: 'A',
+        explanation: `In Scikit-Learn's <code>KMeans</code> clustering class: <br>- <strong><code>.cluster_centers_</code>:</strong> Returns a 2D array of shape <code>(n_clusters, n_features)</code> containing the exact geometric coordinates of each cluster's mean centroid. <br>- <strong><code>.labels_</code>:</strong> Returns the integer cluster assignment (<em>0 to k-1</em>) for every single point in the training matrix $X$. <br>- <strong><code>.inertia_</code>:</strong> Returns the final minimized Within-Cluster Sum of Squares (<em>WCSS</em>) scalar value.`
+    },
+    {
+        id: 'tca_pred_30',
+        type: 'mcq',
+        category: 'mcq',
+        points: 3,
+        title: 'Predicted TCA Q30 (3 Points): Code Analysis - Train-Test Split Random State',
+        text: 'What is the exact mathematical and practical effect of specifying random_state=42 inside train_test_split(X, y, test_size=0.2, random_state=42) during Scikit-Learn data preprocessing?\n\n```python\nfrom sklearn.model_selection import train_test_split\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n```',
+        options: [
+            { letter: 'A', text: 'It forces exactly 42% of the training instances to be allocated to X_train' },
+            { letter: 'B', text: 'It seeds the pseudo-random number generator so that the exact same deterministic partition of training and testing samples is produced across every run and machine (Guarantees experimental reproducibility)' },
+            { letter: 'C', text: 'It restricts the downstream learning solver to a maximum of 42 optimization iterations' },
+            { letter: 'D', text: 'It shuffles the dataset exactly 42 times before cutting the 80/20 partition' }
+        ],
+        correctOption: 'B',
+        explanation: `Computers generate pseudo-random numbers using deterministic algorithms controlled by an initial integer seed (<em>the <code>random_state</code></em>). <br><br>By explicitly specifying <strong><code>random_state=42</code></strong> (<em>or any fixed integer</em>), you guarantee <strong>100% scientific reproducibility</strong>—every time you or an examiner runs your code, <code>train_test_split</code> will shuffle and divide the dataset into the exact same 80% training rows and 20% testing rows. If <code>random_state=None</code>, a random system clock seed is used, creating different train/test splits every execution.`
+    },
+    {
+        id: 'tca_pred_31',
+        type: 'matching',
+        category: 'matching',
+        points: 3,
+        title: 'Predicted TCA Q31 (3 Points): Scikit-Learn Core Estimator Methods vs Functionality',
+        text: 'Match each core <strong>Scikit-Learn Estimator & Preprocessing Method</strong> directly to its computational function:',
+        matchingPairs: [
+            { left: 'model.fit(X, y)', right: 'Calculates internal model parameters (weights, centroids, split thresholds) from training data' },
+            { left: 'model.predict(X)', right: 'Outputs discrete class labels or continuous predicted values for input instances' },
+            { left: 'model.predict_proba(X)', right: 'Outputs normalized 2D probability distributions across all K classes summing to 1.0' },
+            { left: 'scaler.transform(X)', right: 'Applies learned scaling transformations (e.g. mean subtraction and variance division) to feature matrices' },
+            { left: 'model.score(X, y)', right: 'Computes default evaluation metric (Accuracy for classifiers, R^2 coefficient of determination for regressors)' }
+        ],
+        rightOptions: [
+            'Calculates internal model parameters (weights, centroids, split thresholds) from training data',
+            'Outputs discrete class labels or continuous predicted values for input instances',
+            'Outputs normalized 2D probability distributions across all K classes summing to 1.0',
+            'Applies learned scaling transformations (e.g. mean subtraction and variance division) to feature matrices',
+            'Computes default evaluation metric (Accuracy for classifiers, R^2 coefficient of determination for regressors)'
+        ],
+        correctMatches: [
+            'Calculates internal model parameters (weights, centroids, split thresholds) from training data',
+            'Outputs discrete class labels or continuous predicted values for input instances',
+            'Outputs normalized 2D probability distributions across all K classes summing to 1.0',
+            'Applies learned scaling transformations (e.g. mean subtraction and variance division) to feature matrices',
+            'Computes default evaluation metric (Accuracy for classifiers, R^2 coefficient of determination for regressors)'
+        ],
+        explanation: `<strong>💡 Scikit-Learn API Master Summary:</strong><br>- <strong><code>.fit(X, y)</code>:</strong> Trains the model and stores learned weights in trailing underscore attributes (<code>.coef_</code>, <code>.cluster_centers_</code>).<br>- <strong><code>.predict(X)</code>:</strong> Applies argmax (<em>classifiers</em>) or regression equations to predict exact outputs.<br>- <strong><code>.predict_proba(X)</code>:</strong> Outputs raw probability vectors (<em>classifiers only</em>).<br>- <strong><code>.transform(X)</code> & <code>.fit_transform(X)</code>:</strong> Used by transformers (<code>StandardScaler</code>, <code>PCA</code>, <code>PolynomialFeatures</code>) to modify input matrices.<br>- <strong><code>.score(X, y)</code>:</strong> Quick evaluation shortcut computing accuracy (<em>classification</em>) or $R^2$ (<em>regression</em>).`
+    },
+    {
+        id: 'tca_pred_32',
+        type: 'matching',
+        category: 'matching',
+        points: 3,
+        title: 'Predicted TCA Q32 (3 Points): Machine Learning Algorithms vs Key Hyperparameters',
+        text: 'Match each <strong>Supervised / Unsupervised Scikit-Learn Estimator</strong> to its primary regularization or structural hyperparameter:',
+        matchingPairs: [
+            { left: 'DecisionTreeClassifier', right: 'max_depth & min_samples_split (Controls tree depth and pruning to prevent overfitting)' },
+            { left: 'LogisticRegression', right: 'C (Inverse of regularization strength; smaller C values enforce stronger L1/L2 penalty)' },
+            { left: 'KMeans', right: 'n_clusters (k) & n_init (Specifies cluster count and number of random centroid restarts)' },
+            { left: 'KNeighborsClassifier', right: 'n_neighbors (k) & metric (Number of voting neighbors and distance formula like Euclidean)' },
+            { left: 'RandomForestClassifier', right: 'n_estimators (Total number of individual bagged decision trees combined in the ensemble)' }
+        ],
+        rightOptions: [
+            'max_depth & min_samples_split (Controls tree depth and pruning to prevent overfitting)',
+            'C (Inverse of regularization strength; smaller C values enforce stronger L1/L2 penalty)',
+            'n_clusters (k) & n_init (Specifies cluster count and number of random centroid restarts)',
+            'n_neighbors (k) & metric (Number of voting neighbors and distance formula like Euclidean)',
+            'n_estimators (Total number of individual bagged decision trees combined in the ensemble)'
+        ],
+        correctMatches: [
+            'max_depth & min_samples_split (Controls tree depth and pruning to prevent overfitting)',
+            'C (Inverse of regularization strength; smaller C values enforce stronger L1/L2 penalty)',
+            'n_clusters (k) & n_init (Specifies cluster count and number of random centroid restarts)',
+            'n_neighbors (k) & metric (Number of voting neighbors and distance formula like Euclidean)',
+            'n_estimators (Total number of individual bagged decision trees combined in the ensemble)'
+        ],
+        explanation: `<strong>💡 Hyperparameter Tuning Cheat Sheet:</strong><br>- <strong>Decision Tree (<code>max_depth=None</code>):</strong> Prone to overfitting; tune <code>max_depth</code> to 3-10.<br>- <strong>Logistic Regression (<code>C=1.0</code>):</strong> $C = \\frac{1}{\\lambda}$. If model overfits, reduce $C$ (<em>e.g. C=0.01</em>). If model underfits, increase $C$ (<em>e.g. C=100</em>).<br>- <strong>K-Means (<code>n_clusters=8</code>):</strong> Must be tuned via the Elbow Method or Silhouette analysis.<br>- <strong>KNN (<code>n_neighbors=5</code>):</strong> Small $k=1$ has high variance (<em>overfitting</em>); large $k=50$ has high bias (<em>underfitting</em>).<br>- <strong>Random Forest (<code>n_estimators=100</code>):</strong> Increasing trees (<em>e.g. 200 or 500</em>) improves variance reduction at the cost of training speed (<em>never overfits by adding trees</em>).`
+    }
+
+];
+
+
+// ============================================================================
+// TCA POSSIBLE QUESTIONS (SET 2: 32 DEEP REFERENCE & COURSE PDF PROMPTS)
+// ============================================================================
+window.PREDICTED_TCA_QUESTIONS = PREDICTED_TCA_QUESTIONS;
+const TCA_POSSIBLE_QUESTIONS = [
+    // --- PART 1: COURSE PDF SYNTHESIS (Handson on Decision Tree.pdf) ---
+    {
+        id: 'tca_pos_1',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 1,
+        title: 'TCA Possible Q1 (1 Point): Regression Tree Impurity Reduction',
+        text: 'In Scikit-Learn\'s <code>DecisionTreeRegressor</code>, instead of Gini or Entropy, splits are chosen to minimize Mean Squared Error (MSE) or Mean Absolute Error (MAE) through ____________ reduction.',
+        correctAnswer: 'variance',
+        acceptableAnswers: ['variance', 'variance reduction', 'error variance'],
+        explanation: 'From <strong>Handson on Decision Tree.pdf (Page 5)</strong>: "Splitting Criterion: Instead of Gini/Entropy, regression trees use Mean Squared Error (MSE) or Mean Absolute Error (MAE) to find splits that minimize the variance of the target variable in the child nodes."'
+    },
+    {
+        id: 'tca_pos_2',
+        type: 'multiple-choice',
+        category: 'multiple-choice',
+        points: 1,
+        title: 'TCA Possible Q2 (1 Point): 1D Regression Tree Prediction Curve',
+        text: 'According to <code>Handson on Decision Tree.pdf</code>, what is the key prediction property of a 1D <code>DecisionTreeRegressor</code> when evaluated across continuous feature values?',
+        options: [
+            { letter: 'A', text: 'It fits a smooth polynomial curve connecting leaf centers.' },
+            { letter: 'B', text: 'It forms a step function (piecewise constant) whose leaf predictions are the arithmetic mean of target samples inside that leaf.' },
+            { letter: 'C', text: 'It extrapolates linear trends beyond the training feature boundaries.' },
+            { letter: 'D', text: 'It applies a Sigmoid activation to squash predictions into (0, 1).' }
+        ],
+        correctOption: 'B',
+        explanation: 'From <strong>Handson on Decision Tree.pdf (Page 5)</strong>: "Prediction Mechanism: The prediction for a leaf node is the average (mean) of all target values that fall into that leaf. Visual Insight: The 1D plot reveals a core characteristic of decision tree regression: the predictions form a step function. It cannot extrapolate beyond the range of the training data, nor can it predict smooth continuous trends within a leaf."'
+    },
+    {
+        id: 'tca_pos_3',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'TCA Possible Q3 (1 Point): Unconstrained Decision Tree Growth',
+        text: 'A Decision Tree trained with <code>max_depth=None</code> on a clean dataset with unique features will grow until every training sample has its own pure leaf, achieving 100% training accuracy.',
+        options: [
+            { letter: 'T', text: 'True' },
+            { letter: 'F', text: 'False' }
+        ],
+        correctOption: 'T',
+        explanation: 'From <strong>Handson on Decision Tree.pdf (Page 6)</strong>: "If we let a decision tree grow without limits (<code>max_depth=None</code>), it will create a leaf for every single training sample, achieving 100% training accuracy but performing poorly on unseen data (Overfitting/High Variance)."'
+    },
+    {
+        id: 'tca_pos_4',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 1,
+        title: 'TCA Possible Q4 (1 Point): Validation Curve Underfitting',
+        text: 'In Activity 3 of the Decision Tree PDF (<code>validation_curve</code>), at <code>max_depth=1</code>, the tree suffers from high ____________ (underfitting).',
+        correctAnswer: 'bias',
+        acceptableAnswers: ['bias', 'high bias', 'model bias'],
+        explanation: 'From <strong>Handson on Decision Tree.pdf (Page 6)</strong>: "At <code>max_depth=1</code>, the model is too simple (Underfitting/High Bias). Both train and test scores are low. As depth increases, the model learns the data better until validation accuracy peaks at an optimal depth."'
+    },
+    {
+        id: 'tca_pos_5',
+        type: 'multiple-choice',
+        category: 'multiple-choice',
+        points: 1,
+        title: 'TCA Possible Q5 (1 Point): Bias-Variance Gap in Validation Curves',
+        text: 'When evaluating a <code>validation_curve</code> across <code>max_depth = np.arange(1, 15)</code>, what does the widening gap between the rising training curve (approaching 1.0) and the falling validation curve indicate?',
+        options: [
+            { letter: 'A', text: 'High Bias (Underfitting)' },
+            { letter: 'B', text: 'High Variance (Overfitting)' },
+            { letter: 'C', text: 'Data Leakage from one-hot encoding' },
+            { letter: 'D', text: 'Perfect regularization via pre-pruning' }
+        ],
+        correctOption: 'B',
+        explanation: 'From <strong>Handson on Decision Tree.pdf (Page 6)</strong>: "Beyond the optimal depth, training accuracy continues to rise (approaching 1.0), but validation accuracy drops. The gap between the two curves represents the variance (overfitting)."'
+    },
+    {
+        id: 'tca_pos_6',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 1,
+        title: 'TCA Possible Q6 (1 Point): Pre-Pruning Hyperparameters',
+        text: 'Besides <code>max_depth</code>, two fundamental pre-pruning parameters in <code>DecisionTreeClassifier</code> that regularize tree growth are <code>min_samples_split</code> and <code>min_samples_____________</code>.',
+        correctAnswer: 'leaf',
+        acceptableAnswers: ['leaf', 'min_samples_leaf'],
+        explanation: 'From <strong>Handson on Decision Tree.pdf (Page 7)</strong>: "Besides <code>max_depth</code>, we can use <code>min_samples_split</code> (minimum samples required to split a node) and <code>min_samples_leaf</code> (minimum samples required to be at a leaf node) to regularize the tree."'
+    },
+    {
+        id: 'tca_pos_7',
+        type: 'multiple-choice',
+        category: 'multiple-choice',
+        points: 3,
+        title: 'TCA Possible Q7 (3 Points): Preventing Data Leakage in Pipelines',
+        text: 'In Activity 4 (Titanic Survival Pipeline), why is <code>SimpleImputer(strategy=\'median\')</code> placed inside a Scikit-Learn <code>Pipeline</code> rather than imputing the entire dataframe before calling <code>train_test_split</code> or cross-validation?',
+        codeSnippet: `num_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='median'))
+])`,
+        options: [
+            { letter: 'A', text: 'Because SimpleImputer only works on numpy arrays inside a pipeline.' },
+            { letter: 'B', text: 'To ensure that median/mode statistics are computed solely on the training fold during cross-validation, preventing data leakage from validation folds into the model.' },
+            { letter: 'C', text: 'Because ColumnTransformer rejects raw Pandas DataFrames.' },
+            { letter: 'D', text: 'To speed up multi-core execution via n_jobs=-1.' }
+        ],
+        correctOption: 'B',
+        explanation: 'From <strong>Handson on Decision Tree.pdf (Page 9)</strong>: "Data Leakage Prevention: By putting the imputer and encoder inside the pipeline, we ensure that the median/mode calculations are done only on the training folds during cross-validation, preventing data leakage."'
+    },
+    {
+        id: 'tca_pos_8',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'TCA Possible Q8 (1 Point): Feature Importance Calculation',
+        text: 'Scikit-Learn\'s <code>feature_importances_</code> attribute in decision trees computes importance based on the total weighted reduction in Gini impurity across all splits using that feature.',
+        options: [
+            { letter: 'T', text: 'True' },
+            { letter: 'F', text: 'False' }
+        ],
+        correctOption: 'T',
+        explanation: 'From <strong>Handson on Decision Tree.pdf (Page 9)</strong>: "Decision trees naturally provide a measure of feature importance based on how much each feature decreases the impurity (Gini) across all the splits it is used in."'
+    },
+    {
+        id: 'tca_pos_9',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 1,
+        title: 'TCA Possible Q9 (1 Point): High-Cardinality Bias in Trees',
+        text: 'One well-documented limitation of tree-based <code>feature_importances_</code> (Gini importance) is that it can be artificially biased toward categorical features with high ____________ (e.g., many unique identifiers or categories after one-hot encoding).',
+        correctAnswer: 'cardinality',
+        acceptableAnswers: ['cardinality', 'high cardinality', 'unique values'],
+        explanation: 'From <strong>Handson on Decision Tree.pdf (Page 9)</strong>: "Note that tree-based feature importance can be biased toward high-cardinality categorical features (like embarked after one-hot encoding or unique IDs). When a feature has many categories, the tree finds more arbitrary split boundaries to reduce Gini impurity."'
+    },
+    {
+        id: 'tca_pos_10',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 3,
+        title: 'TCA Possible Q10 (3 Points): OneHotEncoder Handle Unknown',
+        text: 'Fill in the missing parameter value from Activity 4 of the course PDF to instruct <code>OneHotEncoder</code> to silently ignore unseen categorical values during inference rather than throwing a KeyError (`handle_unknown=\'____________\'`).',
+        codeSnippet: `cat_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='most_frequent')),
+    ('onehot', OneHotEncoder(handle_unknown='____________'))
+])`,
+        correctAnswer: 'ignore',
+        acceptableAnswers: ['ignore', "'ignore'", '"ignore"'],
+        explanation: 'Setting <code>handle_unknown=\'ignore\'</code> ensures that if test or production data contains a new categorical category not seen during training, the one-hot encoded vector is simply set to all zeros instead of breaking runtime execution.'
+    },
+
+    // --- PART 2: WEEK 1 & WEEK 2 TEST REFERENCES ---
+    {
+        id: 'tca_pos_11',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 1,
+        title: 'TCA Possible Q11 (1 Point): K-Means Distance Metric',
+        text: 'In standard K-Means clustering, the algorithm iteratively assigns data points to the nearest cluster centroid using ____________ distance ($L_2$ norm).',
+        correctAnswer: 'euclidean',
+        acceptableAnswers: ['euclidean', 'euclidean distance', 'l2', 'l2 distance'],
+        explanation: 'K-Means optimizes the Within-Cluster Sum of Squares (WCSS) by computing the squared Euclidean distance $||x_i - \mu_k||^2$ from every sample $x_i$ to its closest centroid $\mu_k$.'
+    },
+    {
+        id: 'tca_pos_12',
+        type: 'multiple-choice',
+        category: 'multiple-choice',
+        points: 1,
+        title: 'TCA Possible Q12 (1 Point): Scikit-Learn KMeans Inertia Attribute',
+        text: 'In Scikit-Learn\'s <code>KMeans</code> estimator, what exact mathematical metric is stored inside the <code>.inertia_</code> attribute after model fitting?',
+        options: [
+            { letter: 'A', text: 'The Davies-Bouldin index between cluster centroids.' },
+            { letter: 'B', text: 'The Within-Cluster Sum of Squares (WCSS): sum of squared Euclidean distances from each data point to its assigned centroid.' },
+            { letter: 'C', text: 'The Silhouette score averaged over all samples.' },
+            { letter: 'D', text: 'The between-cluster variance divided by the number of iterations (n_iter_).' }
+        ],
+        correctOption: 'B',
+        explanation: 'The attribute <code>kmeans.inertia_</code> stores the exact objective value $\sum_{i=1}^N ||x_i - \mu_{C(i)}||^2$. The Elbow Method plots <code>.inertia_</code> across increasing $K$ values to identify the point of diminishing variance reduction.'
+    },
+    {
+        id: 'tca_pos_13',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'TCA Possible Q13 (1 Point): Centroid Initialization Sensitivity',
+        text: 'In K-Means, if two initial centroids are placed very close together or initialized randomly without spacing (`init=\'random\'`), the algorithm may converge to a suboptimal local minimum rather than the global minimum.',
+        options: [
+            { letter: 'T', text: 'True' },
+            { letter: 'F', text: 'False' }
+        ],
+        correctOption: 'T',
+        explanation: 'K-Means coordinate descent is guaranteed to converge, but only to a local minimum. Because objective non-convexity depends on initial positions, modern standard practice uses <code>init=\'k-means++\'</code> with multiple restarts (<code>n_init=10</code>) to select the lowest final <code>.inertia_</code>.'
+    },
+    {
+        id: 'tca_pos_14',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 1,
+        title: 'TCA Possible Q14 (1 Point): Logistic Sigmoid Activation',
+        text: 'Logistic Regression predicts binary probabilities by passing linear combination output ($z = w \cdot x + b$) through the ____________ activation function ($\sigma(z) = \frac{1}{1 + e^{-z}}$).',
+        correctAnswer: 'sigmoid',
+        acceptableAnswers: ['sigmoid', 'logistic', 'sigmoid function', 'logistic function'],
+        explanation: 'The Sigmoid function smoothly compresses any real-valued logit $z \in (-\infty, +\infty)$ into a bounded probability interval $(0, 1)$, with the threshold at $z=0 \implies \sigma(0) = 0.5$.'
+    },
+    {
+        id: 'tca_pos_15',
+        type: 'multiple-choice',
+        category: 'multiple-choice',
+        points: 1,
+        title: 'TCA Possible Q15 (1 Point): Softmax Probability Sum Guarantee',
+        text: 'Why does Softmax regression (<code>LogisticRegression(multi_class=\'multinomial\')</code>) output a probability distribution across $K$ classes whose elements sum exactly to $1.0$?',
+        options: [
+            { letter: 'A', text: 'Because the Sigmoid function is applied independently to each class score without normalization.' },
+            { letter: 'B', text: 'Because Softmax exponentiates each class logit ($e^{z_k}$) and divides by the sum of exponentials across all classes ($\sum_{j=1}^K e^{z_j}$).' },
+            { letter: 'C', text: 'Because it rounds class labels to integer indices [0, 1, 2].' },
+            { letter: 'D', text: 'Because the C=30 regularization parameter forces probability normalization.' }
+        ],
+        correctOption: 'B',
+        explanation: 'Softmax mathematically enforces probability conservation: $P(y=k | x) = \frac{e^{z_k}}{\sum_{j=1}^K e^{z_j}}$. Since every numerator is positive ($e^{z_k} > 0$) and divided by the exact sum of all numerators, $\sum_{k=1}^K P(k) = 1.0$ is strictly guaranteed.'
+    },
+    {
+        id: 'tca_pos_16',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 1,
+        title: 'TCA Possible Q16 (1 Point): Linear Model Bias Term',
+        text: 'In the linear model equation $\hat{y} = w_1 x_1 + w_2 x_2 + b$, the term $b$ represents the y-____________ (bias intercept parameter).',
+        correctAnswer: 'intercept',
+        acceptableAnswers: ['intercept', 'y-intercept', 'bias', 'y intercept'],
+        explanation: 'The slope weights $w_1, w_2$ determine the gradient of the decision hyperplane, while the intercept $b$ shifts the boundary away from the origin along the y-axis, allowing accurate prediction when all features $X_j = 0$.'
+    },
+    {
+        id: 'tca_pos_17',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'TCA Possible Q17 (1 Point): Train-Test Split Reproducibility',
+        text: 'Setting <code>random_state=42</code> in <code>train_test_split(X, y, test_size=0.2, random_state=42)</code> guarantees that the exact same 80/20 partition of training and testing rows will be produced across different runs.',
+        options: [
+            { letter: 'T', text: 'True' },
+            { letter: 'F', text: 'False' }
+        ],
+        correctOption: 'T',
+        explanation: 'Seeding the pseudorandom number generator (`random_state`) ensures determinism and scientific reproducibility during debugging, evaluation, and grading.'
+    },
+    {
+        id: 'tca_pos_18',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 3,
+        title: 'TCA Possible Q18 (3 Points): Predict Probabilities Method',
+        text: 'Fill in the exact Scikit-Learn method name used to predict multi-class probabilities for the first 5 test samples (`softmax_reg.____________(X_test[:5]).round(2)`).',
+        codeSnippet: `probs = softmax_reg.____________(X_test[:5]).round(2)`,
+        correctAnswer: 'predict_proba',
+        acceptableAnswers: ['predict_proba', '.predict_proba()', 'predict_proba()'],
+        explanation: 'While <code>.predict(X)</code> outputs class label indices ($0, 1, 2$), <code>.predict_proba(X)</code> outputs an $N \times K$ matrix containing exact estimated probability vectors for every sample.'
+    },
+
+    // --- PART 3: CASE STUDIES & CODE DEBUGGING ---
+    {
+        id: 'tca_pos_19',
+        type: 'multiple-choice',
+        category: 'multiple-choice',
+        points: 3,
+        title: 'TCA Possible Q19 (3 Points): Imbalanced Dataset Medical Case',
+        text: 'A data scientist builds a <code>DecisionTreeClassifier</code> to diagnose a rare medical condition (1% positive cases). The model achieves 99% accuracy on the test set, yet fails completely to identify any positive patients (`Precision = 0, Recall = 0`). What is the primary cause and solution?',
+        options: [
+            { letter: 'A', text: 'The model suffered from numerical overflow; switch to solver=\'lbfgs\'.' },
+            { letter: 'B', text: 'The dataset is severely imbalanced, and the tree simply predicted the majority class 0 for all samples. Use class_weight=\'balanced\' or SMOTE resampling.' },
+            { letter: 'C', text: 'The learning rate was too high during split calculation.' },
+            { letter: 'D', text: 'max_depth should be reduced to 1 to force positive splits.' }
+        ],
+        correctOption: 'B',
+        explanation: 'When class 0 is 99% of data, predicting all-zeros yields 99% accuracy while having zero clinical utility (`Recall=0`). Setting <code>class_weight=\'balanced\'</code> reweights impurity calculations inversely proportional to class frequencies.'
+    },
+    {
+        id: 'tca_pos_20',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 1,
+        title: 'TCA Possible Q20 (1 Point): Pipeline Test Transformation Method',
+        text: 'In Scikit-Learn preprocessing pipelines, when applying transformations to the test set (`X_test`) after fitting on `X_train`, you must call <code>.____________(X_test)</code> rather than <code>.fit_transform(X_test)</code> to prevent data leakage.',
+        correctAnswer: 'transform',
+        acceptableAnswers: ['transform', '.transform()', 'transform()'],
+        explanation: 'Calling <code>.fit_transform(X_test)</code> re-computes medians, means, and vocabulary maps using test data, which leaks test distribution characteristics into evaluation. Always use <code>.fit(X_train)</code> and only <code>.transform(X_test)</code>.'
+    },
+    {
+        id: 'tca_pos_21',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'TCA Possible Q21 (1 Point): Scikit-Learn Trailing Underscore Convention',
+        text: 'In Scikit-Learn estimators, trailing underscores in attribute names (`model.classes_`, `model.feature_importances_`, `kmeans.cluster_centers_`) indicate public attributes that are estimated and set during the <code>.fit()</code> call.',
+        options: [
+            { letter: 'T', text: 'True' },
+            { letter: 'F', text: 'False' }
+        ],
+        correctOption: 'T',
+        explanation: 'Scikit-Learn enforces strict design conventions: constructor arguments (`n_clusters`, `max_depth`) have no underscore, whereas learned parameters (`coef_`, `intercept_`, `classes_`) always end with a trailing underscore.'
+    },
+    {
+        id: 'tca_pos_22',
+        type: 'multiple-choice',
+        category: 'multiple-choice',
+        points: 3,
+        title: 'TCA Possible Q22 (3 Points): Code Debugging KMeans Probabilities',
+        text: 'What is the exact runtime bug in the following Scikit-Learn clustering snippet?',
+        codeSnippet: `from sklearn.cluster import KMeans
+kmeans = KMeans(n_clusters=3, random_state=42)
+kmeans.fit(X_train)
+probs = kmeans.predict_proba(X_test)`,
+        options: [
+            { letter: 'A', text: 'random_state must be passed as a string.' },
+            { letter: 'B', text: 'KMeans is an unsupervised clustering algorithm and does NOT have a .predict_proba() method (Raises AttributeError).' },
+            { letter: 'C', text: 'n_clusters cannot be set greater than 2.' },
+            { letter: 'D', text: 'kmeans.fit(X_train) does not store centroids.' }
+        ],
+        correctOption: 'B',
+        explanation: 'Unsupervised clustering models like <code>KMeans</code> assign hard cluster IDs (`.predict(X)`) or distances (`.transform(X)` distance to centroids), but do not compute supervised class probability distributions.'
+    },
+    {
+        id: 'tca_pos_23',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 1,
+        title: 'TCA Possible Q23 (1 Point): Unsupervised Cluster Validation Metric',
+        text: 'When evaluating clustering quality without ground-truth labels, the ____________ Score measures how similar a point is to its own cluster compared to neighboring clusters (`ranging from -1 to +1`).',
+        correctAnswer: 'silhouette',
+        acceptableAnswers: ['silhouette', 'silhouette score', 'silhouette coefficient'],
+        explanation: 'A Silhouette Score near $+1$ indicates well-separated dense clusters; a score around $0$ indicates overlapping clusters; and negative scores indicate samples assigned to the wrong cluster.'
+    },
+    {
+        id: 'tca_pos_24',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 3,
+        title: 'TCA Possible Q24 (3 Points): Accessing Pipeline Named Steps',
+        text: 'Fill in the step dictionary key to extract the trained <code>DecisionTreeClassifier</code> from step <code>\'classifier\'</code> inside a pipeline named <code>titanic_pipeline</code> (`titanic_pipeline.named_steps[\'____________\']`).',
+        codeSnippet: `tree_model = titanic_pipeline.named_steps['____________']`,
+        correctAnswer: 'classifier',
+        acceptableAnswers: ['classifier', "'classifier'", '"classifier"'],
+        explanation: 'Every step inside a Scikit-Learn `Pipeline` can be accessed by its string identifier (`preprocessor` or `classifier`) via the `named_steps` dictionary or object attribute notation.'
+    },
+    {
+        id: 'tca_pos_25',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'TCA Possible Q25 (1 Point): Inverse Regularization Parameter C',
+        text: 'Increasing the inverse regularization parameter C (e.g., <code>C=1000</code>) in <code>LogisticRegression</code> reduces the penalty on large weight coefficients (low regularization), allowing the model to fit complex training boundaries tightly.',
+        options: [
+            { letter: 'T', text: 'True' },
+            { letter: 'F', text: 'False' }
+        ],
+        correctOption: 'T',
+        explanation: 'Because $C = \frac{1}{\lambda}$, high values ($C=1000$) mean small regularization penalty ($\lambda \to 0$), leading to high variance. Low values ($C=0.01$) mean strong regularization penalty, reducing variance but increasing bias.'
+    },
+    {
+        id: 'tca_pos_26',
+        type: 'multiple-choice',
+        category: 'multiple-choice',
+        points: 1,
+        title: 'TCA Possible Q26 (1 Point): Variance Reduction in Ensemble Trees',
+        text: 'If a single tree inside a Random Forest has high individual variance (overfitting), how does bagging (`Bootstrap Aggregating` across hundreds of independent trees) improve generalization?',
+        options: [
+            { letter: 'A', text: 'By multiplying the bias of each tree by N.' },
+            { letter: 'B', text: 'By averaging predictions across uncorrelated trees, which significantly reduces overall variance without increasing bias.' },
+            { letter: 'C', text: 'By pruning leaves that contain fewer than 50 samples.' },
+            { letter: 'D', text: 'By forcing every tree to split on all available features at every node.' }
+        ],
+        correctOption: 'B',
+        explanation: 'Averaging $N$ independent random variables with variance $\sigma^2$ reduces total variance to $\frac{\sigma^2}{N}$. Random Forest decorrelates trees via feature sub-sampling (`max_features=\'sqrt\'`), drastically reducing variance.'
+    },
+
+    // --- PART 4: MOCK EXAM & CORE PREDICTORS ---
+    {
+        id: 'tca_pos_27',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 1,
+        title: 'TCA Possible Q27 (1 Point): Decision Tree Rectilinear Boundaries',
+        text: 'A single orthogonal axis-aligned split ($x_j \le \theta$) in a standard Decision Tree partitions feature space using ____________ boundaries parallel to the coordinate axes.',
+        correctAnswer: 'rectilinear',
+        acceptableAnswers: ['rectilinear', 'orthogonal', 'axis-aligned', 'axis aligned'],
+        explanation: 'Because standard trees test one feature at a time ($X_{j} \le \theta$), all decision boundaries are strictly parallel to the coordinate axes (`staircase/rectilinear cuts`).'
+    },
+    {
+        id: 'tca_pos_28',
+        type: 'multiple-choice',
+        category: 'multiple-choice',
+        points: 1,
+        title: 'TCA Possible Q28 (1 Point): Linear Models vs Trees on Diagonal Data',
+        text: 'Why might a simple linear model (`Logistic Regression`) outperform a non-parametric model (`Decision Tree`) on a small dataset with a clean diagonal decision boundary ($x_1 + x_2 = 5$)?',
+        options: [
+            { letter: 'A', text: 'Because linear models automatically prune categorical variables.' },
+            { letter: 'B', text: 'Because decision trees require many orthogonal (staircase-like) splits to approximate a diagonal line, leading to severe overfitting on small data.' },
+            { letter: 'C', text: 'Because decision trees cannot compute Gini impurity on continuous coordinates.' },
+            { letter: 'D', text: 'Because C=30 makes linear decision boundaries curved.' }
+        ],
+        correctOption: 'B',
+        explanation: 'A diagonal hyperplane $w_1 x_1 + w_2 x_2 + b = 0$ is captured with just 2 weight parameters by Logistic Regression, whereas a decision tree requires dozens of recursive step-splits (`sawtooth pattern`) to approximate a diagonal line.'
+    },
+    {
+        id: 'tca_pos_29',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'TCA Possible Q29 (1 Point): KMeans++ Initialization Algorithm',
+        text: 'In K-Means clustering, the <code>init=\'k-means++\'</code> initialization algorithm spreads out initial $K$ centroids probabilistically to speed up convergence and avoid poor local minima.',
+        options: [
+            { letter: 'T', text: 'True' },
+            { letter: 'F', text: 'False' }
+        ],
+        correctOption: 'T',
+        explanation: 'K-Means++ selects the first centroid randomly, and then selects subsequent centroids with probability proportional to their squared distance $D(x)^2$ from already chosen centroids, guaranteeing well-separated starting points.'
+    },
+    {
+        id: 'tca_pos_30',
+        type: 'fill-blank',
+        category: 'fill-blank',
+        points: 1,
+        title: 'TCA Possible Q30 (1 Point): Leaf Node Class Probability Vector',
+        text: 'In decision tree classification, if a terminal leaf contains 8 samples of Class 0 and 2 samples of Class 1, calling <code>.predict_proba()</code> for any test sample inside this leaf returns probability <code>[0.8, ____________]</code>.',
+        correctAnswer: '0.2',
+        acceptableAnswers: ['0.2', '.2', '0.20'],
+        explanation: 'Class probabilities in terminal leaves are computed exactly as the empirical class fraction: $P(\text{Class 1}) = \frac{2}{8 + 2} = \frac{2}{10} = 0.2$.'
+    },
+    {
+        id: 'tca_pos_31',
+        type: 'multiple-choice',
+        category: 'multiple-choice',
+        points: 3,
+        title: 'TCA Possible Q31 (3 Points): Large-Scale Incremental Clustering',
+        text: 'Which of the following Scikit-Learn estimator configurations represents an **unsupervised** algorithm equipped to handle massive datasets via incremental mini-batch updates?',
+        options: [
+            { letter: 'A', text: 'LogisticRegression(solver=\'saga\', max_iter=1000)' },
+            { letter: 'B', text: 'MiniBatchKMeans(n_clusters=5, batch_size=1024, random_state=42)' },
+            { letter: 'C', text: 'DecisionTreeClassifier(max_depth=5, min_samples_split=10)' },
+            { letter: 'D', text: 'train_test_split(X, y, test_size=0.3)' }
+        ],
+        correctOption: 'B',
+        explanation: '<code>MiniBatchKMeans</code> uses small random batches (`batch_size=1024`) to update centroids iteratively, reducing memory consumption (`O(batch_size)`) and speeding up training by orders of magnitude compared to standard full-dataset K-Means.'
+    },
+    {
+        id: 'tca_pos_32',
+        type: 'matching-pairs',
+        category: 'matching-pairs',
+        points: 5,
+        title: 'TCA Possible Q32 (5 Points): Comprehensive TCA Syllabus Matchings',
+        text: 'Match each core Machine Learning formula, attribute, or methodology from your TCA syllabus to its exact mathematical role and operational behavior:',
+        matchingPairs: [
+            { left: 'Within-Cluster Sum of Squares (.inertia_)', right: 'Measures compactness of K-Means clusters (`sum of squared Euclidean distances to assigned centroids`).' },
+            { left: 'Gini Impurity Split Metric', right: '$\sum p_i(1 - p_i) = 1 - \sum p_i^2$, measures probability of incorrect classification in node splits.' },
+            { left: 'ColumnTransformer Preprocessor', right: 'Applies separate pipelines (`imputing, one-hot encoding`) to feature subsets cleanly without data leakage.' },
+            { left: 'Softmax Probability Normalization', right: 'Multiclass logit exponentiation where $\sum P(y=k|x) = 1.0$, guaranteeing calibrated probabilities.' },
+            { left: 'DecisionTreeRegressor Step Function', right: 'Predicts exact arithmetic mean of target values in each terminal leaf, forming piecewise constant curves.' }
+        ],
+        options: [
+            'Measures compactness of K-Means clusters (`sum of squared Euclidean distances to assigned centroids`).',
+            '$\sum p_i(1 - p_i) = 1 - \sum p_i^2$, measures probability of incorrect classification in node splits.',
+            'Applies separate pipelines (`imputing, one-hot encoding`) to feature subsets cleanly without data leakage.',
+            'Multiclass logit exponentiation where $\sum P(y=k|x) = 1.0$, guaranteeing calibrated probabilities.',
+            'Predicts exact arithmetic mean of target values in each terminal leaf, forming piecewise constant curves.'
+        ],
+        explanation: 'Mastering these five foundational pillars: unsupervised centroid compactness (`.inertia_`), tree split metrics (`Gini/Variance`), data pipeline isolation (`ColumnTransformer`), multiclass calibration (`Softmax`), and step-wise regression (`DecisionTreeRegressor`) guarantees complete readiness across all 32 assessment objectives.'
+    }
+];
+
+// ============================================================================
+// TCA POSSIBLE QUESTIONS SECTION RENDER & INTERACTION ENGINE
+// ============================================================================
+function renderTcaPossibleQuestions() {
+    try {
+        const listWrap = document.getElementById('tca-possible-container');
+        if (!listWrap) return;
+        listWrap.innerHTML = '';
+
+        TCA_POSSIBLE_QUESTIONS.forEach(q => {
+            const isSolved = solvedState[q.id];
+            let cardStatusClass = '';
+            if (isSolved) {
+                cardStatusClass = isSolved.status === 'correct' ? ' status-solved-correct' : ' status-solved-wrong';
+            }
+
+            let html = `
+                <div class="question-card${cardStatusClass}" id="card-${q.id}">
+                    <div class="question-head">
+                        <span class="question-meta">${q.type.toUpperCase()} | ${q.title}</span>
+                        <span class="question-pts">${q.points} ${q.points === 1 ? 'Point' : 'Points'}</span>
+                    </div>
+                    <div class="question-body">${cleanTextForDisplay(q.text)}</div>
+            `;
+
+            if (q.codeSnippet) {
+                html += `<pre class="code-box"><code>${q.codeSnippet}</code></pre>`;
+            }
+
+            if (q.options && q.type !== 'matching-pairs') {
+                html += `<div class="options-list">`;
+                q.options.forEach(opt => {
+                    let optState = '';
+                    if (isSolved) {
+                        optState = 'disabled';
+                        if (opt.letter === q.correctOption) optState += ' correct';
+                        else if (isSolved.selected === opt.letter) optState += ' wrong';
+                    }
+                    html += `
+                        <div class="option-item ${optState}" onclick="if(!this.classList.contains('disabled')) checkTcaPossibleOption('${q.id}', '${opt.letter}', this)">
+                            <span class="option-letter">${opt.letter}</span>
+                            <span>${cleanTextForDisplay(opt.text)}</span>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            } else if (q.type === 'fill-blank') {
+                let inputVal = isSolved && isSolved.selected ? isSolved.selected : '';
+                let disabledAttr = isSolved ? 'disabled' : '';
+                html += `
+                    <div class="fill-blank-wrap" style="margin-top: 1rem; display: flex; gap: 0.5rem; align-items: center;">
+                        <input type="text" id="input-${q.id}" class="fill-input" placeholder="Type answer keyword here..." value="${inputVal}" ${disabledAttr} style="flex:1; padding: 0.6rem 1rem; border-radius: 6px; border: 1px solid var(--border-color); background: rgba(0,0,0,0.2); color: #fff; font-size:0.95rem;" onkeydown="if(event.key === 'Enter' && !this.disabled) checkTcaPossibleBlank('${q.id}')">
+                        <button class="btn btn-primary btn-sm" onclick="checkTcaPossibleBlank('${q.id}')" ${disabledAttr}>Submit</button>
+                    </div>
+                `;
+            } else if (q.type === 'matching-pairs') {
+                html += `<div class="matching-container" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;">`;
+                q.matchingPairs.forEach((pair, idx) => {
+                    let selectHtml = `<select id="sel-${q.id}-${idx}" class="matching-select" ${isSolved ? 'disabled' : ''} style="width: 100%; padding: 0.6rem; border-radius: 6px; border: 1px solid var(--border-color); background: #1e293b; color: #fff; font-size: 0.9rem;">
+                        <option value="">-- Select matching definition --</option>`;
+                    q.options.forEach(optVal => {
+                        let selectedAttr = (isSolved && isSolved.selections && isSolved.selections[idx] === optVal) ? 'selected' : '';
+                        selectHtml += `<option value="${optVal}" ${selectedAttr}>${cleanTextForDisplay(optVal)}</option>`;
+                    });
+                    selectHtml += `</select>`;
+
+                    html += `
+                        <div class="matching-row" style="background: rgba(255,255,255,0.03); padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.06);">
+                            <div style="font-weight: 600; color: var(--primary); margin-bottom: 0.4rem;">💡 Pair ${idx+1}: ${pair.left}</div>
+                            ${selectHtml}
+                        </div>
+                    `;
+                });
+                html += `
+                    <div style="margin-top: 0.5rem;">
+                        <button class="btn btn-primary btn-sm" onclick="checkTcaPossibleMatching('${q.id}')" ${isSolved ? 'disabled' : ''}>Verify All Matching Pairs (` + q.points + ` Pts)</button>
+                    </div>
+                </div>`;
+            }
+
+            // Explanation Section
+            let expClass = (isSolved || window._showAllTcaPossibleExplanations) ? 'predicted-tca-explanation active' : 'predicted-tca-explanation';
+            let statusBanner = '';
+            if (isSolved) {
+                statusBanner = isSolved.status === 'correct' ? 
+                    `<div style="color: #10b981; font-weight:700; margin-bottom: 0.5rem;">✓ Correct (` + q.points + ` / ` + q.points + ` Pts)</div>` : 
+                    `<div style="color: #ef4444; font-weight:700; margin-bottom: 0.5rem;">✕ Incorrect (0 / ` + q.points + ` Pts) - Review Solution Below:</div>`;
+            }
+
+            html += `
+                <div class="${expClass}" id="exp-${q.id}" style="margin-top: 1.25rem; padding: 1rem; border-radius: 8px; background: rgba(16, 185, 129, 0.08); border-left: 4px solid #10b981;">
+                    ${statusBanner}
+                    <div style="font-weight: 700; color: #10b981; margin-bottom: 0.3rem;">💡 Answer & Solution Breakdown:</div>
+                    <div style="font-size: 0.95rem; line-height: 1.6; color: #e2e8f0;">${cleanTextForDisplay(q.explanation)}</div>
+                </div>
+            `;
+
+            html += `</div>`;
+            listWrap.innerHTML += html;
+        });
+
+        if (window.renderAllMath) setTimeout(() => window.renderAllMath(), 50);
+    } catch (err) {
+        console.error("renderTcaPossibleQuestions error:", err);
+    }
+}
+window.renderTcaPossibleQuestions = renderTcaPossibleQuestions;
+
+function checkTcaPossibleOption(qid, letter, optionEl) {
+    try {
+        const q = TCA_POSSIBLE_QUESTIONS.find(item => item.id === qid);
+        if (!q) return;
+        const isCorrect = (letter === q.correctOption);
+
+        solvedState[qid] = { status: isCorrect ? 'correct' : 'wrong', selected: letter };
+        localStorage.setItem('csy3081_solved_v1', JSON.stringify(solvedState));
+        updateProgressUI();
+        renderTcaPossibleQuestions();
+        showToast(isCorrect ? "✓ Correct! (+1 Pt)" : "✕ Incorrect. Review detailed solution below.");
+    } catch (err) {
+        console.error("checkTcaPossibleOption error:", err);
+    }
+}
+window.checkTcaPossibleOption = checkTcaPossibleOption;
+
+function checkTcaPossibleBlank(qid) {
+    try {
+        const inputEl = document.getElementById(`input-${qid}`);
+        if (!inputEl) return;
+        const val = inputEl.value.trim().toLowerCase();
+        if (!val) {
+            showToast("⚠️ Please enter your answer keyword first.");
+            return;
+        }
+
+        const q = TCA_POSSIBLE_QUESTIONS.find(item => item.id === qid);
+        if (!q) return;
+        const isCorrect = q.acceptableAnswers ? q.acceptableAnswers.map(a => a.toLowerCase()).includes(val) : false;
+
+        solvedState[qid] = { status: isCorrect ? 'correct' : 'wrong', selected: inputEl.value.trim() };
+        localStorage.setItem('csy3081_solved_v1', JSON.stringify(solvedState));
+        updateProgressUI();
+        renderTcaPossibleQuestions();
+        showToast(isCorrect ? `✓ Correct keyword "${val}"!` : "✕ Incorrect keyword. Review solution below.");
+    } catch (err) {
+        console.error("checkTcaPossibleBlank error:", err);
+    }
+}
+window.checkTcaPossibleBlank = checkTcaPossibleBlank;
+
+function checkTcaPossibleMatching(qid) {
+    try {
+        const q = TCA_POSSIBLE_QUESTIONS.find(item => item.id === qid);
+        if (!q) return;
+        let allCorrect = true;
+        let selections = [];
+
+        q.matchingPairs.forEach((pair, idx) => {
+            const selEl = document.getElementById(`sel-${qid}-${idx}`);
+            const val = selEl ? selEl.value : '';
+            selections.push(val);
+            if (!val || val !== pair.right) {
+                allCorrect = false;
+            }
+        });
+
+        solvedState[qid] = { status: allCorrect ? 'correct' : 'wrong', selected: 'matching_graded', selections: selections };
+        localStorage.setItem('csy3081_solved_v1', JSON.stringify(solvedState));
+        updateProgressUI();
+        renderTcaPossibleQuestions();
+        showToast(allCorrect ? "✓ Perfect matching across all pairs! (" + q.points + " Pts)" : "✕ One or more matching pairs were incorrect.");
+    } catch (err) {
+        console.error("checkTcaPossibleMatching error:", err);
+    }
+}
+window.checkTcaPossibleMatching = checkTcaPossibleMatching;
+
+function toggleAllTcaPossibleExplanations() {
+    try {
+        window._showAllTcaPossibleExplanations = !window._showAllTcaPossibleExplanations;
+        const btnText = document.getElementById('btn-toggle-tca-pos-exp-text');
+        if (btnText) {
+            btnText.innerText = window._showAllTcaPossibleExplanations ? "Hide All 32 Answers & Explanations" : "Reveal All 32 Answers & Explanations";
+        }
+        renderTcaPossibleQuestions();
+        showToast(window._showAllTcaPossibleExplanations ? "📖 Showing all 32 solutions!" : "🔒 Hidden all solutions.");
+    } catch (err) {
+        console.error("toggleAllTcaPossibleExplanations error:", err);
+    }
+}
+window.toggleAllTcaPossibleExplanations = toggleAllTcaPossibleExplanations;
+
+function resetTcaPossibleProgress() {
+    try {
+        if (confirm("Reset all 32 answers and scores in the TCA Possible Questions section?")) {
+            TCA_POSSIBLE_QUESTIONS.forEach(q => {
+                delete solvedState[q.id];
+            });
+            localStorage.setItem('csy3081_solved_v1', JSON.stringify(solvedState));
+            renderTcaPossibleQuestions();
+            updateProgressUI();
+            showToast("🔄 TCA Possible Questions section reset completely!");
+        }
+    } catch (err) {
+        console.error("resetTcaPossibleProgress error:", err);
+    }
+}
+window.resetTcaPossibleProgress = resetTcaPossibleProgress;
+
+
 // --- CORE NAVIGATION ENGINE (GLOBAL FUNCTION FOR DOUBLE SAFETY) ---
+window.TCA_POSSIBLE_QUESTIONS = TCA_POSSIBLE_QUESTIONS;
+
 function switchTabSection(tabId, anchorId = null) { setTimeout(() => { if (window.renderAllMath) window.renderAllMath(); }, 50);
     try {
         if (!document.getElementById(`section-${tabId}`)) {
@@ -1644,6 +2864,9 @@ function switchTabSection(tabId, anchorId = null) { setTimeout(() => { if (windo
 
         const targetSection = document.getElementById(`section-${tabId}`);
         if (targetSection) targetSection.classList.add('active');
+        if (tabId === 'full-mock-coverage') {
+            if (window.renderFullMockCoverage) window.renderFullMockCoverage('all');
+        }
 
         const targetTabBtn = document.querySelector(`.nav-tab[data-target="${tabId}"]`);
         if (targetTabBtn) targetTabBtn.classList.add('active');
@@ -1657,6 +2880,12 @@ function switchTabSection(tabId, anchorId = null) { setTimeout(() => { if (windo
         if (tabId === 'mock-questions' && typeof renderMockQuestions === 'function') {
             renderMockQuestions();
         }
+        if (tabId === 'predicted-tca' && typeof renderPredictedTcaQuestions === 'function') {
+            renderPredictedTcaQuestions();
+        }
+        if (tabId === 'tca-possible' && typeof renderTcaPossibleQuestions === 'function') {
+            renderTcaPossibleQuestions();
+        }
 
         activeTab = tabId;
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1665,7 +2894,14 @@ function switchTabSection(tabId, anchorId = null) { setTimeout(() => { if (windo
         if (navDropdown) {
             const desiredVal = anchorId ? `${tabId}|${anchorId}` : tabId;
             let optExists = Array.from(navDropdown.options).some(o => o.value === desiredVal);
-            navDropdown.value = optExists ? desiredVal : tabId;
+            if (optExists) {
+                navDropdown.value = desiredVal;
+            } else {
+                let baseOptExists = Array.from(navDropdown.options).some(o => o.value === tabId);
+                if (baseOptExists) {
+                    navDropdown.value = tabId;
+                }
+            }
         }
 
         if (anchorId) {
@@ -1712,13 +2948,14 @@ window.resetProgress = resetProgress;
 window.resetSingleQuestion = function(qid, section) {
     setTimeout(() => { if (window.renderAllMath) window.renderAllMath(); }, 30);
     try {
-        if (section === 'dashboard' || section === 'bank' || section === 'mock') {
+        if (section === 'dashboard' || section === 'bank' || section === 'mock' || section === 'predicted-tca') {
             if (solvedState && solvedState[qid]) {
                 delete solvedState[qid];
                 localStorage.setItem('csy3081_solved_v1', JSON.stringify(solvedState));
             }
             if (typeof renderQuizList === 'function') renderQuizList();
             if (typeof renderMockQuestions === 'function') renderMockQuestions();
+            if (typeof renderPredictedTcaQuestions === 'function') renderPredictedTcaQuestions();
             if (typeof updateProgressUI === 'function') updateProgressUI();
             if (typeof showToast === 'function') showToast("\uD83D\uDD04 Question " + qid + " cleared. Type or select your new answer!");
         } else if (section === 'test1') {
@@ -1745,7 +2982,7 @@ window.resetSingleQuestion = function(qid, section) {
 
 function updateProgressUI() {
     try {
-        const totalQuestionsCount = typeof QUESTION_BANK !== 'undefined' && QUESTION_BANK.length ? QUESTION_BANK.length : 66;
+        const totalQuestionsCount = (typeof QUESTION_BANK !== 'undefined' ? QUESTION_BANK.length : 66) + (typeof TCA_POSSIBLE_QUESTIONS !== 'undefined' ? TCA_POSSIBLE_QUESTIONS.length : 0);
         const totalCount = Object.keys(solvedState).length;
         const correctCount = Object.values(solvedState).filter(s => s.status === 'correct').length;
 
@@ -1778,7 +3015,17 @@ function updateProgressUI() {
                 statusBadge.innerText = `Completed (${accuracy}% Avg)`;
             }
         }
-    } catch (err) {
+    
+        const tcaPosBadge = document.getElementById('badge-tca-possible');
+        if (tcaPosBadge && typeof TCA_POSSIBLE_QUESTIONS !== 'undefined') {
+            const solvedPosCount = TCA_POSSIBLE_QUESTIONS.filter(q => solvedState[q.id] && solvedState[q.id].status === 'correct').length;
+            tcaPosBadge.innerText = `${solvedPosCount} / ${TCA_POSSIBLE_QUESTIONS.length} Qs`;
+            if (solvedPosCount === TCA_POSSIBLE_QUESTIONS.length) {
+                tcaPosBadge.style.background = '#10b981';
+                tcaPosBadge.style.color = '#fff';
+            }
+        }
+} catch (err) {
         console.error("Progress UI update error:", err);
     }
 }
@@ -1802,8 +3049,12 @@ function showToast(msg) {
 window.showToast = showToast;
 
 
-// --- DOM READY MASTER INITIALIZER ---
-document.addEventListener('DOMContentLoaded', () => {
+// --- MASTER DOM & EVENT INITIALIZER (BULLETPROOF) ---
+function runMasterInitializer() {
+    if (window._hasRunMasterInit) return;
+    window._hasRunMasterInit = true;
+    console.log("Running CSY3081 Master Initializer v5...");
+    
     try { initNavigation(); } catch (e) { console.error("initNavigation error:", e); }
     try { initDashboardHandlers(); } catch (e) { console.error("initDashboardHandlers error:", e); }
     try { initExamHandlers(); } catch (e) { console.error("initExamHandlers error:", e); }
@@ -1821,20 +3072,54 @@ document.addEventListener('DOMContentLoaded', () => {
     try { runKMeansSimulation(); } catch (e) { console.error("runKMeansSimulation error:", e); }
     try { runKNNSimulation(); } catch (e) { console.error("runKNNSimulation error:", e); }
     try { runRFSimulation(); } catch (e) { console.error("runRFSimulation error:", e); }
-});
+    
+    // Ensure initial tab load
+    try {
+        if (typeof window.switchTabSection === 'function') {
+            window.switchTabSection('dashboard');
+        }
+    } catch (e) { console.error("Initial tab load error:", e); }
+}
 
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runMasterInitializer);
+} else {
+    runMasterInitializer();
+}
+window.addEventListener('load', runMasterInitializer);
 // --- 1. NAVIGATION TABS ---
 function initNavigation() {
     const navBar = document.getElementById("main-nav");
-    if (!navBar || navBar._hasInit) return;
-    navBar._hasInit = true;
+    if (navBar && !navBar._hasInit) {
+        navBar._hasInit = true;
+        navBar.addEventListener('click', (e) => {
+            const tabBtn = e.target.closest('.nav-tab');
+            if (!tabBtn) return;
+            const targetId = tabBtn.dataset.target;
+            if (targetId) switchTabSection(targetId);
+        });
+    }
 
-    navBar.addEventListener('click', (e) => {
-        const tabBtn = e.target.closest('.nav-tab');
-        if (!tabBtn) return;
-        const targetId = tabBtn.dataset.target;
-        if (targetId) switchTabSection(targetId);
-    });
+    const navDropdown = document.getElementById('nav-jump-select');
+    if (navDropdown && !navDropdown._hasInitDropdown) {
+        navDropdown._hasInitDropdown = true;
+        const handleJump = (e) => {
+            const val = navDropdown.value;
+            if (!val) return;
+            if (val === 'dashboard' && navDropdown.selectedIndex === 0) return;
+            const parts = val.split('|');
+            if (window.switchTabSection) {
+                window.switchTabSection(parts[0], parts[1] || null);
+            }
+        };
+        navDropdown.addEventListener('change', handleJump);
+        navDropdown.addEventListener('input', handleJump);
+        navDropdown.addEventListener('click', (e) => {
+            if (e.target && e.target.tagName === 'OPTION') {
+                handleJump(e);
+            }
+        });
+    }
 }
 
 // --- 2. DASHBOARD HANDLERS ---
@@ -1924,11 +3209,72 @@ function initExamHandlers() {
 
 function cleanTextForDisplay(str) {
     if (!str || typeof str !== 'string') return '';
-    let cleaned = str.replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>');
-    cleaned = cleaned.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    let cleaned = str;
+
+    // A. Bold & italic formatting (adaptable to light/dark themes via var(--primary))
+    cleaned = cleaned.replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>');
+    cleaned = cleaned.replace(/\*\*([^*]+)\*\*/g, '<strong style="color: var(--primary); font-weight: 700;">$1</strong>');
+
+    // B. Code syntax highlight for inline backticks (`code` or `formula`)
+    cleaned = cleaned.replace(/`([^`]+)`/g, (match, p1) => {
+        if (/[\$\^\_\=\+\-\*\/\(\)\[\]\{\}]/.test(p1) && !/[a-zA-Z]{5,}\(/.test(p1)) {
+            return `<code class="inline-math-code" style="background: rgba(14, 165, 233, 0.14); color: #38bdf8; padding: 0.16rem 0.48rem; border-radius: 5px; font-family: 'Fira Code', 'Courier New', monospace; font-size: 0.93em; border: 1px solid rgba(56, 189, 248, 0.35); font-weight: 600;">${p1}</code>`;
+        }
+        return `<code class="inline-code" style="background: rgba(0, 0, 0, 0.38); color: #e2e8f0; padding: 0.15rem 0.45rem; border-radius: 4px; font-family: 'Fira Code', 'Courier New', monospace; font-size: 0.9em; border: 1px solid rgba(255, 255, 255, 0.16);">${p1}</code>`;
+    });
+
+    // C. Automatically structure and format Course Document Source Citations & Quotes
+    // e.g., From <strong>Handson on Decision Tree.pdf</strong>: "Splitting: The process..." Root node starts with...
+    const sourceMatch = cleaned.match(/^From\s+(?:<strong[^>]*>)?([^<:]+)(?:<\/strong>)?\s*:\s*(?:"([^"]+)"|(&quot;[^&]+&quot;)|([^.<br]+[\.\!]))?(.*)/i);
+    if (sourceMatch) {
+        const docName = sourceMatch[1].replace(/<\/?[^>]+(>|$)/g, "").trim();
+        let quoteText = sourceMatch[2] || sourceMatch[3] || '';
+        let bodyText = sourceMatch[5] || '';
+        if (!quoteText && sourceMatch[4] && sourceMatch[4].includes(':')) {
+            quoteText = sourceMatch[4];
+        } else if (!quoteText) {
+            bodyText = (sourceMatch[4] || '') + bodyText;
+        }
+
+        let sourceHtml = `
+        <div class="exp-source-card" style="background: rgba(14, 165, 233, 0.08); border-left: 4px solid #0ea5e9; border-radius: 8px; padding: 0.9rem 1.15rem; margin-bottom: 1rem; border: 1px solid rgba(14, 165, 233, 0.25); box-shadow: 0 2px 8px rgba(0,0,0,0.12);">
+            <div style="color: #0284c7; font-weight: 800; font-size: 0.96em; display: flex; align-items: center; gap: 0.5rem; margin-bottom: ${quoteText ? '0.6rem' : '0'};">
+                <span style="font-size: 1.2em;">📄</span>
+                <span>University Document Source:</span>
+                <code style="background: rgba(14, 165, 233, 0.22); color: #0284c7; padding: 0.18rem 0.65rem; border-radius: 5px; font-weight: 700; font-family: var(--font-mono); font-size: 0.95em; border: 1px solid rgba(14, 165, 233, 0.35);">${docName}</code>
+            </div>
+            ${quoteText ? `<div style="background: rgba(15, 23, 42, 0.65); padding: 0.75rem 1.05rem; border-radius: 6px; border-left: 3px solid #38bdf8; font-style: italic; color: #f8fafc; font-size: 0.96em; line-height: 1.68; margin-top: 0.4rem; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);">"${quoteText.replace(/^["&quot;]+|["&quot;]+$/g, '')}"</div>` : ''}
+        </div>`;
+
+        if (bodyText && bodyText.trim()) {
+            let formattedBody = bodyText.trim();
+            formattedBody = formattedBody.replace(/(?:<br>\s*)*([•\-\*]|\d+\.)\s+\*\*([^*]+)\*\*:/g, '<div style="margin-top: 0.65rem; padding-left: 0.5rem;"><strong style="color: #38bdf8;">$1 $2:</strong>');
+            formattedBody = formattedBody.replace(/(?:<br>\s*)*([•\-\*]|\d+\.)\s+/g, '<br>• ');
+            
+            sourceHtml += `
+            <div class="exp-mechanism-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1.05rem 1.2rem; line-height: 1.75; color: var(--text-primary); box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-top: 0.75rem;">
+                <div style="color: var(--primary); font-weight: 800; font-size: 0.97em; margin-bottom: 0.55rem; display: flex; align-items: center; gap: 0.45rem; border-bottom: 1px solid rgba(56, 189, 248, 0.18); padding-bottom: 0.35rem;">
+                    <span>⚡</span><span>Technical Mechanism & Operational Breakdown:</span>
+                </div>
+                <div style="font-size: 0.96em;">${formattedBody}</div>
+            </div>`;
+        }
+        return sourceHtml;
+    }
+
+    // D. Highlight structured headers in explanations
+    cleaned = cleaned.replace(/(Mathematical Formula:|Formula:|Key Takeaway:|Answer & Solution Breakdown:|Detailed Explanation & Proof:|Solution Breakdown:|Visual Insight:|Prediction Mechanism:|Splitting Criterion:|Data Leakage Prevention:|Why this happens:|Operational Rule:)/gi, 
+        '<span style="color: #38bdf8; font-weight: 700; display: block; margin: 0.8rem 0 0.35rem 0; font-size: 1.03em; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 0.25rem;">$1</span>'
+    );
+
+    // E. Structure bullet lists cleanly
+    cleaned = cleaned.replace(/(?:<br>\s*)*([•\-\*]|\d+\.)\s+\*\*([^*]+)\*\*:/g, '<br><span style="display:inline-block; margin-top:0.5rem;"><strong style="color: #38bdf8;">• $2:</strong></span> ');
+    cleaned = cleaned.replace(/(?:<br>\s*)*([•\-\*])\s+/g, '<br>• ');
+
     return cleaned;
 }
 window.cleanTextForDisplay = cleanTextForDisplay;
+
 
 
 function setTestingMode(mode) {
@@ -2241,7 +3587,7 @@ function toggleAllMockExplanations() {
             renderMockQuestions();
             updateProgressUI();
             const btnText = document.getElementById('btn-toggle-mock-exp-text');
-            if (btnText) btnText.textContent = "Hide All 32 Answers & Explanations";
+            if (btnText) btnText.textContent = "Hide All 16 Answers & Explanations";
             return;
         }
         let anyHidden = false;
@@ -2252,10 +3598,10 @@ function toggleAllMockExplanations() {
         exps.forEach(e => {
             if (anyHidden || e.style.display === 'none') {
                 e.style.display = 'block';
-                if (btnText) btnText.textContent = "Hide All 32 Answers & Explanations";
+                if (btnText) btnText.textContent = "Hide All 16 Answers & Explanations";
             } else {
                 e.style.display = 'none';
-                if (btnText) btnText.textContent = "Reveal All 32 Answers & Explanations";
+                if (btnText) btnText.textContent = "Reveal All 16 Answers & Explanations";
             }
         });
     } catch (err) {
@@ -2266,14 +3612,14 @@ window.toggleAllMockExplanations = toggleAllMockExplanations;
 
 function resetMockExam() {
     try {
-        if (confirm("Reset all answers in the Mock Possible Questions section?")) {
+        if (confirm("Reset all answers in the Mock Exam Questions section?")) {
             QUESTION_BANK.slice(66).forEach(q => {
                 delete solvedState[q.id];
             });
             localStorage.setItem('csy3081_solved_v1', JSON.stringify(solvedState));
             renderMockQuestions();
             updateProgressUI();
-            showToast("🔄 Mock Possible Questions section reset!");
+            showToast("🔄 Mock Exam Questions section reset!");
         }
     } catch (err) {
         console.error("resetMockExam error:", err);
@@ -2281,11 +3627,186 @@ function resetMockExam() {
 }
 window.resetMockExam = resetMockExam;
 
+function renderPredictedTcaQuestions() {
+    try {
+        const listWrap = document.getElementById('predicted-tca-container');
+        if (!listWrap) return;
+        listWrap.innerHTML = '';
+
+        PREDICTED_TCA_QUESTIONS.forEach(q => {
+            const isSolved = solvedState[q.id];
+            let cardStatusClass = '';
+            if (isSolved) {
+                cardStatusClass = isSolved.status === 'correct' ? ' status-solved-correct' : ' status-solved-wrong';
+            }
+
+            let html = `
+                <div class="question-card${cardStatusClass}" id="card-${q.id}">
+                    <div class="question-head">
+                        <span class="question-meta">${q.type.toUpperCase()} | ${q.title}</span>
+                        <span class="question-pts">${q.points} ${q.points === 1 ? 'Point' : 'Points'}</span>
+                    </div>
+                    <div class="question-body">${cleanTextForDisplay(q.text)}</div>
+            `;
+
+            if (q.codeSnippet) {
+                html += `<pre class="code-box"><code>${q.codeSnippet}</code></pre>`;
+            }
+
+            if (q.options) {
+                html += `<div class="options-list">`;
+                q.options.forEach(opt => {
+                    let optState = '';
+                    if (isSolved) {
+                        optState = 'disabled';
+                        if (opt.letter === q.correctOption) optState += ' correct';
+                        else if (isSolved.selected === opt.letter) optState += ' wrong';
+                    }
+                    html += `
+                        <div class="option-item ${optState}" data-qid="${q.id}" data-letter="${opt.letter}" onclick="if(window.handleOptionClick) window.handleOptionClick('${q.id}', '${opt.letter}', this)">
+                            <span class="opt-key">${opt.letter}</span>
+                            <span>${cleanTextForDisplay(opt.text)}</span>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            }
+
+            if (q.type === 'fill-blank') {
+                const userText = (isSolved && isSolved.selected && isSolved.selected !== 'exam_submitted') ? isSolved.selected : '';
+                let statusBadgeText = '';
+                if (isSolved) {
+                    if (isSolved.status === 'correct') statusBadgeText = '<span style="color:#10b981;font-weight:700;margin-left:8px;">✓ Correct (+1 Pt)</span>';
+                    else if (isSolved.status === 'wrong') statusBadgeText = '<span style="color:#ef4444;font-weight:700;margin-left:8px;">✕ Incorrect</span>';
+                    else if (isSolved.status === 'revealed') statusBadgeText = '<span style="color:#38bdf8;font-weight:700;margin-left:8px;">💡 Answer Revealed</span>';
+                }
+                html += `
+                    <div class="input-row" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;">
+                        <input type="text" id="input-${q.id}" class="input-text" placeholder="Optional: Type your answer or click check..." value="${userText}" style="flex:1;min-width:220px;padding:8px 12px;border:2px solid var(--border-color);border-radius:6px;background:var(--card-bg);color:var(--text-primary);font-size:0.95rem;">
+                        <button class="btn btn-primary btn-sm btn-check-blank" data-qid="${q.id}" onclick="if(window.handleBlankSubmission) window.handleBlankSubmission('${q.id}')" style="background:#4f46e5;color:#fff;font-weight:600;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;">${isSolved ? '🔄 Check / Update' : '💡 Check / Reveal Answer'}</button>
+                        ${isSolved ? `<button class="btn btn-secondary btn-sm" onclick="if(window.resetSingleQuestion) window.resetSingleQuestion('${q.id}', 'predicted-tca')" style="background:#3b82f6;color:#fff;font-weight:600;padding:8px 14px;border-radius:6px;border:none;cursor:pointer;">🔄 Reset Blank</button>` : ''}
+                        ${statusBadgeText}
+                    </div>
+                `;
+            }
+
+            if (q.type === 'matching') {
+                html += `<div class="matching-table">`;
+                q.matchingPairs.forEach((pair, idx) => {
+                    const isDisabled = isSolved ? 'disabled' : '';
+                    html += `
+                        <div class="matching-item">
+                            <strong>${pair.left}</strong>
+                            <select id="sel-${q.id}-${idx}" class="matching-select" ${isDisabled}>
+                                <option value="">Choose matching option...</option>
+                                ${q.rightOptions.map(r => `<option value="${r}">${r}</option>`).join('')}
+                            </select>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+                if (!isSolved) {
+                    html += `<button class="btn btn-primary btn-sm btn-check-match" data-qid="${q.id}" onclick="if(window.handleMatchingSubmission) window.handleMatchingSubmission('${q.id}')">Verify Matching Pairs</button>`;
+                }
+            }
+
+            if (isSolved) {
+                let visibleAnsHtml = '';
+                if (q.correctOption) {
+                    const optObj = q.options && q.options.find(o => o.letter === q.correctOption);
+                    const optText = optObj ? optObj.text : '';
+                    visibleAnsHtml = `<div class="official-answer-banner"><strong>✅ Official Verified Answer:</strong> <div><span class="answer-highlight">Option ${q.correctOption}${optText ? ' — ' + cleanTextForDisplay(optText) : ''}</span></div></div>`;
+                } else if (q.correctAnswer) {
+                    visibleAnsHtml = `<div class="official-answer-banner"><strong>✅ Official Verified Answer:</strong> <div><span class="answer-highlight">${cleanTextForDisplay(q.correctAnswer)}</span></div></div>`;
+                } else if (q.correctMatches || q.matchingPairs) {
+                    const pairs = q.matchingPairs || [];
+                    visibleAnsHtml = `<div class="official-answer-banner"><strong>✅ Official Verified Matching Pairs:</strong><ul class="matching-answer-list">${pairs.map(p => `<li><span class="match-left">${p.left}</span> ➔ <span class="match-right">${p.right}</span></li>`).join('')}</ul></div>`;
+                }
+
+                html += `
+                    <div style="margin-top:14px;margin-bottom:8px;">
+                        <button class="btn btn-secondary btn-sm" onclick="if(window.resetSingleQuestion) window.resetSingleQuestion('${q.id}', 'predicted-tca')" style="background:#3b82f6;color:#fff;font-weight:600;padding:6px 14px;border-radius:6px;border:1px solid #60a5fa;cursor:pointer;">🔄 Reset Question & Try Again</button>
+                    </div>
+                    <div class="solution-box predicted-tca-explanation">
+                        ${visibleAnsHtml}
+                        <strong>💡 CSY3081 Solution & Course Documentation Reference:</strong>
+                        <div style="line-height:1.65;">${cleanTextForDisplay(q.explanation)}</div>
+                    </div>
+                `;
+            }
+
+            html += `</div>`;
+            listWrap.innerHTML += html;
+        });
+
+        setTimeout(() => { if (window.renderAllMath) window.renderAllMath(); }, 30);
+    } catch (err) {
+        console.error("renderPredictedTcaQuestions error:", err);
+    }
+}
+window.renderPredictedTcaQuestions = renderPredictedTcaQuestions;
+
+function toggleAllPredictedTcaExplanations() {
+    try {
+        const exps = document.querySelectorAll('#predicted-tca-container .predicted-tca-explanation');
+        if (exps.length === 0) {
+            PREDICTED_TCA_QUESTIONS.forEach(q => {
+                if (!solvedState[q.id]) {
+                    if (q.correctOption) solvedState[q.id] = { status: 'correct', selected: q.correctOption };
+                    else if (q.correctAnswer) solvedState[q.id] = { status: 'correct', selected: q.correctAnswer };
+                    else solvedState[q.id] = { status: 'correct', selected: 'match_graded' };
+                }
+            });
+            localStorage.setItem('csy3081_solved_v1', JSON.stringify(solvedState));
+            renderPredictedTcaQuestions();
+            updateProgressUI();
+            const btnText = document.getElementById('btn-toggle-tca-pred-exp-text');
+            if (btnText) btnText.textContent = "Hide All 32 Answers & Explanations";
+            return;
+        }
+        let anyHidden = false;
+        exps.forEach(e => {
+            if (!e.classList.contains('show') && e.style.display === 'none') anyHidden = true;
+        });
+        const btnText = document.getElementById('btn-toggle-tca-pred-exp-text');
+        exps.forEach(e => {
+            if (anyHidden || e.style.display === 'none') {
+                e.style.display = 'block';
+                if (btnText) btnText.textContent = "Hide All 32 Answers & Explanations";
+            } else {
+                e.style.display = 'none';
+                if (btnText) btnText.textContent = "Reveal All 32 Answers & Explanations";
+            }
+        });
+    } catch (err) {
+        console.error("toggleAllPredictedTcaExplanations error:", err);
+    }
+}
+window.toggleAllPredictedTcaExplanations = toggleAllPredictedTcaExplanations;
+
+function resetPredictedTcaExam() {
+    try {
+        if (confirm("Reset all answers in the Predicted TCA Questions section?")) {
+            PREDICTED_TCA_QUESTIONS.forEach(q => {
+                delete solvedState[q.id];
+            });
+            localStorage.setItem('csy3081_solved_v1', JSON.stringify(solvedState));
+            renderPredictedTcaQuestions();
+            updateProgressUI();
+            showToast("🔄 Predicted TCA Questions section reset!");
+        }
+    } catch (err) {
+        console.error("resetPredictedTcaExam error:", err);
+    }
+}
+window.resetPredictedTcaExam = resetPredictedTcaExam;
+
 function handleOptionClick(qid, letter, optionEl) {
     try {
         if (examMode === 'practice' && solvedState[qid]) return;
 
-        const q = QUESTION_BANK.find(item => item.id === qid);
+        const q = QUESTION_BANK.find(item => item.id === qid) || (typeof PREDICTED_TCA_QUESTIONS !== 'undefined' && PREDICTED_TCA_QUESTIONS.find(item => item.id === qid)) || (typeof TCA_POSSIBLE_QUESTIONS !== 'undefined' && TCA_POSSIBLE_QUESTIONS.find(item => item.id === qid));
+        if (!q) return;
         const isCorrect = (letter === q.correctOption);
 
         if (examMode === 'practice') {
@@ -2294,6 +3815,7 @@ function handleOptionClick(qid, letter, optionEl) {
             updateProgressUI();
             renderQuizList();
             if (typeof renderMockQuestions === 'function') renderMockQuestions();
+            if (typeof renderPredictedTcaQuestions === 'function') renderPredictedTcaQuestions();
             showToast(isCorrect ? "✓ Correct! Spot on." : "✕ Incorrect. Review solution below.");
         } else {
             const card = document.getElementById(`card-${qid}`);
@@ -2318,14 +3840,16 @@ function handleBlankSubmission(qid) {
             return;
         }
 
-        const q = QUESTION_BANK.find(item => item.id === qid);
-        const isCorrect = q.acceptableAnswers.map(a => a.toLowerCase()).includes(val);
+        const q = QUESTION_BANK.find(item => item.id === qid) || (typeof PREDICTED_TCA_QUESTIONS !== 'undefined' && PREDICTED_TCA_QUESTIONS.find(item => item.id === qid)) || (typeof TCA_POSSIBLE_QUESTIONS !== 'undefined' && TCA_POSSIBLE_QUESTIONS.find(item => item.id === qid));
+        if (!q) return;
+        const isCorrect = q.acceptableAnswers ? q.acceptableAnswers.map(a => a.toLowerCase()).includes(val) : false;
 
         solvedState[qid] = { status: isCorrect ? 'correct' : 'wrong', selected: inputEl.value.trim() };
         localStorage.setItem('csy3081_solved_v1', JSON.stringify(solvedState));
         updateProgressUI();
         renderQuizList();
         if (typeof renderMockQuestions === 'function') renderMockQuestions();
+        if (typeof renderPredictedTcaQuestions === 'function') renderPredictedTcaQuestions();
         showToast(isCorrect ? "✓ Correct answer!" : "✕ Incorrect keyword. See solution below.");
     } catch (err) {
         console.error("handleBlankSubmission error:", err);
@@ -2334,7 +3858,8 @@ function handleBlankSubmission(qid) {
 
 function handleMatchingSubmission(qid) {
     try {
-        const q = QUESTION_BANK.find(item => item.id === qid);
+        const q = QUESTION_BANK.find(item => item.id === qid) || (typeof PREDICTED_TCA_QUESTIONS !== 'undefined' && PREDICTED_TCA_QUESTIONS.find(item => item.id === qid)) || (typeof TCA_POSSIBLE_QUESTIONS !== 'undefined' && TCA_POSSIBLE_QUESTIONS.find(item => item.id === qid));
+        if (!q) return;
         let allCorrect = true;
 
         q.matchingPairs.forEach((pair, idx) => {
@@ -2349,6 +3874,7 @@ function handleMatchingSubmission(qid) {
         updateProgressUI();
         renderQuizList();
         if (typeof renderMockQuestions === 'function') renderMockQuestions();
+        if (typeof renderPredictedTcaQuestions === 'function') renderPredictedTcaQuestions();
         showToast(allCorrect ? "✓ Perfect matching accuracy!" : "✕ One or more pairs were incorrect.");
     } catch (err) {
         console.error("handleMatchingSubmission error:", err);
@@ -3621,7 +5147,7 @@ function renderTest1Questions(filter = 'all', btnEl = null) {
                     </div>
                     <div>${statusBadge}</div>
                 </div>
-                <div class="test1-question">${q.question}</div>
+                <div class="test1-question">${cleanTextForDisplay(q.question)}</div>
                 ${q.code ? `<div class="test1-code-block">${q.code}</div>` : ''}
                 ${q.type === 'matching' ? `
                     <table class="test1-match-table">
@@ -3629,7 +5155,7 @@ function renderTest1Questions(filter = 'all', btnEl = null) {
                             <tr><th>Column A (Algorithm / Concept)</th><th>Column B (Official Definition & Description)</th></tr>
                         </thead>
                         <tbody>
-                            ${q.matchingTable.map(row => `<tr><td>${row.colA}</td><td>${row.colB}</td></tr>`).join('')}
+                            ${q.matchingTable.map(row => `<tr><td>${cleanTextForDisplay(row.colA)}</td><td>${cleanTextForDisplay(row.colB)}</td></tr>`).join('')}
                         </tbody>
                     </table>
                 ` : ''}
@@ -3642,7 +5168,7 @@ function renderTest1Questions(filter = 'all', btnEl = null) {
                             btnClass += ' correct';
                         }
                         return `<button class="${btnClass}" onclick="if(window.checkTest1Option) checkTest1Option(${q.id}, ${optIdx}, this)">
-                            <span>${String.fromCharCode(65 + optIdx)}. ${opt}</span>
+                            <span>${String.fromCharCode(65 + optIdx)}. ${cleanTextForDisplay(opt)}</span>
                             ${solved && solved.selectedIndex === optIdx ? (solved.status === 'correct' ? '<span>[Correct]</span>' : '<span>[Incorrect]</span>') : ''}
                         </button>`;
                     }).join('')}
@@ -4500,7 +6026,7 @@ function renderTest2Questions(filter = 'all', btnEl = null) {
                     </div>
                     <div>${statusBadge}</div>
                 </div>
-                <div class="test1-question" style="font-size:1.05rem;line-height:1.65;margin-top:1rem;">${q.question}</div>
+                <div class="test1-question" style="font-size:1.05rem;line-height:1.65;margin-top:1rem;">${cleanTextForDisplay(q.question)}</div>
                 ${q.code ? `<div class="test1-code-block" class="code-box"><code class="code-text">${q.code}</code></div>` : ''}
                 ${q.type === 'matching' ? `
                     <table class="test1-match-table" class="data-table">
@@ -4508,7 +6034,7 @@ function renderTest2Questions(filter = 'all', btnEl = null) {
                             <tr class="table-header"><th class="table-cell-th">Column A (Concept / Parameter)</th><th class="table-cell-th">Column B (Official CSY3081 Definition & Formula)</th></tr>
                         </thead>
                         <tbody>
-                            ${q.matchingTable.map(row => `<tr class="table-row"><td class="table-cell-colA">${row.colA}</td><td class="table-cell-colB">${row.colB}</td></tr>`).join('')}
+                            ${q.matchingTable.map(row => `<tr class="table-row"><td class="table-cell-colA">${cleanTextForDisplay(row.colA)}</td><td class="table-cell-colB">${cleanTextForDisplay(row.colB)}</td></tr>`).join('')}
                         </tbody>
                     </table>
                 ` : ''}
@@ -4521,7 +6047,7 @@ function renderTest2Questions(filter = 'all', btnEl = null) {
                             btnClass += ' correct';
                         }
                         return `<button class="${btnClass}" onclick="if(window.checkTest2Option) checkTest2Option(${q.id}, ${optIdx}, this)">
-                            <span>${q.type === 'matching' ? '🎯 ' : String.fromCharCode(65 + optIdx) + '. '}${opt}</span>
+                            <span>${q.type === 'matching' ? '🎯 ' : String.fromCharCode(65 + optIdx) + '. '}${cleanTextForDisplay(opt)}</span>
                             ${solved && solved.selectedIndex === optIdx ? (solved.status === 'correct' ? '<span>[Correct]</span>' : '<span>[Incorrect]</span>') : ''}
                         </button>`;
                     }).join('')}
@@ -4708,7 +6234,6 @@ window.updateThemeToggleUI = function(theme) {
    ========================================================================== */
 window.formatMathFallback = function(container) {
     if (!container) return;
-    if (container.querySelectorAll('.katex').length > 0) return;
 
     function cleanLatexString(str) {
         return str
@@ -4755,6 +6280,8 @@ window.formatMathFallback = function(container) {
             .replace(/\\cdot/g, '&middot;')
             .replace(/\\times/g, '&times;')
             .replace(/\\dots|\\ldots/g, '...')
+            .replace(/\\hat\{y\}/g, 'y&#770;')
+            .replace(/\\hat\{([^}]+)\}/g, '$1&#770;')
             .replace(/\\mathbf\{([^}]+)\}/g, '<b>$1</b>')
             .replace(/\\mathcal\{([^}]+)\}/g, '<span style="font-family:serif;font-style:italic;">$1</span>')
             .replace(/\^([0-9A-Za-z]+)/g, '<sup>$1</sup>')
@@ -4767,8 +6294,8 @@ window.formatMathFallback = function(container) {
     const textNodes = [];
     while (walker.nextNode()) {
         const node = walker.currentNode;
-        if (node.parentElement && !['SCRIPT', 'STYLE', 'CODE', 'PRE'].includes(node.parentElement.tagName)) {
-            if (node.nodeValue && (node.nodeValue.includes('$') || node.nodeValue.includes('\\(') || node.nodeValue.includes('\\['))) {
+        if (node.parentElement && !['SCRIPT', 'STYLE', 'CODE', 'PRE'].includes(node.parentElement.tagName) && !node.parentElement.closest('.katex, .katex-display')) {
+            if (node.nodeValue && (node.nodeValue.includes('$') || node.nodeValue.includes('\\(') || node.nodeValue.includes('\\[') || node.nodeValue.includes('\\') || /_[0-9a-zA-Z]|\^[0-9a-zA-Z]/.test(node.nodeValue))) {
                 textNodes.push(node);
             }
         }
@@ -4781,7 +6308,7 @@ window.formatMathFallback = function(container) {
         if (/\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]/.test(text)) {
             text = text.replace(/\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]/g, (match, p1, p2) => {
                 const mathContent = p1 || p2;
-                return `<div class="display-math-fallback">${cleanLatexString(mathContent)}</div>`;
+                return `<div class="display-math-fallback" style="font-family:'Times New Roman',Times,serif; font-style:italic; font-size:1.15em; padding:0.6rem 1rem; background:rgba(15,23,42,0.6); border-radius:8px; border:1px solid rgba(56,189,248,0.25); text-align:center; margin:0.6rem 0; color:#f8fafc; box-shadow:0 4px 12px rgba(0,0,0,0.25);">${cleanLatexString(mathContent)}</div>`;
             });
             modified = true;
         }
@@ -4789,12 +6316,12 @@ window.formatMathFallback = function(container) {
         if (/\$([^\$]+?)\$|\\\(([^\)]+?)\\\)/.test(text)) {
             text = text.replace(/\$([^\$]+?)\$|\\\(([^\)]+?)\\\)/g, (match, p1, p2) => {
                 const mathContent = p1 || p2;
-                return `<span class="inline-math-fallback">${cleanLatexString(mathContent)}</span>`;
+                return `<span class="inline-math-fallback" style="font-family:'Times New Roman',Times,serif; font-style:italic; font-size:1.05em; padding:0.12rem 0.42rem; background:rgba(56,189,248,0.08); border-radius:5px; border:1px solid rgba(56,189,248,0.2); color:#f8fafc; margin:0 0.12rem; display:inline-block;">${cleanLatexString(mathContent)}</span>`;
             });
             modified = true;
         }
 
-        if (modified) {
+        if (modified && node.parentNode) {
             const span = document.createElement('span');
             span.innerHTML = text;
             node.parentNode.replaceChild(span, node);
@@ -4816,7 +6343,6 @@ window.renderAllMath = function(containerEl) {
                 throwOnError: false,
                 strict: 'ignore'
             });
-            return;
         } catch(e) {
             console.warn("KaTeX render error:", e);
         }
@@ -4826,7 +6352,776 @@ window.renderAllMath = function(containerEl) {
     }
 };
 
-window.addEventListener('DOMContentLoaded', function() {
-    setTimeout(() => { if (window.renderAllMath) window.renderAllMath(); }, 50);
-    setTimeout(() => { if (window.renderAllMath) window.renderAllMath(); }, 600);
-});
+setTimeout(() => { if (window.renderAllMath) window.renderAllMath(); }, 50);
+setTimeout(() => { if (window.renderAllMath) window.renderAllMath(); }, 600);
+// ============================================================================
+// INTERACTIVE NOTE CARD MCQS HELPER (`checkNoteMCQ`)
+// ============================================================================
+window.checkNoteMCQ = function(qid, clickedOpt, correctOpt) {
+    const item = document.getElementById('note-mcq-' + qid);
+    if (!item) return;
+    const btns = item.querySelectorAll('.btn-note-opt');
+    btns.forEach(btn => {
+        const text = btn.innerText || btn.textContent;
+        if (text.trim().startsWith(correctOpt + ')')) {
+            btn.style.background = 'rgba(16, 185, 129, 0.22)';
+            btn.style.borderColor = '#10b981';
+            btn.style.color = '#10b981';
+            btn.style.fontWeight = '700';
+        } else if (text.trim().startsWith(clickedOpt + ')') && clickedOpt !== correctOpt) {
+            btn.style.background = 'rgba(239, 68, 68, 0.22)';
+            btn.style.borderColor = '#ef4444';
+            btn.style.color = '#ef4444';
+            btn.style.fontWeight = '700';
+        }
+    });
+    const ansBox = document.getElementById('note-ans-' + qid);
+    if (ansBox) {
+        ansBox.style.display = 'block';
+        if (window.renderAllMath) window.renderAllMath();
+    }
+};
+
+
+// ============================================================================
+// FULL MOCK COVERAGE: 37 COMPREHENSIVE PRACTICE QUESTIONS & NUMERICALS
+// ============================================================================
+window.FULL_MOCK_QUESTIONS = [
+    // --- SECTION A: FILL IN THE BLANKS (1 - 5) ---
+    {
+        id: "mock-full-1",
+        section: "sec-A",
+        sectionName: "Section A: Fill in the Blanks",
+        type: "blank",
+        question: "1. In K-means clustering, K stands for the number of ______.",
+        answer: "Clusters (or Centroids)",
+        explanation: "From <strong>tutorial unsupervised learning (1).docx</strong>: In K-Means clustering, the hyperparameter $K$ specifies the exact number of non-overlapping spherical partitions (clusters) that the algorithm must discover across the $N$ data points."
+    },
+    {
+        id: "mock-full-2",
+        section: "sec-A",
+        sectionName: "Section A: Fill in the Blanks",
+        type: "blank",
+        question: "2. The ______ function is used in logistic regression to map predictions to probabilities between 0 and 1.",
+        answer: "Sigmoid (or Logistic)",
+        explanation: "From <strong>logistic softmax.docx</strong>: The Logistic Sigmoid function $\\sigma(z) = \\frac{1}{1 + e^{-z}}$ squashes linear log-odds $z = \\mathbf{w}^T \\mathbf{x} + b \\in [-\\infty, +\\infty]$ into bounded probability space $P(y=1|X) \\in [0, 1]$."
+    },
+    {
+        id: "mock-full-3",
+        section: "sec-A",
+        sectionName: "Section A: Fill in the Blanks",
+        type: "blank",
+        question: "3. In a Decision Tree, the topmost node which corresponds to the best predictor is called the ______ node.",
+        answer: "Root",
+        explanation: "From <strong>Handson on Decision Tree.pdf</strong>: The topmost node is called the **Root Node**. It starts with $100\\%$ of the initial training data and represents the single feature threshold $(j, t)$ that yields the highest global Information Gain across the entire dataset."
+    },
+    {
+        id: "mock-full-4",
+        section: "sec-A",
+        sectionName: "Section A: Fill in the Blanks",
+        type: "blank",
+        question: "4. Softmax regression outputs probabilities that always sum to ______ across all classes.",
+        answer: "1 (or 1.0 / 100%)",
+        explanation: "From <strong>logistic softmax.docx</strong>: The Softmax denominator $\\sum_{j=1}^{C} \\exp(s_j(\\mathbf{x}))$ normalizes the exponential class scores so that all output class probabilities $\\hat{p}_k$ are non-negative and sum precisely to $1.00$ ($100\\%$)."
+    },
+    {
+        id: "mock-full-5",
+        section: "sec-A",
+        sectionName: "Section A: Fill in the Blanks",
+        type: "blank",
+        question: "5. ______ learning trains an agent through rewards and penalties using trial and error.",
+        answer: "Reinforcement",
+        explanation: "In **Reinforcement Learning (RL)**, an autonomous agent interacts inside a Markov Decision Process (MDP), discovering optimal policies $\\pi^*(s)$ purely by receiving scalar feedback signals (positive rewards for success, negative penalties for collisions or delays)."
+    },
+
+    // --- SECTION B: TRUE OR FALSE (6 - 12) ---
+    {
+        id: "mock-full-6",
+        section: "sec-B",
+        sectionName: "Section B: True or False",
+        type: "tf",
+        question: "6. Linear regression is suitable for predicting categorical class labels.",
+        options: ["True", "False"],
+        correct: "False",
+        explanation: "Linear regression model $\\hat{y} = \\mathbf{w}^T \\mathbf{x} + b$ outputs continuous unbounded numerical values ($-\\infty$ to $+\\infty$). Using it for categorical classification ($y \\in \\{0, 1\\}$) violates bounded probability rules and is highly sensitive to outliers. Logistic or Softmax regression must be used instead."
+    },
+    {
+        id: "mock-full-7",
+        section: "sec-B",
+        sectionName: "Section B: True or False",
+        type: "tf",
+        question: "7. K-means clustering requires a labelled dataset for training.",
+        options: ["True", "False"],
+        correct: "False",
+        explanation: "From <strong>tutorial unsupervised learning (1).docx</strong>: K-Means is strictly an **Unsupervised Learning** algorithm. It operates exclusively on feature matrix $X$ ($N \\times d$) without ground-truth target labels $y$, discovering natural clusters by minimizing Euclidean within-cluster distance ($WCSS$)."
+    },
+    {
+        id: "mock-full-8",
+        section: "sec-B",
+        sectionName: "Section B: True or False",
+        type: "tf",
+        question: "8. Decision Trees can only be used for classification problems, not regression.",
+        options: ["True", "False"],
+        correct: "False",
+        explanation: "From <strong>Handson on Decision Tree.pdf</strong>: CART (`Classification and Regression Trees`) supports both discrete classification (`DecisionTreeClassifier` optimizing Gini/Entropy) and continuous regression (`DecisionTreeRegressor` optimizing Mean Squared Error $MSE$ reduction across leaf nodes)."
+    },
+    {
+        id: "mock-full-9",
+        section: "sec-B",
+        sectionName: "Section B: True or False",
+        type: "tf",
+        question: "9. For an input value of 0, the sigmoid function outputs 0.5.",
+        options: ["True", "False"],
+        correct: "True",
+        explanation: "From <strong>logistic softmax.docx</strong>: Evaluating the Sigmoid formula at $z = 0$: $$\\sigma(0) = \\frac{1}{1 + e^{-0}} = \\frac{1}{1 + 1} = \\frac{1}{2} = 0.50$$ This establishes $t = 0.50$ as the default decision boundary between negative ($z < 0$) and positive ($z \\ge 0$) predictions."
+    },
+    {
+        id: "mock-full-10",
+        section: "sec-B",
+        sectionName: "Section B: True or False",
+        type: "tf",
+        question: "10. Accuracy is the most appropriate metric when the classes are highly imbalanced.",
+        options: ["True", "False"],
+        correct: "False",
+        explanation: "When class distributions are severely imbalanced (e.g., $99\\%$ non-fraud vs $1\\%$ fraud), a naive baseline predicting `Legitimate` for every transaction achieves $99\\%$ accuracy while catching zero fraudulent instances! Precision, Recall, F1-Score, and PR-AUC are required to correctly evaluate imbalanced datasets."
+    },
+    {
+        id: "mock-full-11",
+        section: "sec-B",
+        sectionName: "Section B: True or False",
+        type: "tf",
+        question: "11. Semi-supervised learning uses both labelled and unlabelled data during training.",
+        options: ["True", "False"],
+        correct: "True",
+        explanation: "Semi-supervised algorithms (`Pseudo-Labeling`, `Manifold Regularization`) combine a small labeled subset $(X_L, y_L)$ with a massive pool of inexpensive unlabeled data $X_U$. The unlabeled data reveals the underlying geometric data density and manifold structure, drastically improving classification boundary precision."
+    },
+    {
+        id: "mock-full-12",
+        section: "sec-B",
+        sectionName: "Section B: True or False",
+        type: "tf",
+        question: "12. K-means always produces the same final clusters regardless of where the initial centroids are placed.",
+        options: ["True", "False"],
+        correct: "False",
+        explanation: "From <strong>tutorial unsupervised learning (1).docx</strong>: Lloyd's K-Means algorithm is guaranteed to converge to a *local minimum* of the WCSS objective, but not necessarily the *global minimum*. Different random initial centroid placements (`init='random'`) often converge to completely different cluster boundaries. Using `init='k-means++'` avoids poor local minima."
+    },
+
+    // --- SECTION C: MULTIPLE CHOICE (13 - 27) ---
+    {
+        id: "mock-full-13",
+        section: "sec-C",
+        sectionName: "Section C: Multiple Choice",
+        type: "mcq",
+        question: "13. Which of the following is NOT a type of machine learning?",
+        options: [
+            "A) Circular learning",
+            "B) Reinforcement learning",
+            "C) Supervised learning",
+            "D) Unsupervised learning"
+        ],
+        correct: "A",
+        explanation: "The major recognized paradigms of machine learning are Supervised Learning, Unsupervised Learning, Semi-Supervised Learning, Self-Supervised Learning, and Reinforcement Learning. 'Circular learning' is a fictitious distractor term."
+    },
+    {
+        id: "mock-full-14",
+        section: "sec-C",
+        sectionName: "Section C: Multiple Choice",
+        type: "mcq",
+        question: "14. A supermarket groups its customers by purchasing patterns without any predefined labels. This is an example of:",
+        options: [
+            "A) Supervised learning",
+            "B) Unsupervised learning",
+            "C) Reinforcement learning",
+            "D) Semi-supervised learning"
+        ],
+        correct: "B",
+        explanation: "From <strong>tutorial unsupervised learning (1).docx</strong>: Grouping customers into natural geometric segments based purely on input feature dimensions (such as *Recency, Frequency, Monetary* spend) without any predefined target labels ($y$) is the definition of **Unsupervised Clustering** (`K-Means`, `DBSCAN`)."
+    },
+    {
+        id: "mock-full-15",
+        section: "sec-C",
+        sectionName: "Section C: Multiple Choice",
+        type: "mcq",
+        question: "15. Predicting the next word in a sentence, where the label comes from the text itself, is an example of:",
+        options: [
+            "A) Weakly supervised learning",
+            "B) Reinforcement learning",
+            "C) Self-supervised learning",
+            "D) Supervised learning"
+        ],
+        correct: "C",
+        explanation: "In **Self-Supervised Learning (SSL)**, the algorithm generates its own supervisory target labels directly from the inherent structure of the input data ($X$). For example, masking words in a sentence (`BERT`) or predicting the next token from preceding text (`GPT`) creates supervisory signals without manual human annotation."
+    },
+    {
+        id: "mock-full-16",
+        section: "sec-C",
+        sectionName: "Section C: Multiple Choice",
+        type: "mcq",
+        question: "16. Which of the following best describes weakly supervised learning?",
+        options: [
+            "A) Uses completely unlabelled data",
+            "B) Uses noisy, limited or imprecise labels",
+            "C) Uses only positive examples",
+            "D) Uses reward signals"
+        ],
+        correct: "B",
+        explanation: "Weakly supervised learning replaces expensive, precise ground-truth human labeling with cheaper, lower-fidelity sources such as heuristics, keyword rules (`Snorkel`), crowdsourced labels, or noisy domain functions."
+    },
+    {
+        id: "mock-full-17",
+        section: "sec-C",
+        sectionName: "Section C: Multiple Choice",
+        type: "mcq",
+        question: "17. In linear regression, the slope ($w$) represents:",
+        options: [
+            "A) The number of features",
+            "B) The point where the line crosses the y axis",
+            "C) The rate of change in y for a unit change in x",
+            "D) The error in prediction"
+        ],
+        correct: "C",
+        explanation: "In the univariate linear equation $\\hat{y} = w \\cdot x + b$, the coefficient $w = \\frac{\\Delta y}{\\Delta x}$ defines the marginal rate of change: the exact numerical increase (or decrease) expected in target variable $y$ whenever predictor $x$ increases by exactly $1.0$ unit."
+    },
+    {
+        id: "mock-full-18",
+        section: "sec-C",
+        sectionName: "Section C: Multiple Choice",
+        type: "mcq",
+        question: "18. In polynomial regression, increasing the degree from 2 to 12 on a small dataset will most likely cause:",
+        options: [
+            "A) Both training and test error to decrease",
+            "B) Training error to decrease and test error to increase (overfitting)",
+            "C) Training error to increase and test error to decrease",
+            "D) Both errors to increase"
+        ],
+        correct: "B",
+        explanation: "Increasing polynomial degree ($d=12$) drastically increases model complexity and capacity. On a small training dataset ($N=30$), the model oscillates wildly to interpolate exactly through every single noisy data point ($J_{\\text{train}} \\rightarrow 0$), which causes severe **overfitting** and catastrophic generalization error on unseen test instances ($J_{\\text{test}} \\rightarrow \\infty$)."
+    },
+    {
+        id: "mock-full-19",
+        section: "sec-C",
+        sectionName: "Section C: Multiple Choice",
+        type: "mcq",
+        question: "19. What is the purpose of the `C` parameter in `LogisticRegression` from scikit-learn?",
+        options: [
+            "A) It controls the learning rate",
+            "B) It is the inverse of regularisation strength",
+            "C) It sets the number of iterations",
+            "D) It sets the intercept term"
+        ],
+        correct: "B",
+        explanation: "In Scikit-Learn's `LogisticRegression(C=1.0)` and `SVC(C=1.0)`, hyperparameter $C$ is mathematically defined as the **inverse regularization parameter** ($C = \\frac{1}{\\lambda}$). Small values (`C=0.01`) apply strong $L_2$ shrinkage penalties to combat overfitting, while large values (`C=1,000`) allow complex, unpenalized weight parameters."
+    },
+    {
+        id: "mock-full-20",
+        section: "sec-C",
+        sectionName: "Section C: Multiple Choice",
+        type: "mcq",
+        question: "20. In K-means clustering, the algorithm iteratively performs which two steps?",
+        options: [
+            "A) Train and test",
+            "B) Assign and update",
+            "C) Classify and predict",
+            "D) Split and merge"
+        ],
+        correct: "B",
+        explanation: "From <strong>tutorial unsupervised learning (1).docx</strong>: Lloyd's K-Means loop alternates strictly between two phases: 1. **Assignment Step (Expectation)**: assigning every sample $\\mathbf{x}_i$ to the closest Euclidean centroid $\\mu_k$. 2. **Update Step (Maximization)**: recomputing each centroid $\\mu_k$ as the arithmetic mean of all samples assigned to cluster $C_k$."
+    },
+    {
+        id: "mock-full-21",
+        section: "sec-C",
+        sectionName: "Section C: Multiple Choice",
+        type: "mcq",
+        question: "21. The Within-Cluster Sum of Squares (WCSS) is minimised when:",
+        options: [
+            "A) Clusters are as large as possible",
+            "B) Clusters are small and compact",
+            "C) All data points are in one cluster",
+            "D) K equals 1"
+        ],
+        correct: "B",
+        explanation: "WCSS ($J = \\sum_{k=1}^{K} \\sum_{i \\in C_k} ||\\mathbf{x}_i - \\mu_k||^2$) measures the total squared internal dispersion of clusters. Minimizing WCSS corresponds to creating tight, highly cohesive, compact clusters where every data point is located very close to its assigned cluster centroid."
+    },
+    {
+        id: "mock-full-22",
+        section: "sec-C",
+        sectionName: "Section C: Multiple Choice",
+        type: "mcq",
+        question: "22. In value-based reinforcement learning, the Q-value $Q(s, a)$ represents:",
+        options: [
+            "A) The immediate reward for taking action a in state s",
+            "B) The expected cumulative reward for taking action a in state s and following the optimal policy afterwards",
+            "C) The probability of taking action a in state s",
+            "D) The number of times action a was taken"
+        ],
+        correct: "B",
+        explanation: "By the Bellman Optimality Equation, action-value function $Q^*(s, a)$ measures the long-term expected cumulative discounted return: $$Q^*(s, a) = \\mathbb{E}\\left[ R_{t+1} + \\gamma \\max_{a'} Q^*(s_{t+1}, a') \\mid s_t=s, a_t=a \\right]$$ It encapsulates the total strategic payoff of executing action $a$ in state $s$ and behaving optimally from that point forward."
+    },
+    {
+        id: "mock-full-23",
+        section: "sec-C",
+        sectionName: "Section C: Multiple Choice",
+        type: "mcq",
+        question: "23. In Q-learning with an epsilon-greedy policy and $\\epsilon = 0.2$, the agent will:",
+        options: [
+            "A) Choose a random action 20% of the time and the best action 80% of the time",
+            "B) Choose a random action 80% of the time",
+            "C) Always choose the best action",
+            "D) Always choose a random action"
+        ],
+        correct: "A",
+        explanation: "In an $\\epsilon$-greedy exploration strategy, parameter $\\epsilon = 0.20$ ($20\\%$) represents the probability of executing a uniformly random action (`Exploration` to discover new paths). With probability $1 - \\epsilon = 0.80$ ($80\\%$), the agent executes the greedy optimal action $\\arg\\max_a Q(s, a)$ (`Exploitation`)."
+    },
+    {
+        id: "mock-full-24",
+        section: "sec-C",
+        sectionName: "Section C: Multiple Choice",
+        type: "mcq",
+        question: "24. If the learning rate $\\alpha$ in Q-learning is set too high, what is most likely to occur?",
+        options: [
+            "A) The agent learns very slowly",
+            "B) The agent may oscillate or fail to converge due to large updates",
+            "C) The agent always chooses random actions",
+            "D) The agent ignores future rewards"
+        ],
+        correct: "B",
+        explanation: "The learning rate $\\alpha \\in (0, 1]$ controls the step size of Q-table updates: $Q(s, a) \\leftarrow Q(s, a) + \\alpha \\delta_t$. If $\\alpha$ is too high ($\\alpha \\rightarrow 1.0$) in stochastic environments, TD error updates overwrite historical averages too aggressively, causing Q-values to oscillate violently and fail to converge."
+    },
+    {
+        id: "mock-full-25",
+        section: "sec-C",
+        sectionName: "Section C: Multiple Choice",
+        type: "mcq",
+        question: "25. What is the main advantage of policy-based methods over value-based methods?",
+        options: [
+            "A) They are always more sample efficient",
+            "B) They can handle continuous action spaces more naturally",
+            "C) They require less computation",
+            "D) They always find the global optimum"
+        ],
+        correct: "B",
+        explanation: "Value-based algorithms ($Q$-Learning / DQN) require computing $\\max_{a} Q(s, a)$ over all available actions at every step, which is computationally intractable in continuous action domains (e.g., controlling robotic joint angles across $\\theta \\in [0^\\circ, 360^\\circ]$). Policy gradient methods (`REINFORCE`, `PPO`) parameterize continuous probability distributions directly $\\pi_\\theta(a|s)$."
+    },
+    {
+        id: "mock-full-26",
+        section: "sec-C",
+        sectionName: "Section C: Multiple Choice",
+        type: "mcq",
+        question: "26. Which evaluation metric is MOST appropriate for a classification problem with highly imbalanced classes?",
+        options: [
+            "A) Accuracy",
+            "B) F1-Score",
+            "C) Mean Squared Error",
+            "D) R-squared"
+        ],
+        correct: "B",
+        explanation: "When dealing with extreme class skew ($99\\%$ negative vs $1\\%$ positive), accuracy is completely misleading. **F1-Score** ($2 \\cdot \\frac{P \\cdot R}{P + R}$) is the harmonic mean of Precision and Recall. It evaluates positive class detection capability without being distorted by a massive true negative majority class ($TN$)."
+    },
+    {
+        id: "mock-full-27",
+        section: "sec-C",
+        sectionName: "Section C: Multiple Choice",
+        type: "mcq",
+        question: "27. Which is an example of AI in healthcare that involves both computer vision and natural language processing?",
+        options: [
+            "A) Predicting readmission rates from tabular data",
+            "B) Analysing chest X-rays for pneumonia while also extracting information from written medical reports",
+            "C) Clustering patients by medical history",
+            "D) Using reinforcement learning to recommend treatments"
+        ],
+        correct: "B",
+        explanation: "**Computer Vision (CV)** models (such as Convolutional Neural Networks) process the 2D pixel grids of the patient's chest X-ray radiograph, while **Natural Language Processing (NLP)** transformers (`BioBERT`) parse unstructured text from the radiologist's clinical diagnostic notes, enabling multimodal cross-verification."
+    },
+
+    // --- SECTION D: NUMERICALS & EXACT STEP-BY-STEP MATHEMATICAL GUIDES (28 - 35) ---
+    {
+        id: "mock-full-28",
+        section: "sec-D",
+        sectionName: "Section D: Numericals & Step-by-Step Mathematical Guide",
+        type: "mcq",
+        question: "28. A softmax model for 4 classes outputs `[0.15, 0.20, 0.50, 0.15]` for a sample. What is the predicted class?",
+        options: [
+            "A) 0",
+            "B) 1",
+            "C) 2",
+            "D) 3"
+        ],
+        correct: "C",
+        explanation: `From <strong>logistic softmax.docx</strong>: In multiclass probabilistic classification, the decision rule is selecting the class with maximum estimated probability via the **argmax operator**:
+        \\[ \\hat{y} = \\arg\\max_{k \\in \\{0, 1, 2, 3\\}} \\hat{p}_k \\]
+        <strong style="color: #38bdf8; display: block; margin-top: 0.5rem;">Step-by-Step Probability Comparison:</strong>
+        <ul style="margin-left: 1.25rem; margin-top: 0.35rem; line-height: 1.7;">
+            <li>Class 0 Probability: $\\hat{p}_0 = 0.15$ ($15\\%$)</li>
+            <li>Class 1 Probability: $\\hat{p}_1 = 0.20$ ($20\\%$)</li>
+            <li><strong>Class 2 Probability: $\\hat{p}_2 = 0.50$ ($50\\%$) ⭐ (Maximum Value)</strong></li>
+            <li>Class 3 Probability: $\\hat{p}_3 = 0.15$ ($15\\%$)</li>
+        </ul>
+        Because $\\hat{p}_2 = 0.50 > 0.20 > 0.15$, the classifier assigns the sample to **Class 2**.`
+    },
+    {
+        id: "mock-full-29",
+        section: "sec-D",
+        sectionName: "Section D: Numericals & Step-by-Step Mathematical Guide",
+        type: "mcq",
+        question: "29. A model has `TP = 90`, `FP = 30`, `TN = 60`, `FN = 10`. What is the Precision?",
+        options: [
+            "A) 0.75",
+            "B) 0.90",
+            "C) 0.60",
+            "D) 0.80"
+        ],
+        correct: "A",
+        explanation: `Precision measures exact positive predictive accuracy (what fraction of instances predicted as positive are truly positive).
+        <div class="formula-box" style="margin: 0.6rem 0; padding: 0.5rem; background: rgba(15,23,42,0.5); border: 1px solid rgba(56,189,248,0.25); border-radius: 6px; text-align: center;">\\[ \\text{Precision} = \\frac{TP}{TP + FP} \\]</div>
+        <strong style="color: #38bdf8; display: block; margin-top: 0.5rem;">Step-by-Step Arithmetic Substitution:</strong>
+        <ol style="margin-left: 1.25rem; margin-top: 0.35rem; line-height: 1.7;">
+            <li>Substitute $TP = 90$ and $FP = 30$: $$\\text{Precision} = \\frac{90}{90 + 30} = \\frac{90}{120}$$</li>
+            <li>Simplify the fraction: $$\\frac{90}{120} = \\frac{3}{4} = \\mathbf{0.75}$$</li>
+            <li><strong>Why Distractors Are Traps:</strong> Option B ($0.90$) is Recall ($\\frac{90}{90+10}$). Option D ($0.80$) is overall Accuracy ($\\frac{90+60}{190} = 0.789 \\approx 0.80$).</li>
+        </ol>`
+    },
+    {
+        id: "mock-full-30",
+        section: "sec-D",
+        sectionName: "Section D: Numericals & Step-by-Step Mathematical Guide",
+        type: "mcq",
+        question: "30. Using the same values (`TP = 90`, `FP = 30`, `TN = 60`, `FN = 10`), what is the Recall?",
+        options: [
+            "A) 0.75",
+            "B) 0.90",
+            "C) 0.60",
+            "D) 0.80"
+        ],
+        correct: "B",
+        explanation: `Recall (Sensitivity / True Positive Rate) quantifies what fraction of actual ground-truth positive cases were successfully caught by the classifier.
+        <div class="formula-box" style="margin: 0.6rem 0; padding: 0.5rem; background: rgba(15,23,42,0.5); border: 1px solid rgba(56,189,248,0.25); border-radius: 6px; text-align: center;">\\[ \\text{Recall} = \\frac{TP}{TP + FN} \\]</div>
+        <strong style="color: #38bdf8; display: block; margin-top: 0.5rem;">Step-by-Step Arithmetic Substitution:</strong>
+        <ol style="margin-left: 1.25rem; margin-top: 0.35rem; line-height: 1.7;">
+            <li>Substitute $TP = 90$ and $FN = 10$: $$\\text{Recall} = \\frac{90}{90 + 10} = \\frac{90}{100}$$</li>
+            <li>Divide precisely: $$\\frac{90}{100} = \\mathbf{0.90} \\text{ ($90\\%$ sensitivity)}$$</li>
+        </ol>`
+    },
+    {
+        id: "mock-full-31",
+        section: "sec-D",
+        sectionName: "Section D: Numericals & Step-by-Step Mathematical Guide",
+        type: "mcq",
+        question: "31. A model has `Precision = 0.6` and `Recall = 0.8`. What is the F1-Score (to 3 decimal places)?",
+        options: [
+            "A) 0.686",
+            "B) 0.700",
+            "C) 0.480",
+            "D) 0.750"
+        ],
+        correct: "A",
+        explanation: `F1-Score is the exact **Harmonic Mean** of Precision ($P$) and Recall ($R$).
+        <div class="formula-box" style="margin: 0.6rem 0; padding: 0.5rem; background: rgba(15,23,42,0.5); border: 1px solid rgba(56,189,248,0.25); border-radius: 6px; text-align: center;">\\[ F_1 = 2 \\cdot \\frac{P \\cdot R}{P + R} \\]</div>
+        <strong style="color: #38bdf8; display: block; margin-top: 0.5rem;">Step-by-Step Arithmetic Substitution:</strong>
+        <ol style="margin-left: 1.25rem; margin-top: 0.35rem; line-height: 1.7;">
+            <li>Substitute $P = 0.6$ and $R = 0.8$: $$F_1 = 2 \\cdot \\frac{0.6 \\times 0.8}{0.6 + 0.8}$$</li>
+            <li>Calculate Numerator: $2 \\times 0.48 = 0.96$.</li>
+            <li>Calculate Denominator: $0.6 + 0.8 = 1.40$.</li>
+            <li>Divide strictly: $$F_1 = \\frac{0.96}{1.40} = \\frac{96}{140} = \\frac{24}{35} \\approx 0.685714\\dots \\rightarrow \\mathbf{0.686}$$</li>
+            <li><strong>Why Option B ($0.700$) is a Trap:</strong> $0.700$ is the simple arithmetic mean ($\\frac{0.6 + 0.8}{2} = 0.70$). The harmonic mean ($0.686$) always penalizes imbalances, yielding a lower value!</li>
+        </ol>`
+    },
+    {
+        id: "mock-full-32",
+        section: "sec-D",
+        sectionName: "Section D: Numericals & Step-by-Step Mathematical Guide",
+        type: "mcq",
+        question: "32. A Decision Tree node contains samples distributed as `[10, 10, 10, 10]` across 4 classes. What is the exact entropy of the node?",
+        options: [
+            "A) 1.000",
+            "B) 2.000",
+            "C) 0.500",
+            "D) 4.000"
+        ],
+        correct: "B",
+        explanation: `From <strong>Handson on Decision Tree.pdf</strong>: Shannon Entropy measures uncertainty in bits across $C$ discrete classes:
+        <div class="formula-box" style="margin: 0.6rem 0; padding: 0.5rem; background: rgba(15,23,42,0.5); border: 1px solid rgba(56,189,248,0.25); border-radius: 6px; text-align: center;">\\[ H(X) = -\\sum_{i=1}^{C} p_i \\log_2(p_i) \\]</div>
+        <strong style="color: #38bdf8; display: block; margin-top: 0.5rem;">Step-by-Step Mathematical Derivation:</strong>
+        <ol style="margin-left: 1.25rem; margin-top: 0.35rem; line-height: 1.7;">
+            <li>Total samples $N = 10 + 10 + 10 + 10 = 40$. Because each of the $C=4$ classes has exactly $10$ samples: $$p_1 = p_2 = p_3 = p_4 = \\frac{10}{40} = \\frac{1}{4} = 0.25$$</li>
+            <li>Evaluate $\\log_2(0.25)$: Because $\\frac{1}{4} = 2^{-2}$, we know $\\log_2\\left(2^{-2}\\right) = -2$.</li>
+            <li>Sum across all 4 identical classes: $$H(X) = -\\left[ 4 \\times \\left( \\frac{1}{4} \\cdot (-2) \\right) \\right] = -\\left[ 4 \\times (-0.5) \\right] = -[-2.0] = \\mathbf{2.000 \\text{ bits}}$$</li>
+            <li><strong>University Shortcut Theorem:</strong> Whenever samples are split perfectly equally across $C$ classes ($p_i = \\frac{1}{C}$), maximum entropy is always: $$H_{\\text{max}} = \\log_2(C) \\implies \\log_2(4) = \\mathbf{2.000}$$</li>
+        </ol>`
+    },
+    {
+        id: "mock-full-33",
+        section: "sec-D",
+        sectionName: "Section D: Numericals & Step-by-Step Mathematical Guide",
+        type: "mcq",
+        question: "33. A split reduces the entropy from `0.85` at the parent to a weighted average of `0.55` across the children. What is the information gain?",
+        options: [
+            "A) 0.85",
+            "B) 0.55",
+            "C) 0.30",
+            "D) 1.40"
+        ],
+        correct: "C",
+        explanation: `From <strong>Handson on Decision Tree.pdf</strong>: Information Gain ($IG$) quantifies the net reduction in node impurity achieved by splitting parent node $D$ across child branches $D_v$:
+        <div class="formula-box" style="margin: 0.6rem 0; padding: 0.5rem; background: rgba(15,23,42,0.5); border: 1px solid rgba(56,189,248,0.25); border-radius: 6px; text-align: center;">\\[ IG(D, A) = \\text{Entropy}(D_{\\text{parent}}) - \\sum_{v \\in \\text{children}} \\frac{|D_v|}{|D|} \\text{Entropy}(D_v) \\]</div>
+        <strong style="color: #38bdf8; display: block; margin-top: 0.5rem;">Step-by-Step Arithmetic:</strong>
+        <ul style="margin-left: 1.25rem; margin-top: 0.35rem; line-height: 1.7;">
+            <li>Parent Entropy: $\\text{Entropy}(D_{\\text{parent}}) = 0.85$</li>
+            <li>Weighted Child Entropy: $\\sum \\frac{|D_v|}{|D|} \\text{Entropy}(D_v) = 0.55$</li>
+            <li>Net Information Gain: $$IG = 0.85 - 0.55 = \\mathbf{0.30 \\text{ bits}}$$</li>
+        </ul>`
+    },
+    {
+        id: "mock-full-34",
+        section: "sec-D",
+        sectionName: "Section D: Numericals & Step-by-Step Mathematical Guide",
+        type: "mcq",
+        question: "34. During K-means, the points `P(2,2)`, `Q(2,4)` and `R(4,3)` are assigned to the same cluster. What is the new centroid after the update step?",
+        options: [
+            "A) (2.67, 3.00)",
+            "B) (2.00, 3.00)",
+            "C) (3.00, 3.00)",
+            "D) (2.50, 3.50)"
+        ],
+        correct: "A",
+        explanation: `From <strong>tutorial unsupervised learning (1).docx</strong>: During Lloyd's Update phase, new centroid coordinates $\\mu_k = (\\mu_x, \\mu_y)$ of cluster $C_k$ are recomputed as the exact arithmetic mean of all assigned points:
+        <div class="formula-box" style="margin: 0.6rem 0; padding: 0.5rem; background: rgba(15,23,42,0.5); border: 1px solid rgba(56,189,248,0.25); border-radius: 6px; text-align: center;">\\[ \\mu_x = \\frac{1}{|C_k|} \\sum_{i \\in C_k} x_i, \\quad \\mu_y = \\frac{1}{|C_k|} \\sum_{i \\in C_k} y_i \\]</div>
+        <strong style="color: #38bdf8; display: block; margin-top: 0.5rem;">Step-by-Step Coordinate Calculation:</strong>
+        <ol style="margin-left: 1.25rem; margin-top: 0.35rem; line-height: 1.7;">
+            <li><strong>Calculate X-Coordinate Mean ($\\mu_x$):</strong> Points $P_x=2, Q_x=2, R_x=4$: $$\\mu_x = \\frac{2 + 2 + 4}{3} = \\frac{8}{3} \\approx 2.66667\\dots \\rightarrow \\mathbf{2.67}$$</li>
+            <li><strong>Calculate Y-Coordinate Mean ($\\mu_y$):</strong> Points $P_y=2, Q_y=4, R_y=3$: $$\\mu_y = \\frac{2 + 4 + 3}{3} = \\frac{9}{3} = \\mathbf{3.00}$$</li>
+            <li><strong>New Centroid Vector:</strong> $\\mu = \\mathbf{(2.67, 3.00)}$.</li>
+        </ol>`
+    },
+    {
+        id: "mock-full-35",
+        section: "sec-D",
+        sectionName: "Section D: Numericals & Step-by-Step Mathematical Guide",
+        type: "mcq",
+        question: "35. K-means is run with `K = 2, 3 and 4`, giving Silhouette Scores of `0.38`, `0.55` and `0.47` respectively. Which K should be selected?",
+        options: [
+            "A) 2",
+            "B) 3",
+            "C) 4",
+            "D) All are equally good"
+        ],
+        correct: "B",
+        explanation: `From <strong>tutorial unsupervised learning (1).docx</strong>: The Silhouette Coefficient $s(i) \\in [-1, +1]$ measures how dense and well-separated clusters are ($s = \\frac{b-a}{\\max(a,b)}$).
+        <strong style="color: #38bdf8; display: block; margin-top: 0.5rem;">Selection Rule & Comparison:</strong>
+        <ul style="margin-left: 1.25rem; margin-top: 0.35rem; line-height: 1.7;">
+            <li>Unlike WCSS inertia which monotonically decreases toward 0 as $K$ increases, the optimal number of clusters $K^*$ is the one that strictly **maximizes** the average Silhouette Score across the dataset!</li>
+            <li>$K=2 \\rightarrow s = 0.38$</li>
+            <li><strong>$K=3 \\rightarrow s = 0.55$ ⭐ (Highest Silhouette Score)</strong></li>
+            <li>$K=4 \\rightarrow s = 0.47$</li>
+        </ul>
+        Because $0.55 > 0.47 > 0.38$, choosing **$K=3$** yields the best structural balance of intra-cluster cohesion and inter-cluster separation.`
+    },
+
+    // --- SECTION E: MATCH THE FOLLOWING (36 - 37) ---
+    {
+        id: "mock-full-36",
+        section: "sec-E",
+        sectionName: "Section E: Match the Following",
+        type: "match",
+        question: "36. Match each concept in Column A with its correct meaning in Column B:",
+        matchPairs: [
+            { colA: "1. Gini impurity of 0", colB: "c. The node is perfectly pure, containing only one class" },
+            { colA: "2. Pruning", colB: "a. Removing unnecessary branches to reduce overfitting" },
+            { colA: "3. Euclidean distance", colB: "e. The distance metric commonly used in K-means" },
+            { colA: "4. Leaf node", colB: "b. The final node that holds the output prediction" },
+            { colA: "5. R-squared", colB: "d. The proportion of variance in the target explained by the model" }
+        ],
+        answer: "1c, 2a, 3e, 4b, 5d",
+        explanation: `From <strong>Handson on Decision Tree.pdf</strong> & <strong>tutorial unsupervised learning (1).docx</strong>:
+        <ul style="margin-left: 1.25rem; margin-top: 0.35rem; line-height: 1.7;">
+            <li><strong>1 -> c:</strong> When all samples in a node belong to exactly one class ($p_k=1.0$), $\\text{Gini} = 1 - 1^2 = 0.0$ (Pure node).</li>
+            <li><strong>2 -> a:</strong> Pruning (<code class="inline-code">cost-complexity pruning</code> $\alpha$) cuts away overfitted lower branches that capture training noise.</li>
+            <li><strong>3 -> e:</strong> Euclidean distance $L_2$ is the standard metric minimized by K-Means centroid updates.</li>
+            <li><strong>4 -> b:</strong> Terminal Leaf Nodes contain no further splits and output class probabilities/predictions.</li>
+            <li><strong>5 -> d:</strong> $R^2$ Score ($1 - \\frac{SS_{\\text{res}}}{SS_{\\text{tot}}}$) quantifies the exact percentage of target variance explained by regression predictors.</li>
+        </ul>`
+    },
+    {
+        id: "mock-full-37",
+        section: "sec-E",
+        sectionName: "Section E: Match the Following",
+        type: "match",
+        question: "37. Match each AI concept in Column A with its correct description in Column B:",
+        matchPairs: [
+            { colA: "1. Narrow AI", colB: "c. Designed to perform one specific task" },
+            { colA: "2. General AI", colB: "d. Theoretical AI that could perform any intellectual task a human can" },
+            { colA: "3. Turing Test", colB: "a. Passed when a human evaluator cannot distinguish the machine from a human in text conversation" },
+            { colA: "4. Reactive Machines", colB: "e. Has no memory and responds only to the current input" },
+            { colA: "5. Limited Memory AI", colB: "b. Can use past data for a short period to inform decisions" }
+        ],
+        answer: "1c, 2d, 3a, 4e, 5b",
+        explanation: `Syllabus AI Taxonomy Breakdown:
+        <ul style="margin-left: 1.25rem; margin-top: 0.35rem; line-height: 1.7;">
+            <li><strong>1 -> c:</strong> **Narrow AI (Weak AI)** excels at specialized, singular tasks (e.g., chess engines, medical biopsy classifiers, spam filters).</li>
+            <li><strong>2 -> d:</strong> **Artificial General Intelligence (AGI)** is theoretical human-level intelligence capable of reasoning across any domain.</li>
+            <li><strong>3 -> a:</strong> The **Turing Test** evaluates whether a machine can engage in natural conversation indistinguishable from a human interrogator.</li>
+            <li><strong>4 -> e:</strong> **Reactive Machines** (<code class="inline-code">Deep Blue</code>) make decisions directly from current state inputs without storing historical memory.</li>
+            <li><strong>5 -> b:</strong> **Limited Memory AI** (such as self-driving cars or modern LLMs) buffers recent historical sensor feeds to compute velocities and trajectories.</li>
+        </ul>`
+    }
+];
+
+// ============================================================================
+// RENDER FULL MOCK COVERAGE SECTION FUNCTION
+// ============================================================================
+window.renderFullMockCoverage = function(filterSec = 'all') {
+    const container = document.getElementById('full-mock-container');
+    if (!container) return;
+
+    let filtered = window.FULL_MOCK_QUESTIONS;
+    if (filterSec !== 'all') {
+        filtered = window.FULL_MOCK_QUESTIONS.filter(q => q.section === filterSec);
+    }
+
+    // Group by section Name
+    let currentSecName = "";
+    let html = "";
+
+    filtered.forEach((q, idx) => {
+        if (q.sectionName !== currentSecName) {
+            currentSecName = q.sectionName;
+            let badgeStyle = "background: #0ea5e9; color: #fff;";
+            if (q.section === 'sec-D') badgeStyle = "background: #f59e0b; color: #000; font-weight: 800;";
+            if (q.section === 'sec-E') badgeStyle = "background: #8b5cf6; color: #fff;";
+            
+            html += `
+            <div class="mock-section-header" style="margin-top: 1.5rem; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border-light); display: flex; align-items: center; gap: 0.75rem;">
+                <span class="badge" style="${badgeStyle} padding: 0.35rem 0.75rem; font-size: 0.92rem;">${currentSecName}</span>
+                ${q.section === 'sec-D' ? '<span style="font-size: 0.85rem; color: #f59e0b; font-weight: 600;">📐 Complete with LaTeX Equations & Step-by-Step Numerical Derivations</span>' : ''}
+            </div>`;
+        }
+
+        html += `<div class="question-card" id="mock-card-${q.id}" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">`;
+        html += `<div class="q-header" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">`;
+        html += `<h4 style="font-size: 1.1rem; color: var(--text-primary); margin: 0; line-height: 1.5; font-weight: 700;">${q.question}</h4>`;
+        html += `<span class="badge badge-accent" style="white-space: nowrap;">1 Pt</span>`;
+        html += `</div>`;
+
+        // Type specific interactive body
+        if (q.type === 'blank') {
+            html += `
+            <div style="margin-bottom: 1.15rem; display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+                <input type="text" id="blank-in-${q.id}" class="cs-search-input" placeholder="Type fill-in-the-blank answer here..." style="max-width: 320px; padding: 0.5rem 0.8rem;">
+                <button class="btn btn-outline" onclick="window.checkFullMockBlank('${q.id}', '${q.answer.replace(/'/g, "\\'")}')" style="padding: 0.5rem 1rem;">Verify Answer</button>
+                <button class="btn btn-secondary" onclick="window.revealSingleMockAns('${q.id}')" style="padding: 0.5rem 1rem;">👁️ Reveal Answer</button>
+            </div>
+            <div id="blank-res-${q.id}" style="display: none; margin-bottom: 0.75rem; font-weight: 700;"></div>`;
+        } else if (q.type === 'tf' || q.type === 'mcq') {
+            html += `<div class="options-list" style="display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1.15rem;">`;
+            q.options.forEach((opt, oIdx) => {
+                let optChar = q.type === 'tf' ? opt : opt.charAt(0);
+                html += `
+                <button class="btn-mock-opt" onclick="window.checkFullMockMCQ('${q.id}', '${optChar}', '${q.correct}')" style="text-align: left; padding: 0.7rem 1rem; border-radius: 8px; background: var(--bg-page); border: 1px solid var(--border-light); color: var(--text-primary); cursor: pointer; transition: all 0.2s; font-size: 0.98rem;">
+                    ${opt}
+                </button>`;
+            });
+            html += `</div>`;
+        } else if (q.type === 'match') {
+            html += `<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem; background: var(--bg-page); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-light);">`;
+            html += `<div><strong style="color: #38bdf8; display: block; margin-bottom: 0.5rem;">Column A (Concepts)</strong><ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.45rem;">`;
+            q.matchPairs.forEach(p => { html += `<li style="font-size: 0.93rem; color: var(--text-primary);">${p.colA}</li>`; });
+            html += `</ul></div>`;
+            html += `<div><strong style="color: #10b981; display: block; margin-bottom: 0.5rem;">Column B (Descriptions)</strong><ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.45rem;">`;
+            q.matchPairs.forEach(p => { html += `<li style="font-size: 0.93rem; color: var(--text-secondary);">${p.colB}</li>`; });
+            html += `</ul></div>`;
+            html += `</div>`;
+            html += `
+            <div style="margin-bottom: 1.15rem; display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+                <button class="btn btn-primary" onclick="window.revealSingleMockAns('${q.id}')" style="padding: 0.55rem 1.15rem; font-weight: 700; background: #8b5cf6; border: none;">👁️ Reveal Exact Pair Matches & Guide</button>
+            </div>`;
+        }
+
+        // Explanation Box (Hidden by default until answered or revealed)
+        let cleanedExp = window.cleanTextForDisplay ? window.cleanTextForDisplay(q.explanation) : q.explanation;
+        let answerHeader = q.type === 'blank' ? `Verified Answer: ${q.answer}` : (q.type === 'match' ? `Verified Match Key: ${q.answer}` : `Verified Answer: Option ${q.correct}`);
+        
+        html += `
+        <div id="exp-box-${q.id}" class="solution-box" style="display: none; background: rgba(15, 23, 42, 0.65); border-left: 4px solid #38bdf8; padding: 1.15rem; border-radius: 8px; margin-top: 0.75rem;">
+            <div style="font-weight: 800; color: #38bdf8; margin-bottom: 0.6rem; font-size: 1.05rem; display: flex; align-items: center; gap: 0.5rem;">
+                <span>✅ ${answerHeader}</span>
+            </div>
+            <div style="color: var(--text-primary); font-size: 0.96rem; line-height: 1.7;">${cleanedExp}</div>
+        </div>`;
+
+        html += `</div>`; // End card
+    });
+
+    container.innerHTML = html;
+    if (window.renderAllMath) {
+        setTimeout(() => window.renderAllMath(), 60);
+    }
+};
+
+// --- INTERACTIVE CHECKERS FOR FULL MOCK ---
+window.checkFullMockMCQ = function(qid, clickedChar, correctChar) {
+    const card = document.getElementById('mock-card-' + qid);
+    if (!card) return;
+    const btns = card.querySelectorAll('.btn-mock-opt');
+    btns.forEach(btn => {
+        const text = btn.innerText || btn.textContent;
+        if (text.trim().startsWith(correctChar + ')') || text.trim() === correctChar) {
+            btn.style.background = 'rgba(16, 185, 129, 0.25)';
+            btn.style.borderColor = '#10b981';
+            btn.style.color = '#10b981';
+            btn.style.fontWeight = '700';
+        } else if ((text.trim().startsWith(clickedChar + ')') || text.trim() === clickedChar) && clickedChar !== correctChar) {
+            btn.style.background = 'rgba(239, 68, 68, 0.25)';
+            btn.style.borderColor = '#ef4444';
+            btn.style.color = '#ef4444';
+            btn.style.fontWeight = '700';
+        }
+    });
+    const expBox = document.getElementById('exp-box-' + qid);
+    if (expBox) {
+        expBox.style.display = 'block';
+        if (window.renderAllMath) setTimeout(() => window.renderAllMath(), 30);
+    }
+};
+
+window.checkFullMockBlank = function(qid, expectedAns) {
+    const input = document.getElementById('blank-in-' + qid);
+    const res = document.getElementById('blank-res-' + qid);
+    const expBox = document.getElementById('exp-box-' + qid);
+    if (!input || !res) return;
+    
+    let val = input.value.trim().toLowerCase();
+    if (val.length > 1 && expectedAns.toLowerCase().includes(val)) {
+        res.style.display = 'block';
+        res.style.color = '#10b981';
+        res.innerHTML = `✅ Correct! (${expectedAns})`;
+    } else {
+        res.style.display = 'block';
+        res.style.color = '#ef4444';
+        res.innerHTML = `❌ Incorrect. Expected answer: <strong>${expectedAns}</strong>`;
+    }
+    if (expBox) {
+        expBox.style.display = 'block';
+        if (window.renderAllMath) setTimeout(() => window.renderAllMath(), 30);
+    }
+};
+
+window.revealSingleMockAns = function(qid) {
+    const expBox = document.getElementById('exp-box-' + qid);
+    if (expBox) {
+        expBox.style.display = 'block';
+        if (window.renderAllMath) setTimeout(() => window.renderAllMath(), 30);
+    }
+};
+
+window.revealAllFullMockAnswers = function() {
+    window.FULL_MOCK_QUESTIONS.forEach(q => {
+        const expBox = document.getElementById('exp-box-' + q.id);
+        if (expBox) expBox.style.display = 'block';
+    });
+    if (window.renderAllMath) setTimeout(() => window.renderAllMath(), 60);
+};
+
+window.filterFullMockSection = function(secType, btnElem) {
+    document.querySelectorAll('#section-full-mock-coverage .cs-filter-btn').forEach(b => b.classList.remove('active'));
+    if (btnElem) btnElem.classList.add('active');
+    window.renderFullMockCoverage(secType);
+};

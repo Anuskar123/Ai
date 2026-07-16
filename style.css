@@ -2207,16 +2207,17 @@ pre {
     color: #991b1b !important;
 }
 .test1-explanation {
-    background: #f0fdf4;
-    border: 1px solid #bbf7d0;
-    border-left: 4px solid #059669;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--primary);
     border-radius: 8px;
-    padding: 1.5rem;
+    padding: 1.4rem 1.6rem;
     margin-top: 1.25rem;
-    color: #14532d;
-    font-size: 0.94rem;
-    line-height: 1.65;
+    color: var(--text-primary);
+    font-size: 0.96rem;
+    line-height: 1.7;
     display: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 .test1-explanation.show {
     display: block !important;
@@ -3341,4 +3342,725 @@ pre {
 
 [data-theme="dark"] .mock-explanation {
     border-top-color: #334155 !important;
+}
+
+/* ==========================================================================
+   PREMIUM NOTES TYPOGRAPHY & FORMULA STYLING
+   Professional academic layout for CSY3081 study notes
+   ========================================================================== */
+
+/* ---- BASE NOTES TYPOGRAPHY ---- */
+.doc-article,
+.cs-card-body {
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.doc-article p,
+.cs-card-body p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.doc-article h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid var(--border-light);
+}
+
+.doc-article h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 1.5rem 0 0.6rem;
+    letter-spacing: -0.2px;
+}
+
+.doc-article strong,
+.cs-card-body strong {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.doc-article code,
+.cs-card-body code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    font-weight: 600;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 1px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(79, 70, 229, 0.18);
+}
+
+[data-theme="dark"] .doc-article code,
+[data-theme="dark"] .cs-card-body code {
+    color: #93c5fd !important;
+    background: rgba(99, 102, 241, 0.15) !important;
+    border-color: rgba(99, 102, 241, 0.3) !important;
+}
+
+/* ---- PREMIUM FORMULA (MATH-BOX) STYLING ---- */
+.math-box {
+    background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%);
+    border: 1.5px solid #c7d2fe;
+    border-left: 5px solid var(--primary);
+    border-radius: 10px;
+    padding: 1.25rem 1.75rem;
+    margin: 1.25rem 0;
+    text-align: center;
+    overflow-x: auto;
+    box-shadow: 0 2px 10px rgba(79, 70, 229, 0.08), inset 0 1px 0 rgba(255,255,255,0.7);
+    position: relative;
+}
+
+.math-box .katex-display {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.math-box .katex {
+    font-size: 1.15em !important;
+    color: #1e1b4b !important;
+}
+
+[data-theme="dark"] .math-box {
+    background: linear-gradient(135deg, rgba(79,70,229,0.12) 0%, rgba(99,102,241,0.08) 100%) !important;
+    border-color: rgba(99, 102, 241, 0.4) !important;
+    border-left-color: #818cf8 !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4) !important;
+}
+
+[data-theme="dark"] .math-box .katex {
+    color: #c7d2fe !important;
+}
+
+/* KaTeX display block inside notes */
+.doc-article .katex-display,
+.cs-card-body .katex-display,
+.callout .katex-display {
+    background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%) !important;
+    border: 1.5px solid #c7d2fe !important;
+    border-left: 5px solid var(--primary) !important;
+    border-radius: 10px !important;
+    padding: 1.1rem 1.5rem !important;
+    margin: 1rem 0 !important;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.08) !important;
+}
+
+[data-theme="dark"] .doc-article .katex-display,
+[data-theme="dark"] .cs-card-body .katex-display,
+[data-theme="dark"] .callout .katex-display {
+    background: rgba(79, 70, 229, 0.1) !important;
+    border-color: rgba(99, 102, 241, 0.4) !important;
+    border-left-color: #818cf8 !important;
+}
+
+.doc-article .katex:not(.katex-display .katex),
+.cs-card-body .katex:not(.katex-display .katex) {
+    color: #3730a3 !important;
+    font-size: 1.02em !important;
+}
+
+[data-theme="dark"] .doc-article .katex:not(.katex-display .katex),
+[data-theme="dark"] .cs-card-body .katex:not(.katex-display .katex) {
+    color: #a5b4fc !important;
+}
+
+/* ---- PREMIUM CODE BLOCK STYLING ---- */
+.cs-code-wrap {
+    margin: 1rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.cs-code-wrap pre {
+    background: #0f172a !important;
+    margin: 0 !important;
+    padding: 1.5rem 1.75rem !important;
+    overflow-x: auto;
+}
+
+.cs-code-wrap code {
+    font-family: var(--font-mono) !important;
+    font-size: 0.88rem !important;
+    font-weight: 500 !important;
+    line-height: 1.65 !important;
+    color: #93c5fd !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    white-space: pre;
+}
+
+/* ---- CALLOUT BOX IMPROVEMENTS ---- */
+.callout {
+    border-radius: 10px;
+    padding: 1.1rem 1.4rem;
+    margin: 1.1rem 0;
+    border: 1px solid transparent;
+    border-left-width: 5px;
+    font-size: 0.96rem;
+    line-height: 1.7;
+}
+
+.callout strong:first-child {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.callout-info {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-color: #bfdbfe;
+    border-left-color: #3b82f6;
+    color: #1e3a8a;
+}
+
+.callout-tip {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border-color: #bbf7d0;
+    border-left-color: #22c55e;
+    color: #14532d;
+}
+
+.callout-warning {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border-color: #fde68a;
+    border-left-color: #f59e0b;
+    color: #78350f;
+}
+
+[data-theme="dark"] .callout-info {
+    background: rgba(59, 130, 246, 0.1) !important;
+    border-color: rgba(59, 130, 246, 0.3) !important;
+    border-left-color: #60a5fa !important;
+    color: #bfdbfe !important;
+}
+
+[data-theme="dark"] .callout-tip {
+    background: rgba(34, 197, 94, 0.1) !important;
+    border-color: rgba(34, 197, 94, 0.3) !important;
+    border-left-color: #4ade80 !important;
+    color: #bbf7d0 !important;
+}
+
+[data-theme="dark"] .callout-warning {
+    background: rgba(245, 158, 11, 0.1) !important;
+    border-color: rgba(245, 158, 11, 0.3) !important;
+    border-left-color: #fbbf24 !important;
+    color: #fef3c7 !important;
+}
+
+/* ---- PROCESS STEPS STYLING ---- */
+.process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1rem 0;
+    align-items: center;
+}
+
+.step-badge {
+    background: var(--primary-gradient);
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    letter-spacing: 0.01em;
+    box-shadow: 0 2px 6px rgba(79, 70, 229, 0.3);
+    white-space: nowrap;
+}
+
+/* ---- LIMITATIONS GRID STYLING ---- */
+.limitations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.lim-box {
+    background: var(--bg-card-alt);
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    border-left: 4px solid var(--accent-red);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lim-box:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.lim-box.col-span-2 {
+    grid-column: span 2;
+    border-left-color: var(--accent-orange);
+}
+
+.lim-box strong {
+    display: block;
+    color: var(--accent-red);
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.lim-box.col-span-2 strong {
+    color: var(--accent-orange);
+}
+
+.lim-box p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+[data-theme="dark"] .lim-box {
+    background: #1a2236 !important;
+    border-color: #334155 !important;
+}
+
+[data-theme="dark"] .lim-box strong {
+    color: #f87171 !important;
+}
+
+[data-theme="dark"] .lim-box.col-span-2 strong {
+    color: #fbbf24 !important;
+}
+
+@media (max-width: 680px) {
+    .limitations-grid { grid-template-columns: 1fr; }
+    .lim-box.col-span-2 { grid-column: span 1; }
+}
+
+/* ---- NOTES ARTICLE SECTIONS ---- */
+.doc-article {
+    padding: 1.75rem 2rem;
+    margin-bottom: 1.5rem;
+    border-radius: 14px;
+    border: 1px solid var(--border-light);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    scroll-margin-top: 100px;
+}
+
+.doc-article:hover {
+    border-color: var(--border-medium);
+    box-shadow: var(--shadow-md);
+}
+
+.doc-tag {
+    display: inline-block;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.65rem;
+    border-radius: 20px;
+    margin-bottom: 0.65rem;
+    border: 1px solid rgba(79,70,229,0.2);
+}
+
+[data-theme="dark"] .doc-tag {
+    background: rgba(99,102,241,0.15) !important;
+    color: #a5b4fc !important;
+    border-color: rgba(99,102,241,0.3) !important;
+}
+
+/* ---- TABLE STYLING IN NOTES ---- */
+.doc-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    font-size: 0.91rem;
+    box-shadow: var(--shadow-sm);
+    margin: 1rem 0;
+}
+
+.doc-table thead {
+    background: var(--primary-gradient);
+}
+
+.doc-table thead th {
+    padding: 0.85rem 1.1rem;
+    text-align: left;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.87rem;
+    letter-spacing: 0.02em;
+}
+
+.doc-table tbody tr {
+    border-bottom: 1px solid var(--border-light);
+    transition: background 0.15s ease;
+}
+
+.doc-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.doc-table tbody tr:hover {
+    background: var(--bg-card-alt);
+}
+
+.doc-table td {
+    padding: 0.8rem 1.1rem;
+    color: var(--text-secondary);
+    vertical-align: top;
+    line-height: 1.55;
+}
+
+.doc-table td strong {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .doc-table {
+    border-color: #334155 !important;
+}
+
+[data-theme="dark"] .doc-table tbody tr {
+    border-bottom-color: #1e293b !important;
+}
+
+[data-theme="dark"] .doc-table tbody tr:hover {
+    background: #1e293b !important;
+}
+
+[data-theme="dark"] .doc-table td {
+    color: #cbd5e1 !important;
+}
+
+/* ---- CS BLOCK SECTIONS ---- */
+.cs-block {
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-left-width: 5px;
+}
+
+.cs-block-title {
+    font-weight: 800;
+    font-size: 0.95rem;
+    margin-bottom: 0.65rem;
+}
+
+.cs-block.explanation {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-color: #bfdbfe;
+    border-left-color: #3b82f6;
+    color: #1e3a8a;
+}
+
+.cs-block.explanation .cs-block-title { color: #1d4ed8; }
+
+.cs-block.realworld {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border-color: #bbf7d0;
+    border-left-color: #22c55e;
+    color: #14532d;
+}
+
+.cs-block.realworld .cs-block-title { color: #15803d; }
+
+.cs-block.keypoints {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border-color: #fde68a;
+    border-left-color: #f59e0b;
+    color: #78350f;
+}
+
+.cs-block.keypoints .cs-block-title { color: #b45309; }
+
+.cs-points-list {
+    margin: 0.4rem 0 0 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.cs-points-list li {
+    font-size: 0.93rem;
+    line-height: 1.6;
+}
+
+/* ---- CS FILTER BAR ---- */
+.cs-filter-bar {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 1rem 1.4rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.cs-filter-btn {
+    background: var(--bg-card-alt);
+    border: 1px solid var(--border-medium);
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+    font-size: 0.84rem;
+    font-weight: 600;
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cs-filter-btn:hover,
+.cs-filter-btn.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 2px 8px rgba(79,70,229,0.3);
+}
+
+.cs-search-input {
+    flex: 1;
+    min-width: 200px;
+    background: var(--bg-page);
+    border: 1.5px solid var(--border-medium);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: 20px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cs-search-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79,70,229,0.12);
+}
+
+.cs-search-input::placeholder {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .cs-search-input {
+    background: #0f172a !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+}
+
+[data-theme="dark"] .cs-search-input:focus {
+    border-color: #818cf8 !important;
+    box-shadow: 0 0 0 3px rgba(129,140,248,0.2) !important;
+}
+
+/* ---- MT HELPER CLASSES ---- */
+.mt-2 { margin-top: 0.5rem !important; }
+.mt-3 { margin-top: 0.75rem !important; }
+.mt-4 { margin-top: 1rem !important; }
+.mb-2 { margin-bottom: 0.5rem !important; }
+
+/* ---- DETAILED NOTES HEADER ---- */
+.detailed-notes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.detailed-notes-header h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.4px;
+    margin-bottom: 0.4rem;
+}
+
+.detailed-notes-header p {
+    font-size: 0.94rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 680px;
+}
+
+/* ---- NOTES LAYOUT GRID ---- */
+.notes-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.notes-sidebar {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 14px;
+    padding: 1.25rem;
+    position: sticky;
+    top: 100px;
+    max-height: calc(100vh - 130px);
+    overflow-y: auto;
+    box-shadow: var(--shadow-sm);
+}
+
+.notes-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.notes-link {
+    display: block;
+    padding: 0.55rem 0.85rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+    line-height: 1.35;
+}
+
+.notes-link:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+    border-left-color: var(--primary);
+    padding-left: 1.1rem;
+}
+
+.notes-link.active {
+    background: var(--primary-light);
+    color: var(--primary);
+    border-left-color: var(--primary);
+    font-weight: 700;
+}
+
+[data-theme="dark"] .notes-link:hover,
+[data-theme="dark"] .notes-link.active {
+    background: rgba(99,102,241,0.15) !important;
+    color: #a5b4fc !important;
+    border-left-color: #818cf8 !important;
+}
+
+@media (max-width: 900px) {
+    .notes-layout {
+        grid-template-columns: 1fr;
+    }
+    .notes-sidebar {
+        position: static;
+        max-height: none;
+    }
+}
+
+/* ---- CASE STUDY CARD STYLING ---- */
+.case-study-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    margin-bottom: 1.5rem;
+}
+
+.case-study-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--border-medium);
+}
+
+.cs-card-header {
+    background: linear-gradient(135deg, var(--bg-card-alt) 0%, var(--bg-card) 100%);
+    border-bottom: 1px solid var(--border-light);
+    padding: 1.5rem 1.75rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.cs-title-wrap h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+    margin: 0.4rem 0 0.3rem;
+    line-height: 1.35;
+}
+
+.cs-title-sub {
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.cs-card-body {
+    padding: 1.5rem 1.75rem;
+}
+
+/* ---- DETAILED NOTES GRID ---- */
+.detailed-notes-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+
+/* Prevent double clipboard copy of KaTeX hidden MathML accessibility nodes */
+.katex-mathml {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+}
+
+/* ==========================================================================
+   ULTRA-PREMIUM MCQ EXPLANATION & UNIVERSITY CITATION CARDS
+   ========================================================================== */
+.csy-explanation-card,
+.test1-explanation,
+.solution-box {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border) !important;
+    border-left: 4px solid var(--primary) !important;
+    border-radius: 8px !important;
+    padding: 1.4rem 1.6rem !important;
+    margin-top: 1.25rem !important;
+    color: var(--text-primary) !important;
+    font-size: 0.96rem !important;
+    line-height: 1.72 !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="dark"] .csy-explanation-card,
+[data-theme="dark"] .test1-explanation,
+[data-theme="dark"] .solution-box {
+    background: #1e293b !important;
+    border: 1px solid #38bdf8 !important;
+    border-left: 5px solid #0ea5e9 !important;
+    color: #f1f5f9 !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45) !important;
 }

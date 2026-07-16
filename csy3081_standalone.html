@@ -9684,6 +9684,282 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
         ],
         correctOption: 'A',
         explanation: `<strong>Detecting email spam</strong> requires predicting a discrete categorical class outcome (<code>1: Spam</code> vs <code>0: Non-Spam</code>), which is the definition of a <strong>classification</strong> task.<br><br>In contrast, predicting house prices, estimating future temperatures, and calculating fuel consumption all require predicting continuous numerical values, making them <strong>regression</strong> tasks.`
+    },
+    {
+        id: 'q83',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'Question 83 (1 Point): Decision Tree Unconstrained Growth & Overfitting',
+        text: 'Setting max_depth=None in a Scikit-Learn DecisionTreeClassifier without min_samples_split or min_samples_leaf constraints allows the tree to grow until all leaves are pure, often resulting in high variance and severe overfitting on noisy training data.',
+        options: [
+            { letter: 'A', text: 'True' },
+            { letter: 'B', text: 'False' }
+        ],
+        correctOption: 'A',
+        explanation: `When <code>max_depth=None</code> (<em>default in Scikit-Learn</em>), a Decision Tree will continue expanding nodes recursively until every leaf node achieves pure 100% homogeneity ($I_G = 0.0$ or $H = 0.0$). While this yields <strong>0% training error</strong>, the tree memorizes every outlier and noise grain (<em>High Variance</em>), causing poor generalization on test data. <strong>Pruning (<em>setting max_depth or min_samples_split</em>)</strong> is essential.`
+    },
+    {
+        id: 'q84',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'Question 84 (1 Point): KNN Feature Magnitude Sensitivity',
+        text: 'In K-Nearest Neighbours (KNN), feature scaling (such as using StandardScaler or MinMaxScaler) is critical because distance metrics like Euclidean distance are heavily dominated by features with large numeric scales (e.g. Salary in $100,000s vs Age in years).',
+        options: [
+            { letter: 'A', text: 'True' },
+            { letter: 'B', text: 'False' }
+        ],
+        correctOption: 'A',
+        explanation: `KNN is an instance-based distance algorithm relying on <strong>Euclidean distance</strong>: $$d(x, z) = \\sqrt{\\sum_{j=1}^{n} (x_j - z_j)^2}$$ If Feature 1 ranges from $10,000$ to $100,000$ (<em>e.g., Income</em>) and Feature 2 ranges from $18$ to $65$ (<em>e.g., Age</em>), any difference in Income will completely overpower Age in the distance calculation. <strong>Scaling (<em>StandardScaler</em>)</strong> equalizes all feature contributions.`
+    },
+    {
+        id: 'q85',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'Question 85 (1 Point): K-Means Centroid Initialization Guarantee',
+        text: 'Standard K-Means clustering (Lloyd\'s algorithm) is mathematically guaranteed to always converge to the exact global minimum within-cluster sum of squares (WCSS), regardless of initial centroid locations.',
+        options: [
+            { letter: 'A', text: 'True' },
+            { letter: 'B', text: 'False' }
+        ],
+        correctOption: 'B',
+        explanation: `K-Means (<em>Lloyd's algorithm</em>) optimizes a non-convex objective function and is <strong>only guaranteed to converge to a local minimum (<em>not the global minimum</em>)</strong>! If initial centroids start in poor locations (<em>e.g., two centroids trapped in one cluster</em>), the algorithm gets stuck. <br><br><strong>💡 Scikit-Learn Fix:</strong> This is precisely why Scikit-Learn uses <strong><code>init='k-means++'</code></strong> (<em>smart initialization spread across data points</em>) and defaults <code>n_init=10</code> (<em>running 10 random restarts and picking the lowest WCSS solution</em>).`
+    },
+    {
+        id: 'q86',
+        type: 'true-false',
+        category: 'true-false',
+        points: 1,
+        title: 'Question 86 (1 Point): Gaussian Naive Bayes Independence Assumption',
+        text: 'Gaussian Naive Bayes (GaussianNB) assumes that all input features $X_1, X_2, \\dots, X_n$ are conditionally independent of each other given the target class label $Y$.',
+        options: [
+            { letter: 'A', text: 'True' },
+            { letter: 'B', text: 'False' }
+        ],
+        correctOption: 'A',
+        explanation: `The fundamental assumption (<em>the 'Naive' assumption</em>) of all Naive Bayes classifiers is <strong>conditional feature independence given the class</strong>: $$P(X_1, X_2, \\dots, X_n | Y=c) = \\prod_{j=1}^{n} P(X_j | Y=c)$$ By assuming features do not interact, Naive Bayes dramatically reduces computational parameter estimation complexity from exponential $O(2^n)$ down to linear $O(n)$, making it extremely fast for high-dimensional text classification.`
+    },
+    {
+        id: 'q87',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 87 (2 Points): Softmax Cross-Entropy Loss Function',
+        text: 'What is the core loss function minimized when training a Softmax Regression (Multinomial Logistic Regression) classifier using maximum likelihood estimation across $n$ samples and $K$ classes?',
+        options: [
+            { letter: 'A', text: 'Mean Squared Error (MSE: average of squared residuals)' },
+            { letter: 'B', text: 'Cross-Entropy Loss (Multinomial Log-Loss: sum of -y_ik log(p_ik))' },
+            { letter: 'C', text: 'Hinge Loss (Max margin boundary optimization as in SVMs)' },
+            { letter: 'D', text: 'Gini Impurity Loss (Quadratic class mixture minimization)' }
+        ],
+        correctOption: 'B',
+        explanation: `Softmax Regression is trained by maximizing log-likelihood, which is mathematically equivalent to minimizing the <strong>Multinomial Cross-Entropy Loss (<em>Log-Loss</em>)</strong>: $$J(\\Theta) = -\\frac{1}{n} \\sum_{i=1}^{n} \\sum_{k=1}^{K} y_{i,k} \\log(\\hat{p}_{i,k})$$ where $y_{i,k}$ is the one-hot indicator (<em>1 if sample i has class k, else 0</em>) and $\\hat{p}_{i,k}$ is the predicted probability from the Softmax equation.`
+    },
+    {
+        id: 'q88',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 88 (2 Points): Exact Gini Impurity Calculation',
+        text: 'If a candidate split node in a binary classification tree contains exactly 10 positive class samples (+) and 10 negative class samples (-) (total samples = 20), what is the exact Gini impurity ($I_G$) of this node?',
+        options: [
+            { letter: 'A', text: '0.00 (Pure node containing only a single class)' },
+            { letter: 'B', text: '0.25 (Quarter uncertainty threshold)' },
+            { letter: 'C', text: '0.50 (Maximum impurity / 50-50 equal distribution across 2 classes)' },
+            { letter: 'D', text: '1.00 (Absolute entropy bound)' }
+        ],
+        correctOption: 'C',
+        explanation: `Let's calculate the exact Gini impurity using the definition: $$I_G = 1 - \\sum_{i=1}^{C} p_i^2$$ For this node: <br>• $p_+ = \\frac{10}{20} = 0.5$ <br>• $p_- = \\frac{10}{20} = 0.5$ <br><br>Substituting into the formula: $$I_G = 1 - (0.5^2 + 0.5^2) = 1 - (0.25 + 0.25) = 1 - 0.50 = \\mathbf{0.50}$$ A 50/50 split represents the maximum possible Gini impurity for a binary classification problem (<em>highest uncertainty</em>).`
+    },
+    {
+        id: 'q89',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 89 (2 Points): Scikit-Learn Supervised Workflow Pipeline',
+        text: 'Which sequence of Scikit-Learn method calls represents the exact correct industry-standard workflow for training, predicting, and evaluating a supervised classifier?',
+        options: [
+            { letter: 'A', text: 'model.predict(X_train) ➔ model.fit(X_test, y_test) ➔ model.score(y_pred)' },
+            { letter: 'B', text: 'model.fit(X_train, y_train) ➔ model.predict(X_test) ➔ accuracy_score(y_test, y_pred)' },
+            { letter: 'C', text: 'model.transform(y_train) ➔ model.predict_proba(X_train) ➔ model.fit(X_test)' },
+            { letter: 'D', text: 'model.score(X_train, y_test) ➔ model.fit(X_test) ➔ model.predict(y_train)' }
+        ],
+        correctOption: 'B',
+        explanation: `In the Scikit-Learn API, all supervised estimators adhere strictly to the <strong>Fit ➔ Predict ➔ Evaluate</strong> pattern: <br>1. <strong><code>model.fit(X_train, y_train)</code>:</strong> Fits parameters (<em>weights, split thresholds</em>) using the training fold. <br>2. <strong><code>y_pred = model.predict(X_test)</code>:</strong> Generates class predictions for unseen test feature instances. <br>3. <strong><code>accuracy_score(y_test, y_pred)</code>:</strong> Compares predicted vectors against ground-truth test labels to compute accuracy percentage.`
+    },
+    {
+        id: 'q90',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 90 (2 Points): K-Means Elbow Method Interpretation',
+        text: 'When using the Elbow Method to determine the optimal number of clusters ($k$) in K-Means, how do you identify the optimal $k$ from the evaluation curve plotted against Within-Cluster Sum of Squares (WCSS / Inertia)?',
+        options: [
+            { letter: 'A', text: 'Choose the exact value of k where WCSS reaches 0.0' },
+            { letter: 'B', text: 'Select the point of maximum curvature (the elbow point) where adding another cluster yields diminishing returns in WCSS reduction' },
+            { letter: 'C', text: 'Choose k = n_samples so every individual data point is its own centroid' },
+            { letter: 'D', text: 'Select the lowest possible k (k=1) because simpler models always generalize better' }
+        ],
+        correctOption: 'B',
+        explanation: `As you increase $k$, the <strong>Within-Cluster Sum of Squares (<em>Inertia / WCSS</em>)</strong> strictly decreases (<em>because more centroids mean data points are closer to their cluster center</em>). If $k = n$, WCSS becomes $0.0$, but that is useless overfitting! <br><br>The <strong>Elbow Method</strong> plots $k$ on the X-axis vs WCSS on the Y-axis and selects the <strong>'Elbow point' (<em>point of inflection / maximum curvature</em>)</strong>—where the rapid drop in WCSS levels off into a gradual plateau, indicating the optimal balance between cluster compactness and model simplicity.`
+    },
+    {
+        id: 'q91',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 91 (2 Points): Random Forest Bagging vs Single Decision Tree',
+        text: 'Why does a Random Forest Classifier (an ensemble of bagged decision trees) consistently outperform a single deeply grown Decision Tree in test set generalization and noise tolerance?',
+        options: [
+            { letter: 'A', text: 'Random Forest replaces non-linear step splits with linear hyperplanes inside leaf nodes' },
+            { letter: 'B', text: 'By averaging predictions across many uncorrelated trees (trained on bootstrapped data subsets and random feature subsets), Random Forest drastically reduces variance without increasing bias' },
+            { letter: 'C', text: 'Random Forest eliminates all training bias and guarantees zero false positives' },
+            { letter: 'D', text: 'Random Forest requires zero hyperparameter tuning and trains in O(1) constant time' }
+        ],
+        correctOption: 'B',
+        explanation: `A single deep Decision Tree suffers from <strong>High Variance (<em>Overfitting</em>)</strong>—it memorizes noisy training fluctuations. <strong>Random Forest</strong> solves this using <strong>Bootstrap Aggregating (<em>Bagging</em>) + Random Feature Selection</strong>: <br>• Each tree is trained on a random bootstrapped sample of the data. <br>• At every node split, only a random subset of features (<em>usually $\\sqrt{p}$</em>) is considered. <br><br>By averaging (<em>or majority voting</em>) dozens of uncorrelated, noisy trees, individual tree variances cancel out ($Var(\\bar{X}) = \\frac{\\sigma^2}{M}$), leaving a highly accurate, robust ensemble boundary.`
+    },
+    {
+        id: 'q92',
+        type: 'mcq',
+        category: 'mcq',
+        points: 2,
+        title: 'Question 92 (2 Points): Diagnosing Overfitting & Variance Remedies',
+        text: 'If a supervised classification model achieves 99.8% training accuracy but drops to 61.2% test accuracy, what learning pathology is occurring, and which remedy is most appropriate?',
+        options: [
+            { letter: 'A', text: 'High Bias (Underfitting); remedy: remove features and reduce model complexity' },
+            { letter: 'B', text: 'High Variance (Overfitting); remedy: apply L1/L2 regularization, increase training data, or prune tree depth (max_depth)' },
+            { letter: 'C', text: 'Model Equilibrium; remedy: deploy immediately without further tuning' },
+            { letter: 'D', text: 'Data Leakage; remedy: train the model directly on the test evaluation set' }
+        ],
+        correctOption: 'B',
+        explanation: `A massive gap between training accuracy (<em>99.8%</em>) and testing accuracy (<em>61.2%</em>) is the classic hallmark of <strong>High Variance (<em>Overfitting</em>)</strong>. The model has memorized the training set's specific noise and anomalies rather than learning generalizable decision boundaries. <br><br><strong>💡 Remedies:</strong><br>1. Apply <strong>Regularization</strong> (<em>$L_1$ Lasso or $L_2$ Ridge penalties</em>). <br>2. <strong>Prune complexity</strong> (<em>e.g., restrict max_depth or increase min_samples_split</em>). <br>3. <strong>Gather more training data</strong> (<em>or apply data augmentation</em>). <br>4. Switch to an <strong>Ensemble model</strong> (<em>Random Forest / Gradient Boosting</em>).`
+    },
+    {
+        id: 'q93',
+        type: 'mcq',
+        category: 'mcq',
+        points: 3,
+        title: 'Question 93 (3 Points): Softmax predict_proba Array Shape & Slicing',
+        text: 'Inspect the Scikit-Learn Softmax code below on the Iris dataset (which has 3 target classes: Setosa, Versicolor, Virginica). What is the exact NumPy array shape of y_probs returned by softmax_reg.predict_proba(X_test[:5])?\n\n```python\nfrom sklearn.linear_model import LogisticRegression\nsoftmax_reg = LogisticRegression(C=30)\nsoftmax_reg.fit(X_train, y_train)\n\n# Slicing the first 5 test samples:\ny_probs = softmax_reg.predict_proba(X_test[:5])\nprint(y_probs.shape)\n```',
+        options: [
+            { letter: 'A', text: '(5,) ➔ A 1D vector containing 5 discrete integer class labels' },
+            { letter: 'B', text: '(3, 5) ➔ 3 rows representing classes and 5 columns representing instances' },
+            { letter: 'C', text: '(5, 3) ➔ 2D array with 5 rows (one per test instance) and 3 columns (one probability per class)' },
+            { letter: 'D', text: '(1, 15) ➔ A flattened 1D array of 15 probability numbers' }
+        ],
+        correctOption: 'C',
+        explanation: `In Scikit-Learn, calling <strong><code>.predict_proba(X)</code></strong> on an input matrix $X$ with $n$ samples and a model trained across $K$ classes always returns a 2D probability matrix of exact shape <strong><code>(n_samples, n_classes)</code></strong>! <br><br>Here, because <code>X_test[:5]</code> passes exactly <strong>$5$ test samples</strong>, and the Iris dataset has <strong>$3$ classes</strong> (<em>Setosa, Versicolor, Virginica</em>), <code>predict_proba</code> outputs a 2D array of shape <strong><code>(5, 3)</code></strong>, where each of the 5 rows sums exactly to $1.00$.`
+    },
+    {
+        id: 'q94',
+        type: 'mcq',
+        category: 'mcq',
+        points: 3,
+        title: 'Question 94 (3 Points): Code Completion - Decision Tree Feature Importances',
+        text: 'If you want to inspect the relative importance scores of all features after training a DecisionTreeClassifier, which attribute should replace the question mark (?) in the code below?\n\n```python\nfrom sklearn.tree import DecisionTreeClassifier\ntree_clf = DecisionTreeClassifier(max_depth=3, random_state=42)\ntree_clf.fit(X_train, y_train)\n\n# What attribute retrieves the normalized feature importance scores?\nprint(tree_clf.?)\n```',
+        options: [
+            { letter: 'A', text: 'feature_importances_ (Scikit-Learn standard trailing underscore attribute for fitted parameters)' },
+            { letter: 'B', text: 'get_params() (Returns constructor initialization hyperparameters, not learned weights)' },
+            { letter: 'C', text: 'tree_importances() (Non-existent method)' },
+            { letter: 'D', text: 'coef_ (Used by linear models like LogisticRegression or LinearRegression, not trees)' }
+        ],
+        correctOption: 'A',
+        explanation: `In Scikit-Learn, any attribute learned from data during <code>.fit(X, y)</code> ends with a <strong>trailing underscore (<code>_</code>)</strong> by API convention! <br><br>For decision trees and random forests, the learned feature weights (<em>computed as the total normalized reduction in Gini impurity brought by splits on each feature</em>) are stored in the <strong><code>.feature_importances_</code></strong> attribute (<em>an array of shape [n_features] summing to 1.0</em>).`
+    },
+    {
+        id: 'q95',
+        type: 'mcq',
+        category: 'mcq',
+        points: 3,
+        title: 'Question 95 (3 Points): Code Completion - K-Means Centroid Coordinates',
+        text: 'In Scikit-Learn\'s KMeans class, which fitted attribute returns the exact numeric coordinates (multi-dimensional vectors) of the $k$ cluster centroids after fit(X) is executed?\n\n```python\nfrom sklearn.cluster import KMeans\nkmeans = KMeans(n_clusters=3, random_state=42, n_init=10)\nkmeans.fit(X)\n\n# Retrieve coordinates of the 3 cluster centroids:\ncentroids = kmeans.?\n```',
+        options: [
+            { letter: 'A', text: 'cluster_centers_ (2D NumPy array of shape [n_clusters, n_features])' },
+            { letter: 'B', text: 'centroids_array_ (Non-existent attribute)' },
+            { letter: 'C', text: 'labels_ (1D integer array assigning each data point to its cluster integer 0 to k-1)' },
+            { letter: 'D', text: 'inertia_ (Scalar float returning total within-cluster sum of squares WCSS)' }
+        ],
+        correctOption: 'A',
+        explanation: `In Scikit-Learn's <code>KMeans</code> clustering class: <br>• <strong><code>.cluster_centers_</code>:</strong> Returns a 2D array of shape <code>(n_clusters, n_features)</code> containing the exact geometric coordinates of each cluster's mean centroid. <br>• <strong><code>.labels_</code>:</strong> Returns the integer cluster assignment (<em>0 to k-1</em>) for every single point in the training matrix $X$. <br>• <strong><code>.inertia_</code>:</strong> Returns the final minimized Within-Cluster Sum of Squares (<em>WCSS</em>) scalar value.`
+    },
+    {
+        id: 'q96',
+        type: 'mcq',
+        category: 'mcq',
+        points: 3,
+        title: 'Question 96 (3 Points): Code Analysis - Train-Test Split Random State',
+        text: 'What is the exact mathematical and practical effect of specifying random_state=42 inside train_test_split(X, y, test_size=0.2, random_state=42) during Scikit-Learn data preprocessing?\n\n```python\nfrom sklearn.model_selection import train_test_split\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n```',
+        options: [
+            { letter: 'A', text: 'It forces exactly 42% of the training instances to be allocated to X_train' },
+            { letter: 'B', text: 'It seeds the pseudo-random number generator so that the exact same deterministic partition of training and testing samples is produced across every run and machine (Guarantees experimental reproducibility)' },
+            { letter: 'C', text: 'It restricts the downstream learning solver to a maximum of 42 optimization iterations' },
+            { letter: 'D', text: 'It shuffles the dataset exactly 42 times before cutting the 80/20 partition' }
+        ],
+        correctOption: 'B',
+        explanation: `Computers generate pseudo-random numbers using deterministic algorithms controlled by an initial integer seed (<em>the <code>random_state</code></em>). <br><br>By explicitly specifying <strong><code>random_state=42</code></strong> (<em>or any fixed integer</em>), you guarantee <strong>100% scientific reproducibility</strong>—every time you or an examiner runs your code, <code>train_test_split</code> will shuffle and divide the dataset into the exact same 80% training rows and 20% testing rows. If <code>random_state=None</code>, a random system clock seed is used, creating different train/test splits every execution.`
+    },
+    {
+        id: 'q97',
+        type: 'matching',
+        category: 'matching',
+        points: 3,
+        title: 'Question 97 (3 Points): Scikit-Learn Core Estimator Methods vs Functionality',
+        text: 'Match each core <strong>Scikit-Learn Estimator & Preprocessing Method</strong> directly to its computational function:',
+        matchingPairs: [
+            { left: 'model.fit(X, y)', right: 'Calculates internal model parameters (weights, centroids, split thresholds) from training data' },
+            { left: 'model.predict(X)', right: 'Outputs discrete class labels or continuous predicted values for input instances' },
+            { left: 'model.predict_proba(X)', right: 'Outputs normalized 2D probability distributions across all K classes summing to 1.0' },
+            { left: 'scaler.transform(X)', right: 'Applies learned scaling transformations (e.g. mean subtraction and variance division) to feature matrices' },
+            { left: 'model.score(X, y)', right: 'Computes default evaluation metric (Accuracy for classifiers, R^2 coefficient of determination for regressors)' }
+        ],
+        rightOptions: [
+            'Calculates internal model parameters (weights, centroids, split thresholds) from training data',
+            'Outputs discrete class labels or continuous predicted values for input instances',
+            'Outputs normalized 2D probability distributions across all K classes summing to 1.0',
+            'Applies learned scaling transformations (e.g. mean subtraction and variance division) to feature matrices',
+            'Computes default evaluation metric (Accuracy for classifiers, R^2 coefficient of determination for regressors)'
+        ],
+        correctMatches: [
+            'Calculates internal model parameters (weights, centroids, split thresholds) from training data',
+            'Outputs discrete class labels or continuous predicted values for input instances',
+            'Outputs normalized 2D probability distributions across all K classes summing to 1.0',
+            'Applies learned scaling transformations (e.g. mean subtraction and variance division) to feature matrices',
+            'Computes default evaluation metric (Accuracy for classifiers, R^2 coefficient of determination for regressors)'
+        ],
+        explanation: `<strong>💡 Scikit-Learn API Master Summary:</strong><br>• <strong><code>.fit(X, y)</code>:</strong> Trains the model and stores learned weights in trailing underscore attributes (<code>.coef_</code>, <code>.cluster_centers_</code>).<br>• <strong><code>.predict(X)</code>:</strong> Applies argmax (<em>classifiers</em>) or regression equations to predict exact outputs.<br>• <strong><code>.predict_proba(X)</code>:</strong> Outputs raw probability vectors (<em>classifiers only</em>).<br>• <strong><code>.transform(X)</code> & <code>.fit_transform(X)</code>:</strong> Used by transformers (<code>StandardScaler</code>, <code>PCA</code>, <code>PolynomialFeatures</code>) to modify input matrices.<br>• <strong><code>.score(X, y)</code>:</strong> Quick evaluation shortcut computing accuracy (<em>classification</em>) or $R^2$ (<em>regression</em>).`
+    },
+    {
+        id: 'q98',
+        type: 'matching',
+        category: 'matching',
+        points: 3,
+        title: 'Question 98 (3 Points): Machine Learning Algorithms vs Key Hyperparameters',
+        text: 'Match each <strong>Supervised / Unsupervised Scikit-Learn Estimator</strong> to its primary regularization or structural hyperparameter:',
+        matchingPairs: [
+            { left: 'DecisionTreeClassifier', right: 'max_depth & min_samples_split (Controls tree depth and pruning to prevent overfitting)' },
+            { left: 'LogisticRegression', right: 'C (Inverse of regularization strength; smaller C values enforce stronger L1/L2 penalty)' },
+            { left: 'KMeans', right: 'n_clusters (k) & n_init (Specifies cluster count and number of random centroid restarts)' },
+            { left: 'KNeighborsClassifier', right: 'n_neighbors (k) & metric (Number of voting neighbors and distance formula like Euclidean)' },
+            { left: 'RandomForestClassifier', right: 'n_estimators (Total number of individual bagged decision trees combined in the ensemble)' }
+        ],
+        rightOptions: [
+            'max_depth & min_samples_split (Controls tree depth and pruning to prevent overfitting)',
+            'C (Inverse of regularization strength; smaller C values enforce stronger L1/L2 penalty)',
+            'n_clusters (k) & n_init (Specifies cluster count and number of random centroid restarts)',
+            'n_neighbors (k) & metric (Number of voting neighbors and distance formula like Euclidean)',
+            'n_estimators (Total number of individual bagged decision trees combined in the ensemble)'
+        ],
+        correctMatches: [
+            'max_depth & min_samples_split (Controls tree depth and pruning to prevent overfitting)',
+            'C (Inverse of regularization strength; smaller C values enforce stronger L1/L2 penalty)',
+            'n_clusters (k) & n_init (Specifies cluster count and number of random centroid restarts)',
+            'n_neighbors (k) & metric (Number of voting neighbors and distance formula like Euclidean)',
+            'n_estimators (Total number of individual bagged decision trees combined in the ensemble)'
+        ],
+        explanation: `<strong>💡 Hyperparameter Tuning Cheat Sheet:</strong><br>• <strong>Decision Tree (<code>max_depth=None</code>):</strong> Prone to overfitting; tune <code>max_depth</code> to 3-10.<br>• <strong>Logistic Regression (<code>C=1.0</code>):</strong> $C = \\frac{1}{\\lambda}$. If model overfits, reduce $C$ (<em>e.g. C=0.01</em>). If model underfits, increase $C$ (<em>e.g. C=100</em>).<br>• <strong>K-Means (<code>n_clusters=8</code>):</strong> Must be tuned via the Elbow Method or Silhouette analysis.<br>• <strong>KNN (<code>n_neighbors=5</code>):</strong> Small $k=1$ has high variance (<em>overfitting</em>); large $k=50$ has high bias (<em>underfitting</em>).<br>• <strong>Random Forest (<code>n_estimators=100</code>):</strong> Increasing trees (<em>e.g. 200 or 500</em>) improves variance reduction at the cost of training speed (<em>never overfits by adding trees</em>).`
     }
 ];
 
